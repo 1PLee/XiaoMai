@@ -1,0 +1,13 @@
+
+public ResultMessage registeVIP(VIPVO); 
+VIPVO(String userName,String password,String email,String phoneNum,Date birthDay) (需要检查userName不能重名)
+
+public ResultMessage cancelVIP(String userName);
+
+public ResultMessage getRank(String userName);
+
+public ResultMessage buyTicket(orderVO); 
+ResultMessage 包括 (成功、余额不足、网络错误等)
+orderVO(String username,int ticketsNum,double onePrice,double totalPrice,Timestamp createTime,int projectID)
+
+
