@@ -1,13 +1,21 @@
 package main.dao.Impl;
 
 import main.dao.BaseDAO;
+import main.entity.VenueEntity;
 import main.util.ResultMessage;
 import org.hibernate.Cache;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 /**
  * Created by liyipeng on 2018/2/13.
@@ -97,6 +105,30 @@ public class BaseDAOImpl implements BaseDAO {
         T entity=session.get(c,id);
         return entity;
     }
+
+    public <T> T loadProxy(Class<T> c, int id) {
+        Session session= getCurrentSession();
+        T entity=session.load(c,id);
+        return entity;
+    }
+
+    public <T> List<T> getAll(Class<T> c) {
+        Session session = getCurrentSession();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(c);
+
+        Root<T> root = query.from(c);
+
+        query.select(root);
+        Query<T> q = session.createQuery(query);
+
+        List<T> list = q.getResultList();
+
+        return list;
+    }
+
+
 
 
 }

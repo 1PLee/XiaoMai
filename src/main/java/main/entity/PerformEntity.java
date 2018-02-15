@@ -1,10 +1,17 @@
 package main.entity;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by liyipeng on 2018/2/8.
  */
+
 @Entity
 @Table(name = "perform", schema = "XiaoMai")
 public class PerformEntity {
