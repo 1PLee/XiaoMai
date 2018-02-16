@@ -1,0 +1,21 @@
+#performTable{
+    margin-top: 40px;
+}
+
+.tableHeaderRow{
+    background-color: #B6E5E7;
+}
+
+.tableColumn{
+    color: white;
+}
+.navbar{
+    background-color: #6EC6CF;
+}
+
+.carousel-yp{
+    margin-left: 280px;
+    margin-top: -15px;
+    padding-left: 180px;
+    padding-right: 180px;
+}

@@ -7,6 +7,7 @@ import main.entity.PriceEntity;
 import main.entity.VenueEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class PerformDAOImpl implements PerformDAO {
     @Autowired
     BaseDAO baseDAO;
 
+
     public List<PerformEntity> getAllPerform() {
+
 
         return baseDAO.getAll(PerformEntity.class);
     }

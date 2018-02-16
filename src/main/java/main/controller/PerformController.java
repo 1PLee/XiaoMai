@@ -2,9 +2,11 @@ package main.controller;
 
 import main.service.PerformService;
 import main.vo.PerformVO;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -22,12 +24,13 @@ public class PerformController {
     @Autowired
     PerformService performService;
 
-    @RequestMapping(value = "/getAllPerforms")
+    @RequestMapping(value = "/getAllPerforms",method = RequestMethod.GET)
     @ResponseBody
     public List<PerformVO> getAllTickets(){ //get all performs to show on the home page
         List<PerformVO> performList = new ArrayList<PerformVO>();
 
         performList = performService.getAllPerforms();
+
 
         return performList;
     }

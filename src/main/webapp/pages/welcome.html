@@ -7,6 +7,7 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link href="../css/welcome.css" rel="stylesheet" type="text/css" >
     <title>WelCome</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
         </div>
         <div class="col-md-9">
             <ul class="nav navbar-nav user">
-                <li><i class="iconfont">&#xe677;</i>登陆</li>
+                <li><i class="iconfontUser">&#xe677;</i>登陆</li>
             </ul>
         </div>
     </nav>
@@ -50,6 +51,22 @@
         </div>
     </div>
 
+    <div class="container" >
+        <table class="table" id="performTable">
+            <thead>
+                <tr class="tableHeaderRow">
+                    <th class="tableColumn">名称</th>
+                    <th class="tableColumn">时间</th>
+                    <th class="tableColumn">场馆</th>
+                    <th class="tableColumn">票价</th>
+                    <th class="tableColumn">订购</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+
     <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
@@ -57,17 +74,19 @@
 </html>
 
 <style>
+/*
     .navbar{
         background-color: #6EC6CF;
     }
+*/
 
 
-    .carousel-yp{
+/*    .carousel-yp{
         margin-left: 280px;
         margin-top: -15px;
         padding-left: 180px;
         padding-right: 180px;
-    }
+    }*/
 
 
     .user{
@@ -84,7 +103,7 @@
         url('//at.alicdn.com/t/font_569287_c14mx4jqhc4pwrk9.ttf') format('truetype'),
         url('//at.alicdn.com/t/font_569287_c14mx4jqhc4pwrk9.svg#iconfont') format('svg');
     }
-    .iconfont{
+    .iconfontUser{
         font-family:"iconfont" !important;
         font-size:30px;font-style:normal;
         -webkit-font-smoothing: antialiased;
