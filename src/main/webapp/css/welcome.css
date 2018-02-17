@@ -26,3 +26,14 @@
     fill: currentColor;
     overflow: hidden;
 }
+
+.performName:hover{
+    color: #C44F63;
+    cursor: pointer;
+}
+
+
+.performVenue:hover{
+    color: #C44F63;
+    cursor: pointer;
+}
