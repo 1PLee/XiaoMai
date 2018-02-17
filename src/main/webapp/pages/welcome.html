@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link href="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="../css/welcome.css" rel="stylesheet" type="text/css" >
     <title>WelCome</title>
 </head>
@@ -55,11 +56,21 @@
         <table class="table" id="performTable">
             <thead>
                 <tr class="tableHeaderRow">
-                    <th class="tableColumn">名称</th>
-                    <th class="tableColumn">时间</th>
-                    <th class="tableColumn">场馆</th>
-                    <th class="tableColumn">票价</th>
-                    <th class="tableColumn">订购</th>
+                    <th class="tableColumn"><svg class="iconColumn" aria-hidden="true">
+                        <use xlink:href="#icon-card"></use>
+                    </svg>名称</th>
+                    <th class="tableColumn"><svg class="iconColumn" aria-hidden="true">
+                        <use xlink:href="#icon-shijian"></use>
+                    </svg>时间</th>
+                    <th class="tableColumn"><svg class="iconColumn" aria-hidden="true">
+                        <use xlink:href="#icon-didian"></use>
+                    </svg>场馆</th>
+                    <th class="tableColumn"><svg class="iconColumn" aria-hidden="true">
+                        <use xlink:href="#icon-jiage"></use>
+                    </svg>票价</th>
+                    <th class="tableColumn"><svg class="iconColumn" aria-hidden="true">
+                        <use xlink:href="#icon-4leixing"></use>
+                    </svg>类型</th>
                 </tr>
             </thead>
         </table>
@@ -69,25 +80,14 @@
 
     <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="//at.alicdn.com/t/font_569287_efsyrwqxd9r4quxr.js"></script>
+    <script src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="../js/welcome.js"></script>
 </body>
 </html>
 
 <style>
-/*
-    .navbar{
-        background-color: #6EC6CF;
-    }
-*/
-
-
-/*    .carousel-yp{
-        margin-left: 280px;
-        margin-top: -15px;
-        padding-left: 180px;
-        padding-right: 180px;
-    }*/
-
 
     .user{
         margin-left: 950px;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +27,14 @@ public class PerformController {
 
     @RequestMapping(value = "/getAllPerforms",method = RequestMethod.GET)
     @ResponseBody
-    public List<PerformVO> getAllTickets(){ //get all performs to show on the home page
+    public Map<String,List<PerformVO>> getAllTickets(){ //get all performs to show on the home page
         List<PerformVO> performList = new ArrayList<PerformVO>();
 
         performList = performService.getAllPerforms();
 
-
-        return performList;
+        Map<String,List<PerformVO>> resultMap = new HashMap<String, List<PerformVO>>();
+        resultMap.put("data",performList);
+        return resultMap;
     }
 
 }
