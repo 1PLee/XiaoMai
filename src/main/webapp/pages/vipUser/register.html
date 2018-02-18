@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>Register</title>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="../welcome.html"><img src="../../images/logo5.png"></a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登陆</a></li>
+                    <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form role="form" class="registerForm">
+        <div class="form-group">
+            <label for="userName">用户名</label>
+            <input type="text" class="form-control" id="userName" placeholder="请输入用户名（仅限英文与数字）">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" placeholder="请输入8位数字密码">
+            <label for="userMail">邮箱</label>
+            <input type="email" class="form-control" id="userMail" placeholder="xxx@mail.com">
+            <label for="checkCode">验证码</label>
+            <input type="text" class="form-control" id="checkCode" placeholder="请输入邮箱验证码">
+        </div>
+        <button type="submit" class="btn btn-primary disabled" id="sendMail">点击发送验证码</button>
+        <button type="submit" class="btn btn-primary disabled" id="submitUser">注册</button>
+    </form>
+
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../js/vipUser/register.js"></script>
+</body>
+
+
+</html>
+
+<style>
+
+    @font-face {
+        font-family: 'iconfont';  /* project id 569287 */
+        src: url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.eot');
+        src: url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.woff') format('woff'),
+        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.svg#iconfont') format('svg');
+    }
+    .iconfontUser{
+
+        font-family:"iconfont" !important;
+        font-size:25px;font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;}
+    .navbar{
+        background-color: #6EC6CF;
+    }
+
+    .registerForm{
+        width: 500px;
+        margin-left: 450px;
+    }
+
+    #sendMail{
+        margin-left: 520px;
+        margin-top: -200px;
+    }
+
+    #submitUser{
+        margin-left: 250px;
+    }
+
+</style>

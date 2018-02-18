@@ -13,12 +13,17 @@
     background-color: #6EC6CF;
 }
 
-.carousel-yp{
-    margin-left: 280px;
-    margin-top: -15px;
-    padding-left: 180px;
-    padding-right: 180px;
+/*
+.user{
+    margin-left: 950px;
+    margin-top: 10px;
 }
+*/
+.item{
+    margin-left: 420px;
+}
+
+
 
 .iconColumn {
     width: 2em; height: 1em;
