@@ -15,7 +15,7 @@ $(document).on(
     {
         click:function () {
 
-            alert('click register');
+
             userName = document.getElementById('userName');
             password = document.getElementById('password');
             userMail = document.getElementById('userMail');
@@ -30,7 +30,6 @@ $(document).on(
 
             };
 
-            alert(registerVO);
 
             $.ajax({
                 type:'post',
@@ -38,11 +37,23 @@ $(document).on(
                 contentType:'application/json;charset=utf-8',
                 data:JSON.stringify(registerVO),
                 success: function (result) {
-                    alert("register success");
-                    if(result.result == "SUCCESS"){
-                        window.location.href = "../welcome.html"
-                    }else {
-                        alert("register failed!");
+
+                    switch (result.result){
+                        case "SUCCESS":
+                            window.location.href = "Login.html";
+                            break;
+                        case "FAILURE_WRONGMAILCODE":
+                            alert("验证码有误");
+                            break;
+                        case "USER_REPEATED":
+                            alert("用户已经存在");
+                            break;
+                        case "FAILURE_MAILREPEATED":
+                            alert("邮箱已经被使用");
+                            break;
+                        default:
+                            alert("注册失败！请重试");
+                            break;
                     }
                 },
                 error:function () {
@@ -98,7 +109,7 @@ $(document).on(
                 url:'/User/sendMailCode',
                 data:{"userID":userName.value, "mail":userMail.value},
                 success:function(result){
-                    alert("method success!")
+                    //alert("method success!")
                 },
                 error:function(){
                     alert("un success!")
@@ -112,17 +123,17 @@ $(document).on(
 );
 
 function count_timer() {
-    var second = 60;
+    var second = 20;
     var timer = null;
 
 
-    alert("send successly");
+
     timer = setInterval(function(){
         second -= 1;
         if(second > 0){
             $('#second').html(second);
         }else {
-            clearInterval(timer)
+            clearInterval(timer);
             $('#sendMail').show();
             $('#sendMail_Reset').hide();
         }

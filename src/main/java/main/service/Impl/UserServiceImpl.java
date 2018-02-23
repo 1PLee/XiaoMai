@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
     public ResultMessage register(UserVO userVO, int code)  {
         ResultMessage result = null;
         List<String> userID = new ArrayList<String>();
+        List<String> userMail = new ArrayList<String>();
 
         int sendCode = 0; //点击发送验证码之后得到的验证码
 
@@ -56,6 +57,14 @@ public class UserServiceImpl implements UserService {
                 return ResultMessage.USER_REPEATED;
             }
         }
+
+        userMail = userDAO.getAllMail();
+        for(String oneMail : userMail){
+            if(userVO.getMail().equals(oneMail)){ //mail already bind with user
+                return ResultMessage.FAILURE_MAILREPEATED;
+            }
+        }
+
         UserEntity userEntity = new UserEntity();
         userEntity.setId(userVO.getId());
         userEntity.setPassword(userVO.getPassword());
@@ -71,6 +80,32 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         MailCodeMap.getInstance().remove(userVO.getId());
+
+        return result;
+    }
+
+    @Transactional
+    public ResultMessage login(UserVO userVO) {
+        String userID = userVO.getId();
+        int password = userVO.getPassword();
+
+        UserEntity userEntity = new UserEntity();
+        ResultMessage result = null;
+
+        userEntity = baseDAO.getEntity(UserEntity.class, userID);
+
+        if(userEntity == null){
+            result = ResultMessage.NONE_USER;
+            return result;
+        }else {
+            if(password != userEntity.getPassword()){
+                result = ResultMessage.WRONG_PASSWORD;
+                return result;
+            }
+
+        }
+
+        result = ResultMessage.SUCCESS;
 
         return result;
     }

@@ -43,4 +43,13 @@ public class UserDAOImpl implements UserDAO {
 
         return userID;
     }
+
+    public List<String> getAllMail() {
+        List<String> userMail = new ArrayList<String>();
+        userMail = baseDAO.getByHql("select mail from UserEntity");
+
+        return userMail;
+    }
+
+
 }

@@ -21,11 +21,23 @@
         </div>
     </nav>
 
+    <form role="form" class="loginForm">
+        <div class="form-group">
+            <label for="userID">用户名</label>
+            <input type="text" class="form-control" id="userID" placeholder="请输入用户名">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" placeholder="请输入密码">
+
+        </div>
+        <button type="button" class="btn btn-primary" id="login">登录</button>
+    </form>
+
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../js/vipUser/login.js"></script>
 </body>
 </html>
 
@@ -48,6 +60,15 @@
 
     .navbar{
         background-color: #6EC6CF;
+    }
+
+    .loginForm{
+        width: 500px;
+        margin-left: 470px;
+    }
+
+    #login{
+        margin-left: 200px;
     }
 
 </style>

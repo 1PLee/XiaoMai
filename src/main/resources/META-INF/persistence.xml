@@ -7,6 +7,7 @@
         <class>main.entity.DescriptionEntity</class>
         <class>main.entity.PerformEntity</class>
         <class>main.entity.VenueEntity</class>
+        <class>main.entity.UserEntity</class>
 
 
         <properties>

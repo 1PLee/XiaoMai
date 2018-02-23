@@ -3,6 +3,7 @@ package main.dao;
 import main.util.ResultMessage;
 import org.hibernate.Session;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,9 +19,9 @@ public interface BaseDAO {
 
     <T> List<T> getByHql(String hql);
 
-    <T> T getEntity(Class<T> c, int id);
+    <T> T getEntity(Class<T> c, Serializable id);
 
-    <T> T loadProxy(Class<T> c, int id);
+    <T> T loadProxy(Class<T> c, String id);
 
     <T> List<T> getAll(Class<T> c);
 

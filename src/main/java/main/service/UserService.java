@@ -10,5 +10,7 @@ public interface UserService {
 
     ResultMessage register(UserVO userVO, int code);
 
+    ResultMessage login(UserVO userVO);
+
     ResultMessage sendMailCode(String userID,String mail);
 }

@@ -46,4 +46,18 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject login(@RequestBody UserVO userVO){
+        ResultMessage result = null;
+        result = userService.login(userVO);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", result);
+
+        return jsonObject;
+    }
+
+
+
 }

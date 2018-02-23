@@ -14,4 +14,6 @@ public interface UserDAO {
         ResultMessage register(UserEntity userEntity) throws Exception;
 
         List<String> getAllUserID();
+
+        List<String> getAllMail();
 }

@@ -11,7 +11,6 @@ public class UserEntity {
     private String id;
     private int password;
     private String mail;
-    private int mailState; //0代表未激活邮箱 1代表已激活
     private int vipGrade; //0 白银  1 黄金  2 钻石
     private int vipIsStop; //1 取消会员 0 未取消
     private int vipScore; //会员积分
@@ -46,15 +45,7 @@ public class UserEntity {
         this.mail = mail;
     }
 
-    @Basic
-    @Column(name = "mailState")
-    public int getMailState() {
-        return mailState;
-    }
 
-    public void setMailState(int mailState) {
-        this.mailState = mailState;
-    }
 
     @Basic
     @Column(name = "vipGrade")
@@ -84,5 +75,33 @@ public class UserEntity {
 
     public void setVipScore(int vipScore) {
         this.vipScore = vipScore;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntity that = (UserEntity) o;
+
+        if (password != that.password) return false;
+        if (vipGrade != that.vipGrade) return false;
+        if (vipIsStop != that.vipIsStop) return false;
+        if (vipScore != that.vipScore) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + password;
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + vipGrade;
+        result = 31 * result + vipIsStop;
+        result = 31 * result + vipScore;
+        return result;
     }
 }

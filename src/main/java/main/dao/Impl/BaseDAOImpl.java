@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -90,7 +91,7 @@ public class BaseDAOImpl implements BaseDAO {
         return session.createQuery(hql).list();
     }
 
-    public <T> T getEntity(Class<T> c, int id) {
+    public <T> T getEntity(Class<T> c, Serializable id) {
         Session session = sessionFactory.getCurrentSession();
 /*        if (session != null) {
             session.clear(); // internal cache clear
@@ -106,12 +107,12 @@ public class BaseDAOImpl implements BaseDAO {
             cache.evictQueryRegions();
             cache.evictNaturalIdRegions();
         }*/
-
-        T entity=session.get(c,id);
+        System.out.println("this baseDao id:"+id);
+        T entity = session.get(c,id);
         return entity;
     }
 
-    public <T> T loadProxy(Class<T> c, int id) {
+    public <T> T loadProxy(Class<T> c, String id) {
         Session session= getCurrentSession();
         T entity=session.load(c,id);
         return entity;
