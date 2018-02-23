@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Transactional
 @Service
-public class PerformServiceBean implements PerformService {
+public class PerformServiceImpl implements PerformService {
     //private static final Logger log = LoggerFactory.getLogger(PerformServiceBean.class);
     @Autowired
     PerformDAO performDAO;

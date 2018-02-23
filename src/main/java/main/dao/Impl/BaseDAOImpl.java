@@ -38,16 +38,16 @@ public class BaseDAOImpl implements BaseDAO {
     }
 
 
-    public int save(Object entity) throws Exception {
+    public <T> T save(Object entity) throws Exception {
         Session session= getCurrentSession();
-        Transaction tr=session.beginTransaction();
+        //Transaction tr=session.beginTransaction();
         try {
-            int id=(Integer) session.save(entity);
+            T id= (T) session.save(entity);
             return id;
         }catch (Exception e){
             throw e;
         }finally {
-            tr.commit();
+            //tr.commit();
 /*            session.clear();
             session.close();*/
         }
@@ -83,6 +83,11 @@ public class BaseDAOImpl implements BaseDAO {
             session.close();*/
         }
         return ResultMessage.SUCCESS;
+    }
+
+    public <T> List<T> getByHql(String hql) {
+        Session session = getCurrentSession();
+        return session.createQuery(hql).list();
     }
 
     public <T> T getEntity(Class<T> c, int id) {

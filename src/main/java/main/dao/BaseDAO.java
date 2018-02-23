@@ -1,6 +1,7 @@
 package main.dao;
 
 import main.util.ResultMessage;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -9,11 +10,13 @@ import java.util.List;
  */
 public interface BaseDAO {
 
-    int save(Object entity) throws Exception;
+    <T> T save(Object entity) throws Exception;
 
     ResultMessage saveOrUpdate(Object entity);
 
     ResultMessage update(Object entity);
+
+    <T> List<T> getByHql(String hql);
 
     <T> T getEntity(Class<T> c, int id);
 

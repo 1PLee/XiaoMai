@@ -32,8 +32,9 @@
             <label for="checkCode">验证码</label>
             <input type="text" class="form-control" id="checkCode" placeholder="请输入邮箱验证码">
         </div>
-        <button type="submit" class="btn btn-primary disabled" id="sendMail">点击发送验证码</button>
-        <button type="submit" class="btn btn-primary disabled" id="submitUser">注册</button>
+        <button type="button" class="btn btn-primary disabled" id="sendMail" >点击发送验证码</button>
+        <button type="button" class="btn btn-primary disabled" id="sendMail_Reset"><span id="second">60</span>秒后重发</button>
+        <button type="button" class="btn btn-primary disabled" id="submitUser">注册</button>
     </form>
 
 
@@ -42,6 +43,9 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
     <script src="../../js/vipUser/register.js"></script>
 </body>
 
@@ -77,6 +81,11 @@
     #sendMail{
         margin-left: 520px;
         margin-top: -200px;
+    }
+    #sendMail_Reset{
+        margin-left: 520px;
+        margin-top: -200px;
+        display: none;
     }
 
     #submitUser{

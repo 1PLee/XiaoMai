@@ -17,6 +17,8 @@
                             <value>text/json;charset=UTF-8</value>
                         </list>
                     </property>
+                    <property name="objectMapper" ref="MyObjectMapper" />
+
                 </bean>
                 <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
                     <property name = "supportedMediaTypes">
@@ -26,10 +28,13 @@
                     </property>
                 </bean>
 
+
+
             </list>
         </property>
     </bean>
 
+    <bean id="MyObjectMapper" class="main.util.MyObjectMapper"></bean>
 
     <!--指明 controller 所在包，并扫描其中的注解-->
     <context:component-scan base-package="main"/>
