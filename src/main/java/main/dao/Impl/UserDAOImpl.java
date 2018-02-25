@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDAO {
         String id = null;
 
         id = baseDAO.save(userEntity);
-        System.out.println("look the id:"+id);
 
         if(id != null){
             result = ResultMessage.SUCCESS;

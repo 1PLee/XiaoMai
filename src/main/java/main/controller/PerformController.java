@@ -2,11 +2,13 @@ package main.controller;
 
 import main.service.PerformService;
 import main.vo.PerformVO;
+import net.sf.json.JSONObject;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -35,6 +37,13 @@ public class PerformController {
         Map<String,List<PerformVO>> resultMap = new HashMap<String, List<PerformVO>>();
         resultMap.put("data",performList);
         return resultMap;
+    }
+
+    @RequestMapping(value = "/getPrice", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject getPrice(@RequestParam("performID") int performID){
+
+        return null;
     }
 
 }

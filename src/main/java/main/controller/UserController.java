@@ -59,5 +59,13 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject getUserInfo(@RequestParam("userId") String userID){
+
+        return null;
+    }
+
+
 
 }

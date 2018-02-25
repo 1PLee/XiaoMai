@@ -60,5 +60,22 @@ public class PerformServiceImpl implements PerformService {
         return performVOList;
     }
 
+    /*根据performID 得到演出的全部价格*/
+    public List<Integer> getPrice(int performID) {
+        List<PriceEntity> performPriceList = new ArrayList<PriceEntity>();
+        performPriceList = performDAO.getPrice(performID);
+
+        PriceEntity performPrice = new PriceEntity();
+        performPrice = performPriceList.get(0);
+
+        List<Integer> priceList = new ArrayList<Integer>(); //这个perform的全部票价
+
+        for (int i = 0;i<6;i++){
+
+        }
+
+        return null;
+    }
+
 }
 

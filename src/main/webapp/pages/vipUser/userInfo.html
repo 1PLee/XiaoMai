@@ -6,6 +6,7 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/header.css" rel="stylesheet" type="text/css">
+    <link href="../../css/userInfo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -42,10 +43,10 @@
         </div>
     </nav>
 
-    <ul class="nav nav-pills nav-stacked">
-        <li class="slideLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
-        <li class="slideLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
-        <li class="slideLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
+    <ul class="nav nav-pills nav-stacked col-md-3">
+        <li class="slideLi" id="userInfoLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
+        <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
+        <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
         <li >
             <div class="dropdown" id="checkOrder">
                 <span class="dropdown-toggle" data-toggle="dropdown">
@@ -69,6 +70,64 @@
 
     </ul>
 
+    <!--个人信息-->
+    <div id="userInfoDiv" class="col-md-9">
+        <p class="pUserID">用户ID:</p> <p id="pUserID">lyp3hao</p>
+        <p class="pUserMail">邮箱:</p> <p id="pUserMail">1017270947@qq.com</p>
+        <p class="pVip">会员等级:</p> <p id="pVipGrade">白银会员</p> <button type="button" id="cancelVIP" class="btn btn-danger">取消会员</button>
+
+        <p class="pVip">会员积分:</p> <p id="pVipScore">288</p>
+    </div>
+
+    <!--修改密码-->
+    <div id="changePasswordDiv" class="col-md-9">
+        <form role="form" class="changePasswordForm">
+            <div class="form-group">
+                <label for="oldPassword">旧密码</label>
+                <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
+                <label for="newPassword">新密码</label>
+                <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
+                <label for="againNew">再次输入新密码</label>
+                <input type="password" class="form-control" id="againNew" placeholder="再次确认新密码">
+
+            </div>
+            <button type="button" class="btn btn-primary" id="changePasswordBtn">修改密码</button>
+        </form>
+    </div>
+
+    <!--会员等级-->
+    <div id="vipGradeFormDiv" class="col-md-9">
+        <table class="table vipGradeTable">
+            <thead>
+            <tr>
+                <th>会员等级</th>
+                <th>对应积分</th>
+                <th>享受优惠(百分比)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>白银会员</td>
+                <td>1000</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <td>黄金会员</td>
+                <td>5000</td>
+                <td>88%</td>
+            </tr>
+            <tr>
+                <td>钻石会员</td>
+                <td>10000</td>
+                <td>80%</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!--全部订单-->
+
 
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -84,80 +143,6 @@
 
 <style>
 
-    body{
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    }
 
-    .nav-stacked>li+li{
-        margin-left: 10px;
-    }
-    .nav-pills>li+li{
-        margin-left: 10px;
-    }
-
-    li{
-        margin-left: 10px;
-    }
-
-
-    .nav-stacked{
-        width: 150px;
-        height: 720px;
-        margin-left: 30px;
-        background-color: #B6E5E7;
-    }
-
-    .li1{
-        height: 40px;
-    }
-    .li1:hover{
-        cursor: pointer;
-    }
-
-    .dropdown-menu{
-        background-color: #B6E5E7;
-        min-width: 135px;
-    }
-
-    .dropdown:hover{
-        background-color: #B6E5E7;
-    }
-
-    .dropdown-toggle{
-        background-color: #B6E5E7;
-    }
-    .dropdown-toggle:hover{
-        color: white;
-        cursor: pointer;
-
-    }
-
-    .slideLi{
-        height: 60px;
-
-    }
-    .slideLi:hover{
-        color: white;
-        cursor: pointer;
-        background-color: #B6E5E7;
-
-    }
-
-    @font-face {
-        font-family: 'iconfont';  /* project id 569287 */
-        src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot');
-        src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.woff') format('woff'),
-        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.svg#iconfont') format('svg');
-    }
-
-    .slideUserInfo{
-
-        font-family:"iconfont" !important;
-        font-size:25px;font-style:normal;
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-stroke-width: 0.2px;
-        -moz-osx-font-smoothing: grayscale;}
 </style>
 </html>
