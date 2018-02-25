@@ -4,6 +4,7 @@
 
 
 $(document).ready(function() {
+    showUser(); //检查用户是否登录
 
     $('#performTable').DataTable( {
         "pageLength": 25,
@@ -21,7 +22,7 @@ $(document).ready(function() {
             "createdCell":function (td, cellData, rowData, row, col) {
                 $(td).addClass("performName")
                 $(td).click(function(){
-                    window.document.location = "pages/perform.html?performID="+rowData['performID']
+                    window.document.location = "perform.html?performID="+rowData['performID']
                 });
             }
         },
@@ -30,7 +31,7 @@ $(document).ready(function() {
                 "createdCell":function (td, cellData, rowData, row, col) {
                     $(td).addClass("performVenue")
                     $(td).click(function(){
-                        window.document.location = "pages/venue.html?venue="+rowData['venue']
+                        window.document.location = "venue.html?venue="+rowData['venue']
                     });
                 }
             }

@@ -11,6 +11,7 @@
     <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link href="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css">
     <link href="../css/welcome.css" rel="stylesheet" type="text/css" >
+    <link href="../css/header.css" rel="stylesheet" type="text/css">
     <title>WelCome</title>
 </head>
 <body>
@@ -21,10 +22,30 @@
                 <a href="welcome.html"><img src="../images/logo5.png"></a>
             </div>
             <div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><i class="iconfontUser">&#xe677;</i><a href="vipUser/Login.html">登陆</a></li>
+                <!--没有用户登录-->
+                <ul class="nav navbar-nav navbar-right" id="noneUser">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="vipUser/Login.html">登录</a></li>
                     <li><i class="iconfontUser">&#xe607;</i><a href="vipUser/register.html">注册</a></li>
                 </ul>
+
+                <!--有用户登录-->
+                <div class="dropdown" id="userDrop">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" >
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="vipUser/userInfo.html">个人信息</a>
+                        </li>
+                        <li role="presentation">
+                            <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
             </div>
         </div>
     </nav>
@@ -92,12 +113,14 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="//at.alicdn.com/t/font_569287_csdmms4dzu59udi.js"></script>
+    <script src="//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.js"></script>
     <script src="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <!--
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 -->
+    <script src="../js/tool.js"></script>
     <script src="../js/welcome.js"></script>
+
 </body>
 </html>
 
@@ -105,19 +128,19 @@
 
 
 
-    @font-face {
-        font-family: 'iconfont';  /* project id 569287 */
-        src: url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.eot');
-        src: url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.woff') format('woff'),
-        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_569287_csdmms4dzu59udi.svg#iconfont') format('svg');
-    }
-    .iconfontUser{
+/*    @font-face {
+        font-family: 'iconfont';  !* project id 569287 *!
+        src: url('//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.eot');
+        src: url('//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.woff') format('woff'),
+        url('//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.svg#iconfont') format('svg');
+    }*/
+/*    .iconfontUser{
 
         font-family:"iconfont" !important;
         font-size:25px;font-style:normal;
         -webkit-font-smoothing: antialiased;
         -webkit-text-stroke-width: 0.2px;
-        -moz-osx-font-smoothing: grayscale;}
+        -moz-osx-font-smoothing: grayscale;}*/
 </style>

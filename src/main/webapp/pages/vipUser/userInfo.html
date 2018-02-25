@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>userInfo</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/header.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="../welcome.html"><img src="../../images/logo5.png"></a>
+            </div>
+            <div>
+                <!--没有用户登录-->
+                <ul class="nav navbar-nav navbar-right" id="noneUser">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登录</a></li>
+                    <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
+                </ul>
+
+                <!--有用户登录-->
+                <div class="dropdown" id="userDrop">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" >
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="userInfo.html">个人信息</a>
+                        </li>
+                        <li role="presentation">
+                            <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <ul class="nav nav-pills nav-stacked">
+        <li class="slideLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
+        <li class="slideLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
+        <li class="slideLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
+        <li >
+            <div class="dropdown" id="checkOrder">
+                <span class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="slideUserInfo">&#xe600;</i>查看订单
+                </span>
+                <ul class="dropdown-menu " id="order" role="menu">
+                    <li role="presentation" class="li1">
+                        <span  role="menuitem" id="allOrder"><i class="slideUserInfo">&#xe737;</i>全部订单</span>
+                    </li>
+                    <li role="presentation" class="li1">
+                        <span  role="menuitem" id="unEndOrder"><i class="slideUserInfo">&#xe602;</i>未演出订单</span>
+                    </li>
+                    <li role="presentation" class="li1">
+                        <span role="menuitem" id="endOrder"><i class="slideUserInfo">&#xe629;</i>已完成订单</span>
+                    </li>
+
+                </ul>
+
+            </div>
+        </li>
+
+    </ul>
+
+
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.js"></script>
+    <script src="../../js/tool.js"></script>
+    <script src="../../js/vipUser/userInfo.js"></script>
+
+</body>
+
+<style>
+
+    body{
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    .nav-stacked>li+li{
+        margin-left: 10px;
+    }
+    .nav-pills>li+li{
+        margin-left: 10px;
+    }
+
+    li{
+        margin-left: 10px;
+    }
+
+
+    .nav-stacked{
+        width: 150px;
+        height: 720px;
+        margin-left: 30px;
+        background-color: #B6E5E7;
+    }
+
+    .li1{
+        height: 40px;
+    }
+    .li1:hover{
+        cursor: pointer;
+    }
+
+    .dropdown-menu{
+        background-color: #B6E5E7;
+        min-width: 135px;
+    }
+
+    .dropdown:hover{
+        background-color: #B6E5E7;
+    }
+
+    .dropdown-toggle{
+        background-color: #B6E5E7;
+    }
+    .dropdown-toggle:hover{
+        color: white;
+        cursor: pointer;
+
+    }
+
+    .slideLi{
+        height: 60px;
+
+    }
+    .slideLi:hover{
+        color: white;
+        cursor: pointer;
+        background-color: #B6E5E7;
+
+    }
+
+    @font-face {
+        font-family: 'iconfont';  /* project id 569287 */
+        src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot');
+        src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.woff') format('woff'),
+        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.svg#iconfont') format('svg');
+    }
+
+    .slideUserInfo{
+
+        font-family:"iconfont" !important;
+        font-size:25px;font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;}
+</style>
+</html>

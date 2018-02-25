@@ -27,6 +27,7 @@ $(document).on(
                 success:function (result) {
                     switch (result.result){
                         case "SUCCESS":
+                            sessionStorage.setItem("userID", userID.value);
                             window.location.href = "../welcome.html";
                             break;
                         case "NONE_USER":
