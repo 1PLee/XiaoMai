@@ -17,5 +17,7 @@ public interface UserDAO {
 
         List<String> getAllMail();
 
+        UserEntity getUserInfo(String userId);
 
+        ResultMessage cancelVIP(String userId);
 }

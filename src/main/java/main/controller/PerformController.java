@@ -42,8 +42,13 @@ public class PerformController {
     @RequestMapping(value = "/getPrice", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject getPrice(@RequestParam("performID") int performID){
+        List<Integer> performPrice = new ArrayList<Integer>();
+        performPrice = performService.getPrice(performID);
 
-        return null;
+        JSONObject result = new JSONObject();
+        result.put("allPrice", performPrice);
+
+        return result;
     }
 
 }

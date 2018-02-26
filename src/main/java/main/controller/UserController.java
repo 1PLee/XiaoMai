@@ -63,7 +63,26 @@ public class UserController {
     @ResponseBody
     public JSONObject getUserInfo(@RequestParam("userId") String userID){
 
-        return null;
+        UserVO theUser = new UserVO();
+        theUser = userService.getUserInfo(userID);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userInfo", theUser);
+
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/cancelVIP", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject cancelVIP(@RequestParam("userId") String userID) {
+        ResultMessage result = null;
+        JSONObject jsonObject = new JSONObject();
+
+        result = userService.cancelVIP(userID);
+
+        jsonObject.put("cancelResult", result);
+
+        return jsonObject;
     }
 
 

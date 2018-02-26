@@ -7,7 +7,7 @@ public class UserVO {
     public String id;
     public int password;
     public String mail;
-    public int mailState; //0代表未激活 1代表已激活
+
     public int vipGrade; // 0 代表白银 1代表黄金 2代表钻石
     public int vipIsStop; //1 取消会员 0 未取消
     public int vipScore; //会员积分
@@ -37,13 +37,6 @@ public class UserVO {
         return mail;
     }
 
-    public void setMailState(int mailState) {
-        this.mailState = mailState;
-    }
-
-    public int getMailState() {
-        return mailState;
-    }
 
     public void setVipGrade(int vipGrade) {
         this.vipGrade = vipGrade;

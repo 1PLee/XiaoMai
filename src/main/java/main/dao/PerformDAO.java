@@ -17,5 +17,5 @@ public interface PerformDAO {
 
     List<VenueEntity> getAllVenue();
 
-    List<PriceEntity> getPrice(int performID);
+    List<Object[]> getPrice(int performID);
 }

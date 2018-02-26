@@ -72,14 +72,14 @@ public class BaseDAOImpl implements BaseDAO {
 
     public ResultMessage update(Object entity) {
         Session session= getCurrentSession();
-        Transaction tr=session.beginTransaction();
+        //Transaction tr=session.beginTransaction();
         try {
             session.merge(entity);
         }catch (Exception e){
             e.printStackTrace();
             return ResultMessage.FAILURE;
         }finally {
-            tr.commit();
+            //tr.commit();
 /*            session.clear();
             session.close();*/
         }

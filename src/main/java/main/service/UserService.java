@@ -13,4 +13,8 @@ public interface UserService {
     ResultMessage login(UserVO userVO);
 
     ResultMessage sendMailCode(String userID,String mail);
+
+    UserVO getUserInfo(String userID);
+
+    ResultMessage cancelVIP(String userID);
 }

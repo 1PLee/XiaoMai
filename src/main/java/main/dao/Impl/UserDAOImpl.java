@@ -5,6 +5,7 @@ import main.dao.UserDAO;
 import main.entity.UserEntity;
 import main.util.ResultMessage;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,15 @@ public class UserDAOImpl implements UserDAO {
 
     @Autowired
     BaseDAO baseDAO;
+
+    @Autowired
+    protected SessionFactory sessionFactory;
+
+    private Session getCurrentSession(){
+        Session session=sessionFactory.getCurrentSession();
+
+        return session;
+    }
 
     public ResultMessage register(UserEntity userEntity) throws Exception {
 
@@ -48,6 +58,37 @@ public class UserDAOImpl implements UserDAO {
         userMail = baseDAO.getByHql("select mail from UserEntity");
 
         return userMail;
+    }
+
+    public UserEntity getUserInfo(String userId) {
+        UserEntity theUser = new UserEntity();
+        theUser = baseDAO.getEntity(UserEntity.class, userId);
+
+        return theUser;
+    }
+
+
+    public ResultMessage cancelVIP(String userId) {
+        ResultMessage result = null;
+
+        Session session = getCurrentSession();
+        int updatedEntities = 0;
+        updatedEntities = session.createQuery(
+                "update UserEntity " +
+                        "set vipIsStop = :isStop " +
+                        "where id = :userId"
+
+        ).setParameter("isStop", 1)
+                .setParameter("userId", userId)
+                .executeUpdate();
+
+        if(updatedEntities != 0){
+            result = ResultMessage.SUCCESS;
+        }else {
+            result = ResultMessage.FAILURE;
+        }
+
+        return result;
     }
 
 

@@ -171,4 +171,29 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Transactional
+    public UserVO getUserInfo(String userID) {
+        UserEntity theUser = new UserEntity();
+        theUser = userDAO.getUserInfo(userID);
+
+        UserVO userVO = new UserVO();
+
+        userVO.setMail(theUser.getMail());
+        userVO.setVipGrade(theUser.getVipGrade());
+        userVO.setVipIsStop(theUser.getVipIsStop());
+        userVO.setVipScore(theUser.getVipIsStop());
+
+        return userVO;
+    }
+
+
+    @Transactional
+    public ResultMessage cancelVIP(String userID) {
+        ResultMessage result= null;
+        result = userDAO.cancelVIP(userID);
+
+        return result;
+    }
+
+
 }

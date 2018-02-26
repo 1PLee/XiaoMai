@@ -38,9 +38,10 @@ public class PerformDAOImpl implements PerformDAO {
         return baseDAO.getAll(VenueEntity.class);
     }
 
-    public List<PriceEntity> getPrice(int performID) {
-        String hql = "from PriceEntity where performID = "+performID;
-        List<PriceEntity> allPrice = new ArrayList<PriceEntity>();
+    public List<Object[]> getPrice(int performID) {
+        String hql = "select priceOne,priceTwo,priceThree,priceFour,priceFive,priceSix  " +
+                "from PriceEntity where performId = "+performID;
+        List<Object[]> allPrice = new ArrayList<Object[]>();
 
         allPrice = baseDAO.getByHql(hql);
 
