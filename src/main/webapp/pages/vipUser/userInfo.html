@@ -75,13 +75,31 @@
 
 <!--个人信息-->
 <div id="userInfoDiv" class="col-md-9">
-    <p class="pUserID">用户ID:</p> <p id="pUserID">lyp3hao</p>
-    <p class="pUserMail">邮箱:</p> <p id="pUserMail">1017270947@qq.com</p>
-    <p class="pVip">会员等级:</p> <p id="pVipGrade">白银会员</p> <button type="button" id="cancelVIP" class="btn btn-danger">取消会员</button>
+    <p class="pUserID">用户ID:</p> <p id="pUserID"></p>
+    <p class="pUserMail">邮箱:</p> <p id="pUserMail"></p>
+    <p class="pVip">会员等级:</p> <p id="pVipGrade"></p> <button data-toggle="modal" data-target="#cancelVIPModal" id="cancelVIP" class="btn btn-danger">取消会员</button>
 
-    <p class="pVip">会员积分:</p> <p id="pVipScore">288</p>
-    <p class="pCoupon">我的优惠券:</p> <p id="pCoupon">3张</p> <button type="button" id="seeCoupon" class="btn btn-info">查看</button>
+    <p class="pVip">会员积分:</p> <p id="pVipScore"></p>
+    <p class="pCoupon">我的优惠券:</p> <p id="pCoupon"></p> <button type="button" id="seeCoupon" class="btn btn-info">查看</button>
 </div>
+
+<!--取消会员模态框-->
+<div class="modal fade" id="cancelVIPModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">取消会员资格确认</h4>
+            </div>
+            <div class="modal-body">您确认要取消会员资格吗（取消后不可恢复）</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                <button type="button" class="btn btn-primary" id="confirmCancelVip">确认取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--修改密码-->
 <div id="changePasswordDiv" class="col-md-9">
