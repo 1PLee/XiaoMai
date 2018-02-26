@@ -1,5 +1,6 @@
 package main.dao;
 
+import main.entity.CouponEntity;
 import main.entity.UserEntity;
 import main.util.ResultMessage;
 import org.hibernate.Session;
@@ -23,5 +24,6 @@ public interface UserDAO {
 
         ResultMessage changePasswd(String userId, int newPasswd);
 
+        List<CouponEntity> getCoupon(String userId);
 
 }

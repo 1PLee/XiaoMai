@@ -2,10 +2,12 @@ package main.service.Impl;
 
 import main.dao.BaseDAO;
 import main.dao.UserDAO;
+import main.entity.CouponEntity;
 import main.entity.UserEntity;
 import main.service.UserService;
 import main.util.MailCodeMap;
 import main.util.ResultMessage;
+import main.vo.CouponVO;
 import main.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -208,6 +210,34 @@ public class UserServiceImpl implements UserService {
         result = userDAO.changePasswd(userId, newPasswd);
 
         return result;
+    }
+
+    @Transactional
+    public List<CouponVO> getCoupon(String userId) {
+        List<CouponEntity> allCoupon = new ArrayList<CouponEntity>();
+        List<CouponVO> couponVOList = new ArrayList<CouponVO>();
+
+        allCoupon = userDAO.getCoupon(userId);
+        CouponVO couponVO = new CouponVO();
+
+        for (CouponEntity couponEntity: allCoupon){
+            couponVO.setCouponID(couponEntity.getCouponId());
+            couponVO.setMoney(couponEntity.getMoney());
+            couponVO.setType(couponEntity.getType());
+            couponVO.setUserId(couponEntity.getUserId());
+            if(couponEntity.getIsUse() == 1){
+                couponVO.setUse(true);
+            }else {
+                couponVO.setUse(false);
+            }
+            couponVO.setBeginDate(couponEntity.getBeginDate());
+            couponVO.setEndDate(couponEntity.getEndDate());
+
+            couponVOList.add(couponVO);
+            couponVO = new CouponVO();
+        }
+
+        return couponVOList;
     }
 
 

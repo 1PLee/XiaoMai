@@ -10,10 +10,6 @@ body{
     margin-left: 10px;
 }
 
-li{
-    margin-left: 10px;
-}
-
 
 .nav-stacked{
     width: 150px;
@@ -22,10 +18,15 @@ li{
     background-color: #B6E5E7;
 }
 
+/*全部订单、已完成订单、未完成订单*/
 .li1{
-    height: 40px;
+    height: 50px;
+    font-size: 5px;
+    padding-left: -10px;
 }
 .li1:hover{
+    color: white;
+    background-color: #B6E5E7;
     cursor: pointer;
 }
 
@@ -41,15 +42,15 @@ li{
 .dropdown-toggle{
     background-color: #B6E5E7;
 }
-.dropdown-toggle:hover{
-    color: white;
-    cursor: pointer;
+.orderSpan:hover{
 
+    color: black;
+    cursor: pointer;
 }
 
 .slideLi{
     height: 60px;
-
+    margin-left: 10px;
 }
 .slideLi:hover{
     color: white;
@@ -57,6 +58,12 @@ li{
     background-color: #B6E5E7;
 
 }
+
+
+/*#checkOrderLi{*/
+    /*height: 60px;*/
+/*}*/
+
 p{
     font-size: 20px;
 }
@@ -103,6 +110,7 @@ p{
 #cancelVIP{
     margin-left: 580px;
     margin-top: -70px;
+    font-size: 2px;
 
 }
 
@@ -120,6 +128,28 @@ p{
     margin-left: 450px;
     margin-top: -39px;
 }
+
+/*会员优惠券*/
+.pCoupon{
+    margin-left: 330px;
+    margin-top: 50px;
+}
+
+#pCoupon{
+    text-decoration: underline;
+    letter-spacing: 2px;
+    margin-left: 450px;
+    margin-top: -39px;
+}
+
+
+/*查看优惠券按钮*/
+#seeCoupon{
+    margin-left: 560px;
+    margin-top: -75px;
+    font-size: 2px;
+}
+
 
 #changePasswordDiv{
     /*display: none;*/
@@ -149,11 +179,11 @@ p{
 
 @font-face {
     font-family: 'iconfont';  /* project id 569287 */
-    src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot');
-    src: url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.woff') format('woff'),
-    url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_569287_jlsybj3vvi24vx6r.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.eot');
+    src: url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.woff') format('woff'),
+    url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.svg#iconfont') format('svg');
 }
 
 .slideUserInfo{

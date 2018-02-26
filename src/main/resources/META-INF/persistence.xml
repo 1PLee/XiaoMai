@@ -9,6 +9,7 @@
         <class>main.entity.VenueEntity</class>
         <class>main.entity.UserEntity</class>
         <class>main.entity.CouponEntity</class>
+        <class>main.entity.SeatEntity</class>
 
 
         <properties>

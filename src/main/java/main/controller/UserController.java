@@ -3,11 +3,14 @@ package main.controller;
 import main.service.UserService;
 import main.util.ResultMessage;
 import main.vo.UserVO;
+import main.vo.CouponVO;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by liyipeng on 2018/2/9.
@@ -100,6 +103,17 @@ public class UserController {
         jsonObject.put("result", result);
 
         return jsonObject;
+    }
+
+    @RequestMapping(value = "/getCoupon", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CouponVO> getCoupon(@RequestParam("userId") String userId) {
+        List<CouponVO> allCoupon = new ArrayList<CouponVO>();
+
+        allCoupon = userService.getCoupon(userId);
+
+
+        return allCoupon;
     }
 
 

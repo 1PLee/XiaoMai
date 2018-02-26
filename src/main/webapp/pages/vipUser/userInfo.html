@@ -9,140 +9,142 @@
     <link href="../../css/userInfo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="../welcome.html"><img src="../../images/logo5.png"></a>
-            </div>
-            <div>
-                <!--没有用户登录-->
-                <ul class="nav navbar-nav navbar-right" id="noneUser">
-                    <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登录</a></li>
-                    <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
-                </ul>
-
-                <!--有用户登录-->
-                <div class="dropdown" id="userDrop">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                        <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
-                    </button>
-                    <ul class="dropdown-menu pull-right" role="menu" >
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="userInfo.html">个人信息</a>
-                        </li>
-                        <li role="presentation">
-                            <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
-                        </li>
-
-                    </ul>
-
-
-                </div>
-
-            </div>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="../welcome.html"><img src="../../images/logo5.png"></a>
         </div>
-    </nav>
+        <div>
+            <!--没有用户登录-->
+            <ul class="nav navbar-nav navbar-right" id="noneUser">
+                <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登录</a></li>
+                <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
+            </ul>
 
-    <ul class="nav nav-pills nav-stacked col-md-3">
-        <li class="slideLi" id="userInfoLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
-        <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
-        <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
-        <li >
-            <div class="dropdown" id="checkOrder">
-                <span class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="slideUserInfo">&#xe600;</i>查看订单
-                </span>
-                <ul class="dropdown-menu " id="order" role="menu">
-                    <li role="presentation" class="li1">
-                        <span  role="menuitem" id="allOrder"><i class="slideUserInfo">&#xe737;</i>全部订单</span>
+            <!--有用户登录-->
+            <div class="dropdown" id="userDrop">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu" >
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="userInfo.html">个人信息</a>
                     </li>
-                    <li role="presentation" class="li1">
-                        <span  role="menuitem" id="unEndOrder"><i class="slideUserInfo">&#xe602;</i>未演出订单</span>
-                    </li>
-                    <li role="presentation" class="li1">
-                        <span role="menuitem" id="endOrder"><i class="slideUserInfo">&#xe629;</i>已完成订单</span>
+                    <li role="presentation">
+                        <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
                     </li>
 
                 </ul>
 
-            </div>
-        </li>
-
-    </ul>
-
-    <!--个人信息-->
-    <div id="userInfoDiv" class="col-md-9">
-        <p class="pUserID">用户ID:</p> <p id="pUserID">lyp3hao</p>
-        <p class="pUserMail">邮箱:</p> <p id="pUserMail">1017270947@qq.com</p>
-        <p class="pVip">会员等级:</p> <p id="pVipGrade">白银会员</p> <button type="button" id="cancelVIP" class="btn btn-danger">取消会员</button>
-
-        <p class="pVip">会员积分:</p> <p id="pVipScore">288</p>
-    </div>
-
-    <!--修改密码-->
-    <div id="changePasswordDiv" class="col-md-9">
-        <form role="form" class="changePasswordForm">
-            <div class="form-group">
-                <label for="oldPassword">旧密码</label>
-                <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
-                <label for="newPassword">新密码</label>
-                <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
-                <label for="againNew">再次输入新密码</label>
-                <input type="password" class="form-control" id="againNew" placeholder="再次确认新密码">
 
             </div>
-            <button type="button" class="btn btn-primary" id="changePasswordBtn">修改密码</button>
-        </form>
+
+        </div>
     </div>
+</nav>
 
-    <!--会员等级-->
-    <div id="vipGradeFormDiv" class="col-md-9">
-        <table class="table vipGradeTable">
-            <thead>
-            <tr>
-                <th>会员等级</th>
-                <th>对应积分</th>
-                <th>享受优惠(百分比)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>白银会员</td>
-                <td>1000</td>
-                <td>95%</td>
-            </tr>
-            <tr>
-                <td>黄金会员</td>
-                <td>5000</td>
-                <td>88%</td>
-            </tr>
-            <tr>
-                <td>钻石会员</td>
-                <td>10000</td>
-                <td>80%</td>
-            </tr>
-            </tbody>
-        </table>
+<ul class="nav nav-pills nav-stacked col-md-3">
+    <li class="slideLi" id="userInfoLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
+    <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
+    <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
+    <li class="slideLi"><i class="slideUserInfo">&#xe64a;</i>消费统计</li>
+    <li class="slideLi"><i class="slideUserInfo">&#xe665;</i>优惠券兑换</li>
+    <li class="orderLi">
+        <div class="dropdown" id="checkOrder">
+                <span class="orderSpan" data-toggle="collapse" href="#order">
+                    <i class="slideUserInfo">&#xe642;</i>查看订单
+                </span>
+            <ul class="collapse" id="order" >
+                <li class="li1">
+                    <span  id="allOrder"><i class="slideUserInfo">&#xe737;</i>全部订单</span>
+                </li>
+                <li class="li1">
+                    <span  id="unEndOrder"><i class="slideUserInfo">&#xe602;</i>未演出订单</span>
+                </li>
+                <li class="li1">
+                    <span id="endOrder"><i class="slideUserInfo">&#xe629;</i>已完成订单</span>
+                </li>
 
-    </div>
+            </ul>
 
-    <!--全部订单-->
+        </div>
+    </li>
 
 
+</ul>
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<!--个人信息-->
+<div id="userInfoDiv" class="col-md-9">
+    <p class="pUserID">用户ID:</p> <p id="pUserID">lyp3hao</p>
+    <p class="pUserMail">邮箱:</p> <p id="pUserMail">1017270947@qq.com</p>
+    <p class="pVip">会员等级:</p> <p id="pVipGrade">白银会员</p> <button type="button" id="cancelVIP" class="btn btn-danger">取消会员</button>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.js"></script>
-    <script src="../../js/tool.js"></script>
-    <script src="../../js/vipUser/userInfo.js"></script>
+    <p class="pVip">会员积分:</p> <p id="pVipScore">288</p>
+    <p class="pCoupon">我的优惠券:</p> <p id="pCoupon">3张</p> <button type="button" id="seeCoupon" class="btn btn-info">查看</button>
+</div>
+
+<!--修改密码-->
+<div id="changePasswordDiv" class="col-md-9">
+    <form role="form" class="changePasswordForm">
+        <div class="form-group">
+            <label for="oldPassword">旧密码</label>
+            <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
+            <label for="newPassword">新密码</label>
+            <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
+            <label for="againNew">再次输入新密码</label>
+            <input type="password" class="form-control" id="againNew" placeholder="再次确认新密码">
+
+        </div>
+        <button type="button" class="btn btn-primary" id="changePasswordBtn">修改密码</button>
+    </form>
+</div>
+
+<!--会员等级-->
+<div id="vipGradeFormDiv" class="col-md-9">
+    <table class="table vipGradeTable">
+        <thead>
+        <tr>
+            <th>会员等级</th>
+            <th>对应积分</th>
+            <th>享受优惠(百分比)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>白银会员</td>
+            <td>1000</td>
+            <td>95%</td>
+        </tr>
+        <tr>
+            <td>黄金会员</td>
+            <td>5000</td>
+            <td>88%</td>
+        </tr>
+        <tr>
+            <td>钻石会员</td>
+            <td>10000</td>
+            <td>80%</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!--全部订单-->
+
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//at.alicdn.com/t/font_569287_1ospxhsl8roa8aor.js"></script>
+<script src="../../js/tool.js"></script>
+<script src="../../js/vipUser/userInfo.js"></script>
 
 </body>
 
 <style>
-
-
 </style>
 </html>

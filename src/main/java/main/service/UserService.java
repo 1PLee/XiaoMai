@@ -1,7 +1,10 @@
 package main.service;
 
 import main.util.ResultMessage;
+import main.vo.CouponVO;
 import main.vo.UserVO;
+
+import java.util.List;
 
 /**
  * Created by liyipeng on 2018/2/20.
@@ -19,4 +22,6 @@ public interface UserService {
     ResultMessage cancelVIP(String userID);
 
     ResultMessage changePasswd(String userId, int oldPasswd, int newPasswd);
+
+    List<CouponVO> getCoupon(String userId);
 }

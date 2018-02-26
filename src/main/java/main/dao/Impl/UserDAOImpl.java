@@ -2,6 +2,7 @@ package main.dao.Impl;
 
 import main.dao.BaseDAO;
 import main.dao.UserDAO;
+import main.entity.CouponEntity;
 import main.entity.UserEntity;
 import main.util.ResultMessage;
 import org.hibernate.Session;
@@ -109,6 +110,21 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return ResultMessage.FAILURE;
+    }
+
+    public List<CouponEntity> getCoupon(String userId) {
+        List<CouponEntity> allCoupon = new ArrayList<CouponEntity>();
+
+        Session session = getCurrentSession();
+        allCoupon = session.createQuery(
+                "from CouponEntity " +
+                        "where userId = :userId"
+        )
+                .setParameter("userId", userId)
+                .list();
+
+
+        return allCoupon;
     }
 
 
