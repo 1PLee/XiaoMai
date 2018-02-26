@@ -91,5 +91,25 @@ public class UserDAOImpl implements UserDAO {
         return result;
     }
 
+    public ResultMessage changePasswd(String userId, int newPasswd) {
+
+        Session session = getCurrentSession();
+        int updatedEntities = 0;
+        updatedEntities = session.createQuery(
+                "update UserEntity " +
+                        "set password = :password " +
+                        "where id = :userId"
+        )
+                .setParameter("password", newPasswd)
+                .setParameter("userId", userId)
+                .executeUpdate();
+
+        if(updatedEntities != 0){
+            return ResultMessage.SUCCESS;
+        }
+
+        return ResultMessage.FAILURE;
+    }
+
 
 }

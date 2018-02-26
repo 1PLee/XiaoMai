@@ -195,5 +195,20 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Transactional
+    public ResultMessage changePasswd(String userId, int oldPasswd, int newPasswd) {
+        UserEntity theUser = new UserEntity();
+        theUser = baseDAO.getEntity(UserEntity.class, userId);
+
+        if(theUser.getPassword() != oldPasswd){
+            return ResultMessage.WRONG_PASSWORD;
+        }
+
+        ResultMessage result = null;
+        result = userDAO.changePasswd(userId, newPasswd);
+
+        return result;
+    }
+
 
 }

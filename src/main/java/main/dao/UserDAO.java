@@ -20,4 +20,8 @@ public interface UserDAO {
         UserEntity getUserInfo(String userId);
 
         ResultMessage cancelVIP(String userId);
+
+        ResultMessage changePasswd(String userId, int newPasswd);
+
+
 }

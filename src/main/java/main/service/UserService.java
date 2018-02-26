@@ -17,4 +17,6 @@ public interface UserService {
     UserVO getUserInfo(String userID);
 
     ResultMessage cancelVIP(String userID);
+
+    ResultMessage changePasswd(String userId, int oldPasswd, int newPasswd);
 }

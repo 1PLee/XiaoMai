@@ -85,6 +85,23 @@ public class UserController {
         return jsonObject;
     }
 
+    @RequestMapping(value = "/changePasswd", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject changePasswd(@RequestBody JSONObject password){
+        int oldPasswd = (Integer) password.get("oldPasswd");
+        int newPasswd = (Integer) password.get("newPasswd");
+        String userId = (String) password.get("userId");
+
+        ResultMessage result = null;
+        JSONObject jsonObject = new JSONObject();
+
+        result = userService.changePasswd(userId, oldPasswd, newPasswd);
+
+        jsonObject.put("result", result);
+
+        return jsonObject;
+    }
+
 
 
 }
