@@ -17,5 +17,9 @@ public interface PerformDAO {
 
     List<VenueEntity> getAllVenue();
 
-    List<Object[]> getPrice(int performID);
+    List<Object[]> getPrice(int performID); //定义为list因为查询默认返回list
+
+    List<Object[]> getSeat(int performID);
+
+
 }

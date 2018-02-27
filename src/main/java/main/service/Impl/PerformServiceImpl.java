@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,13 +22,14 @@ import java.util.List;
 /**
  * Created by liyipeng on 2018/2/12.
  */
-@Transactional
+
 @Service
 public class PerformServiceImpl implements PerformService {
     //private static final Logger log = LoggerFactory.getLogger(PerformServiceBean.class);
     @Autowired
     PerformDAO performDAO;
 
+    @Transactional
     public List<PerformVO> getAllPerforms() {
 
         List<PerformEntity> performList = performDAO.getAllPerform();
@@ -60,6 +62,7 @@ public class PerformServiceImpl implements PerformService {
         return performVOList;
     }
 
+
     /*根据performID 得到演出的全部价格*/
     public List<Integer> getPrice(int performID) {
         List<Object[]> performPriceList = new ArrayList<Object[]>();
@@ -69,14 +72,42 @@ public class PerformServiceImpl implements PerformService {
 
         List<Integer> priceList = new ArrayList<Integer>(); //这个perform的全部票价
 
-        for (int i = 0;i<6;i++){
-            if(performPrice[i] != null){
+        for (int i = 0;i<performPrice.length;i++){
                 priceList.add((Integer) performPrice[i]);
-            }
-
         }
 
         return priceList;
+    }
+
+    /*根据performID 得到演出的全部座位情况*/
+    public List<Integer> getSeat(int performID) {
+        List<Object[]> performSeatList = new ArrayList<Object[]>();
+        performSeatList = performDAO.getSeat(performID);
+
+        Object[] performSeat = performSeatList.get(0);
+
+        List<Integer> seatList = new ArrayList<Integer>();
+
+        for(int i = 0;i < performSeat.length;i++){
+            seatList.add((Integer)performSeat[i]);
+        }
+
+        return seatList;
+    }
+
+    @Transactional
+    public PerformVO getPerformInfo(int performID) {
+        PerformVO thePerform = new PerformVO();
+        List<Integer> priceList = new ArrayList<Integer>();
+        List<Integer> seatList = new ArrayList<Integer>();
+
+        priceList = getPrice(performID);
+        seatList = getSeat(performID);
+
+        thePerform.setPrice(priceList);
+        thePerform.setSeat(seatList);
+
+        return thePerform;
     }
 
 }

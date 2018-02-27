@@ -22,6 +22,9 @@ $(document).ready(function() {
             "createdCell":function (td, cellData, rowData, row, col) {
                 $(td).addClass("performName")
                 $(td).click(function(){
+                    sessionStorage.setItem("performName", rowData['name']);
+                    sessionStorage.setItem("performTime", rowData['time']);
+                    sessionStorage.setItem("performVenue", rowData['venue']);
                     window.document.location = "perform.html?performID="+rowData['performID']
                 });
             }

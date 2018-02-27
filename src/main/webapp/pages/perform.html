@@ -2,11 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/header.css" rel="stylesheet" type="text/css">
+    <link href="../css/perform.css" rel="stylesheet" type="text/css">
     <title>Perform</title>
 </head>
 <body>
-<h1>Perform</h1>
 
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="welcome.html"><img src="../images/logo5.png"></a>
+            </div>
+            <div>
+                <!--没有用户登录-->
+                <ul class="nav navbar-nav navbar-right" id="noneUser">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="vipUser/Login.html">登录</a></li>
+                    <li><i class="iconfontUser">&#xe607;</i><a href="vipUser/register.html">注册</a></li>
+                </ul>
+
+                <!--有用户登录-->
+                <div class="dropdown" id="userDrop">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" >
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="vipUser/userInfo.html">个人信息</a>
+                        </li>
+                        <li role="presentation">
+                            <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+
+        <!--图片-->
+        <div id="performImage" class="col-md-5">
+            <img src="../images/142313_n.jpg" width="277" height="373">
+            
+        </div>
+
+        <h2 id="performName">2018周杰伦【地表最强2】世界巡回演唱会-长沙站（5月11日场次）</h2>
+
+        <div class="box">
+            <h4 class="col-md-4">演出时间:</h4>
+            <p class="col-md-8">2018.05.11</p>
+        </div>
+        <!--选座信息-->
+        <div class="col-md-7  selectPrice">
+            <h4>选择票价:</h4>
+            <ul id="price">
+                <li>380</li>
+                <li>480</li>
+                <li>580</li>
+                <li>880</li>
+                <li>1180</li>
+                <li>1580</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../js/tool.js"></script>
     <script src="../js/perform.js"></script>
 </body>

@@ -1,5 +1,8 @@
 package main.vo;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
+
 /**
  * Created by liyipeng on 2018/2/12.
  */
@@ -10,6 +13,8 @@ public class PerformVO {
     public String priceMin;
     public String type;
     public String venue;
+    public List<Integer> price;
+    public List<Integer>  seat;
 
 
     public String getName() {
@@ -59,4 +64,21 @@ public class PerformVO {
     public void setVenue(String venue) {
         this.venue = venue;
     }
+
+    public List<Integer> getPrice() {
+        return price;
+    }
+
+    public void setPrice(List<Integer> price) {
+        this.price = price;
+    }
+
+    public List<Integer> getSeat() {
+        return seat;
+    }
+
+    public void setSeat(List<Integer> seat) {
+        this.seat = seat;
+    }
+
 }

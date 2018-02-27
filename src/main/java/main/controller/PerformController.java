@@ -39,6 +39,15 @@ public class PerformController {
         return resultMap;
     }
 
+    @RequestMapping(value = "/getPerformInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public PerformVO getPerformInfo(@RequestParam("performId") int performId){
+        PerformVO thePerform = new PerformVO();
+        thePerform = performService.getPerformInfo(performId);
+
+        return thePerform;
+    }
+
     @RequestMapping(value = "/getPrice", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject getPrice(@RequestParam("performID") int performID){

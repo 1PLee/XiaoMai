@@ -1,0 +1,46 @@
+#performImage{
+    /*margin-left: 150px;*/
+    /*padding-right: -50px;*/
+    left: 200px;
+}
+
+#price{
+    width: 500px;
+}
+
+
+#price, #price li {
+    list-style:none; /* 将默认的列表符号去掉 */
+    padding:0; /* 将默认的内边距去掉 */
+    margin:0; /* 将默认的外边距去掉 */
+}
+
+#price li{
+    float: left;
+    display: block;
+    width: 150px;
+    text-align: center;
+    padding:8px 50px; /* 设置内边距 */
+    margin: 0 0 5px 6px;
+    height: 50px;
+    border: 1px solid #c7c7c7;
+
+}
+
+.row h2{
+    width: 1200px;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+}
+
+.selectPrice{
+    margin-top: 200px;
+}
+.selectPrice h4{
+    padding-left: -150px;
+    margin-top: 100px;
+}
+
