@@ -15,6 +15,7 @@ public class PerformVO {
     public String venue;
     public List<Integer> price;
     public List<Integer>  seat;
+    public String description;
 
 
     public String getName() {
@@ -81,4 +82,11 @@ public class PerformVO {
         this.seat = seat;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -2,6 +2,7 @@ package main.dao.Impl;
 
 import main.dao.BaseDAO;
 import main.dao.PerformDAO;
+import main.entity.DescriptionEntity;
 import main.entity.PerformEntity;
 import main.entity.PriceEntity;
 import main.entity.VenueEntity;
@@ -72,5 +73,12 @@ public class PerformDAOImpl implements PerformDAO {
                 .list();
 
         return performSeat;
+    }
+
+    public DescriptionEntity getDescription(int performID) {
+        DescriptionEntity theDes = new DescriptionEntity();
+        theDes = baseDAO.getEntity(DescriptionEntity.class, performID);
+
+        return theDes;
     }
 }

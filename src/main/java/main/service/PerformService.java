@@ -14,4 +14,6 @@ public interface PerformService {
      List<Integer> getPrice(int performID);
 
      PerformVO getPerformInfo(int performID);
+
+     PerformVO getDescription(int performID);
 }

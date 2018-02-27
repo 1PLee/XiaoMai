@@ -24,4 +24,6 @@ public interface UserService {
     ResultMessage changePasswd(String userId, int oldPasswd, int newPasswd);
 
     List<CouponVO> getCoupon(String userId);
+
+
 }

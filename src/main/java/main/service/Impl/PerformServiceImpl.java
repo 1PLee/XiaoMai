@@ -1,6 +1,7 @@
 package main.service.Impl;
 
 import main.dao.PerformDAO;
+import main.entity.DescriptionEntity;
 import main.entity.PerformEntity;
 import main.entity.PriceEntity;
 import main.entity.VenueEntity;
@@ -106,6 +107,18 @@ public class PerformServiceImpl implements PerformService {
 
         thePerform.setPrice(priceList);
         thePerform.setSeat(seatList);
+
+        return thePerform;
+    }
+
+    @Transactional
+    public PerformVO getDescription(int performID) {
+        PerformVO thePerform = new PerformVO();
+        DescriptionEntity theDes = new DescriptionEntity();
+
+        theDes = performDAO.getDescription(performID);
+
+        thePerform.setDescription(theDes.getDescription());
 
         return thePerform;
     }

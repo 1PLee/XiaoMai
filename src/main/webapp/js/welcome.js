@@ -25,6 +25,7 @@ $(document).ready(function() {
                     sessionStorage.setItem("performName", rowData['name']);
                     sessionStorage.setItem("performTime", rowData['time']);
                     sessionStorage.setItem("performVenue", rowData['venue']);
+                    sessionStorage.setItem("performId", rowData['performID']);
                     window.document.location = "perform.html?performID="+rowData['performID']
                 });
             }

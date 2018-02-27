@@ -47,34 +47,41 @@
     <div class="row">
 
         <!--图片-->
-        <div id="performImage" class="col-md-5">
-            <img src="../images/142313_n.jpg" width="277" height="373">
-            
+        <div id="performImageDiv" class="col-md-5">
+            <img id="performImage"  width="277" height="373">
         </div>
 
-        <h2 id="performName">2018周杰伦【地表最强2】世界巡回演唱会-长沙站（5月11日场次）</h2>
+        <h2 id="performName"></h2>
 
-        <div class="box">
-            <h4 class="col-md-4">演出时间:</h4>
-            <p class="col-md-8">2018.05.11</p>
-        </div>
+
+        <h4 class="timeH4">演出时间:</h4>
+        <p class="timeP" id="timeP"></p>
+
+        <h4 class="timeH4">演出地点:</h4>
+        <p class="timeP" id="venueP"></p>
         <!--选座信息-->
         <div class="col-md-7  selectPrice">
             <h4>选择票价:</h4>
             <ul id="price">
-                <li>380</li>
+<!--                <li>380</li>
                 <li>480</li>
                 <li>580</li>
                 <li>880</li>
                 <li>1180</li>
-                <li>1580</li>
+                <li>1580</li>-->
             </ul>
         </div>
-
+        <button id="buyTickets" class="btn btn-primary">订票</button>
 
     </div>
+    <hr width="1200">
 
+    <!--演出简介-->
+    <div id="desDiv">
+        <h4>演出简介:</h4>
+        <p id="descriptionP"></p>
 
+    </div>
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>

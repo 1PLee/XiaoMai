@@ -42,6 +42,11 @@ public class PerformController {
     @RequestMapping(value = "/getPerformInfo", method = RequestMethod.GET)
     @ResponseBody
     public PerformVO getPerformInfo(@RequestParam("performId") int performId){
+        if(performId != 139423 && performId != 142049 && performId != 142313
+                && performId != 143099){ //seat数据表还不完善...
+            performId = 142313;
+        }
+
         PerformVO thePerform = new PerformVO();
         thePerform = performService.getPerformInfo(performId);
 
@@ -50,14 +55,25 @@ public class PerformController {
 
     @RequestMapping(value = "/getPrice", method = RequestMethod.GET)
     @ResponseBody
-    public JSONObject getPrice(@RequestParam("performID") int performID){
+    public PerformVO getPrice(@RequestParam("performID") int performID){
+        PerformVO thePerform = new PerformVO();
+
         List<Integer> performPrice = new ArrayList<Integer>();
         performPrice = performService.getPrice(performID);
 
-        JSONObject result = new JSONObject();
-        result.put("allPrice", performPrice);
+        thePerform.setPrice(performPrice);
 
-        return result;
+        return thePerform;
+    }
+
+    @RequestMapping(value = "/getDescription", method = RequestMethod.GET)
+    @ResponseBody
+    public PerformVO getDescription(@RequestParam("performID") int performID){
+        PerformVO thePerform = new PerformVO();
+
+        thePerform = performService.getDescription(performID);
+
+        return thePerform;
     }
 
 }
