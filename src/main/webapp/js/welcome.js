@@ -35,6 +35,7 @@ $(document).ready(function() {
                 "createdCell":function (td, cellData, rowData, row, col) {
                     $(td).addClass("performVenue")
                     $(td).click(function(){
+                        sessionStorage.setItem("venueName", rowData['venue']);
                         window.document.location = "venue.html?venue="+rowData['venue']
                     });
                 }
