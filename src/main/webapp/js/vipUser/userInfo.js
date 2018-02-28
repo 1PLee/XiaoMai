@@ -5,11 +5,10 @@
 var userId;
 
 $(document).ready(function () {
-    $('#userInfoDiv').hide();
-    $('#changePasswordDiv').hide();
-    $('#vipGradeFormDiv').hide();
-   showUser();
+    allHide();
+    showUser();
     userId = sessionStorage.getItem("userID");
+    loadCouponInfo();
 });
 
 /*查看个人信息*/
@@ -79,8 +78,7 @@ $(document).on(
 
             });
 
-            $('#changePasswordDiv').hide();
-            $('#vipGradeFormDiv').hide();
+            allHide();
             $('#userInfoDiv').show();
 
         }
@@ -113,13 +111,93 @@ $(document).on(
 
 );
 
-/*点击会员等级展示*/
+/*加载个人优惠券信息*/
+function loadCouponInfo() {
+    var couponArray = new Array();
+    var nowDate = new Date();
+
+    var nowYear = nowDate.getYear();
+    var nowMonth = nowDate.getMonth()+1;
+    var nowDay = nowDate.getDate();
+
+    var activeUl = document.getElementById("myCoupon");//可以使用的优惠券
+
+    var usedUl = document.getElementById("hasUsedCoupon");//已经使用过的优惠券
+
+    var couponDes; //优惠描述
+    var couponTime;//优惠时间
+
+    $.ajax({
+
+        type:"get",
+        url:"/User/getCoupon",
+        contentType:'application/json;charset=utf-8',
+        data:{"userId":userId},
+        success:function (result) {
+            couponArray = result;
+            for(var i =0;i<couponArray.length;i++){
+                var beginYear = new Date(couponArray[i].beginDate).getFullYear();
+                var beginMonth = new Date(couponArray[i].beginDate).getMonth()+1;
+                var beginDay = new Date(couponArray[i].beginDate).getDate();
+
+                var endYear = new Date(couponArray[i].endDate).getFullYear();
+                var endMonth = new Date(couponArray[i].endDate).getMonth()+1;
+                var endDay = new Date(couponArray[i].endDate).getDate();
+
+                couponTime = beginYear+"."+beginMonth+"."+beginDay+"--"+endYear+"."+endMonth+"."+endDay;
+
+                switch (couponArray[i].type)
+                {
+                    case 1:
+                        couponDes = "满100减"+couponArray[i].money;
+                        break;
+                    case 2:
+                        couponDes = "满200减"+couponArray[i].money;
+                        break;
+                }
+
+                if(couponArray[i].isUse){
+                    var couponLi = document.createElement("li");
+                    couponLi.innerHTML = "<p>"+couponTime+"</p>"+"<p>"+couponDes+"</p>"
+                    usedUl.append(couponLi);
+                }else {
+                    var couponLi = document.createElement("li");
+                    couponLi.innerHTML = "<p>"+couponTime+"</p>"+"<p>"+couponDes+"</p>"
+                    activeUl.appendChild(couponLi);
+                }
+
+            }
+        },
+        error:function () {
+            alert("getCoupon failed!");
+        }
+
+    });
+
+}
+
+
+
+/*查看个人优惠券*/
 $(document).on(
     {
         click:function () {
 
-            $('#userInfoDiv').hide();
-            $('#changePasswordDiv').hide();
+
+            allHide();
+            $('#seeMyCoupon').show();
+
+        }
+    },'#seeCoupon'
+
+);
+
+
+/*点击会员等级展示*/
+$(document).on(
+    {
+        click:function () {
+            allHide();
             $('#vipGradeFormDiv').show();
 
         }
@@ -131,9 +209,8 @@ $(document).on(
 $(document).on(
     {
         click:function () {
-           $('#userInfoDiv').hide();
-           $('#vipGradeFormDiv').hide();
-           $('#changePasswordDiv').show();
+            allHide();
+            $('#changePasswordDiv').show();
 
         }
     },'#changePasswordLi'
@@ -193,3 +270,10 @@ $(document).on(
     },'#changePasswordBtn'
 
 );
+
+function allHide() {
+    $('#userInfoDiv').hide();
+    $('#vipGradeFormDiv').hide();
+    $('#changePasswordDiv').hide();
+    $('#seeMyCoupon').hide();
+}

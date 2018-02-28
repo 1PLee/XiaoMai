@@ -40,6 +40,11 @@
 
 }
 
-li:hover{
+#noneUser li:hover{
         background-color: #f5f5f5 ;
+}
+
+#pull-right li:hover{
+        background-color: #f5f5f5 ;
+
 }

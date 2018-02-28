@@ -176,6 +176,55 @@ p{
     width: 90%;
 }
 
+/*可以使用的优惠券*/
+#myCoupon{
+    width: 900px;
+    margin-left: 280px;
+}
+
+#myCoupon, #myCoupon li {
+    list-style:none; /* 将默认的列表符号去掉 */
+
+}
+
+#myCoupon li{
+    /*float: left;*/
+    display: block;
+    width: 350px;
+    text-align: center;
+    padding:8px 50px; /* 设置内边距 */
+    margin: 0 0 5px 6px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #A3E0B1;
+    color: white;
+
+}
+
+/*已失效的优惠券*/
+#hasUsedCoupon{
+    width: 900px;
+    margin-left: 280px;
+}
+
+#hasUsedCoupon, #hasUsedCoupon li {
+    list-style:none; /* 将默认的列表符号去掉 */
+
+}
+
+#hasUsedCoupon li{
+    /*float: left;*/
+    display: block;
+    width: 350px;
+    text-align: center;
+    padding:8px 50px; /* 设置内边距 */
+    margin: 0 0 5px 6px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #C65375;
+    color: white;
+
+}
 
 @font-face {
     font-family: 'iconfont';  /* project id 569287 */

@@ -9,146 +9,193 @@
     <link href="../../css/vipUser/userInfo.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="../welcome.html"><img src="../../images/logo5.png"></a>
-        </div>
-        <div>
-            <!--没有用户登录-->
-            <ul class="nav navbar-nav navbar-right" id="noneUser">
-                <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登录</a></li>
-                <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
-            </ul>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="../welcome.html"><img src="../../images/logo5.png"></a>
+            </div>
+            <div>
+                <!--没有用户登录-->
+                <ul class="nav navbar-nav navbar-right" id="noneUser">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="Login.html">登录</a></li>
+                    <li><i class="iconfontUser">&#xe607;</i><a href="register.html">注册</a></li>
+                </ul>
 
-            <!--有用户登录-->
-            <div class="dropdown" id="userDrop">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                    <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu" >
-                    <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="userInfo.html">个人信息</a>
+                <!--有用户登录-->
+                <div class="dropdown" id="userDrop">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="iconfontUser">&#xe619;</i><span id="userSpan"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" >
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="userInfo.html">个人信息</a>
+                        </li>
+                        <li role="presentation">
+                            <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <ul class="nav nav-pills nav-stacked col-md-3">
+        <li class="slideLi" id="userInfoLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
+        <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
+        <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
+        <li class="slideLi"><i class="slideUserInfo">&#xe64a;</i>消费统计</li>
+        <li class="slideLi"><i class="slideUserInfo">&#xe665;</i>优惠券兑换</li>
+        <li class="orderLi">
+            <div class="dropdown" id="checkOrder">
+                    <span class="orderSpan" data-toggle="collapse" href="#order">
+                        <i class="slideUserInfo">&#xe642;</i>查看订单
+                    </span>
+                <ul class="collapse" id="order" >
+                    <li class="li1">
+                        <span  id="allOrder"><i class="slideUserInfo">&#xe737;</i>全部订单</span>
                     </li>
-                    <li role="presentation">
-                        <span role="menuitem" tabindex="-1" id="cancel"><i class="iconfontUser">&#xe66d;</i>注销</span>
+                    <li class="li1">
+                        <span  id="unEndOrder"><i class="slideUserInfo">&#xe602;</i>未演出订单</span>
+                    </li>
+                    <li class="li1">
+                        <span id="endOrder"><i class="slideUserInfo">&#xe629;</i>已完成订单</span>
                     </li>
 
                 </ul>
 
-
             </div>
+        </li>
 
+
+    </ul>
+
+    <!--个人信息-->
+    <div id="userInfoDiv" class="col-md-9">
+        <p class="pUserID">用户ID:</p> <p id="pUserID"></p>
+        <p class="pUserMail">邮箱:</p> <p id="pUserMail"></p>
+        <p class="pVip">会员等级:</p> <p id="pVipGrade"></p> <button data-toggle="modal" data-target="#cancelVIPModal" id="cancelVIP" class="btn btn-danger">取消会员</button>
+
+        <p class="pVip">会员积分:</p> <p id="pVipScore"></p>
+        <p class="pCoupon">我的优惠券:</p> <p id="pCoupon"></p> <button type="button" id="seeCoupon" class="btn btn-info">查看</button>
+    </div>
+
+    <!--查看个人优惠券-->
+    <div id="seeMyCoupon" class="col-md-9">
+        <h3>可以使用的优惠券:</h3>
+        <hr>
+        <ul id="myCoupon">
+            <!--<li>
+            &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
+            <p>2018.03.01-2018.05.01</p>
+            <p>满100减30</p>
+            </li>
+            <li>
+                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
+                <p>2018.03.01-2018.05.01</p>
+                <p>满100减30</p>
+            </li>
+            <li>
+                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
+                <p>2018.03.01-2018.05.01</p>
+                <p>满100减30</p>
+            </li>
+            <li>
+                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
+                <p>2018.03.01-2018.05.01</p>
+                <p>满100减30</p>
+            </li>
+            <li>
+                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
+                <p>2018.03.01-2018.05.01</p>
+                <p>满100减30</p>
+            </li>-->
+        </ul>
+
+        <h3>已使用的优惠券:</h3>
+        <hr>
+        <ul id="hasUsedCoupon">
+
+        </ul>
+
+
+
+    </div>
+
+    <!--取消会员模态框-->
+    <div class="modal fade" id="cancelVIPModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">取消会员资格确认</h4>
+                </div>
+                <div class="modal-body">您确认要取消会员资格吗（取消后不可恢复）</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                    <button type="button" class="btn btn-primary" id="confirmCancelVip">确认取消</button>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
-<ul class="nav nav-pills nav-stacked col-md-3">
-    <li class="slideLi" id="userInfoLi"><i class="slideUserInfo">&#xe6b2;</i>个人信息</li>
-    <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
-    <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
-    <li class="slideLi"><i class="slideUserInfo">&#xe64a;</i>消费统计</li>
-    <li class="slideLi"><i class="slideUserInfo">&#xe665;</i>优惠券兑换</li>
-    <li class="orderLi">
-        <div class="dropdown" id="checkOrder">
-                <span class="orderSpan" data-toggle="collapse" href="#order">
-                    <i class="slideUserInfo">&#xe642;</i>查看订单
-                </span>
-            <ul class="collapse" id="order" >
-                <li class="li1">
-                    <span  id="allOrder"><i class="slideUserInfo">&#xe737;</i>全部订单</span>
-                </li>
-                <li class="li1">
-                    <span  id="unEndOrder"><i class="slideUserInfo">&#xe602;</i>未演出订单</span>
-                </li>
-                <li class="li1">
-                    <span id="endOrder"><i class="slideUserInfo">&#xe629;</i>已完成订单</span>
-                </li>
-
-            </ul>
-
-        </div>
-    </li>
 
 
-</ul>
+    <!--修改密码-->
+    <div id="changePasswordDiv" class="col-md-9">
+        <form role="form" class="changePasswordForm">
+            <div class="form-group">
+                <label for="oldPassword">旧密码</label>
+                <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
+                <label for="newPassword">新密码</label>
+                <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
+                <label for="againNew">再次输入新密码</label>
+                <input type="password" class="form-control" id="againNew" placeholder="再次确认新密码">
 
-<!--个人信息-->
-<div id="userInfoDiv" class="col-md-9">
-    <p class="pUserID">用户ID:</p> <p id="pUserID"></p>
-    <p class="pUserMail">邮箱:</p> <p id="pUserMail"></p>
-    <p class="pVip">会员等级:</p> <p id="pVipGrade"></p> <button data-toggle="modal" data-target="#cancelVIPModal" id="cancelVIP" class="btn btn-danger">取消会员</button>
-
-    <p class="pVip">会员积分:</p> <p id="pVipScore"></p>
-    <p class="pCoupon">我的优惠券:</p> <p id="pCoupon"></p> <button type="button" id="seeCoupon" class="btn btn-info">查看</button>
-</div>
-
-<!--取消会员模态框-->
-<div class="modal fade" id="cancelVIPModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">取消会员资格确认</h4>
             </div>
-            <div class="modal-body">您确认要取消会员资格吗（取消后不可恢复）</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
-                <button type="button" class="btn btn-primary" id="confirmCancelVip">确认取消</button>
-            </div>
-        </div>
+            <button type="button" class="btn btn-primary" id="changePasswordBtn">修改密码</button>
+        </form>
     </div>
-</div>
 
+    <!--会员等级-->
+    <div id="vipGradeFormDiv" class="col-md-9">
+        <table class="table vipGradeTable">
+            <thead>
+            <tr>
+                <th>会员等级</th>
+                <th>对应积分</th>
+                <th>享受优惠(百分比)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>白银会员</td>
+                <td>1000</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <td>黄金会员</td>
+                <td>5000</td>
+                <td>88%</td>
+            </tr>
+            <tr>
+                <td>钻石会员</td>
+                <td>10000</td>
+                <td>80%</td>
+            </tr>
+            </tbody>
+        </table>
 
-<!--修改密码-->
-<div id="changePasswordDiv" class="col-md-9">
-    <form role="form" class="changePasswordForm">
-        <div class="form-group">
-            <label for="oldPassword">旧密码</label>
-            <input type="password" class="form-control" id="oldPassword" placeholder="请输入旧密码">
-            <label for="newPassword">新密码</label>
-            <input type="password" class="form-control" id="newPassword" placeholder="请输入新密码">
-            <label for="againNew">再次输入新密码</label>
-            <input type="password" class="form-control" id="againNew" placeholder="再次确认新密码">
+    </div>
 
-        </div>
-        <button type="button" class="btn btn-primary" id="changePasswordBtn">修改密码</button>
-    </form>
-</div>
+    <!--优惠券兑换-->
+    <div id="getCouponDiv" class="col-md-9">
 
-<!--会员等级-->
-<div id="vipGradeFormDiv" class="col-md-9">
-    <table class="table vipGradeTable">
-        <thead>
-        <tr>
-            <th>会员等级</th>
-            <th>对应积分</th>
-            <th>享受优惠(百分比)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>白银会员</td>
-            <td>1000</td>
-            <td>95%</td>
-        </tr>
-        <tr>
-            <td>黄金会员</td>
-            <td>5000</td>
-            <td>88%</td>
-        </tr>
-        <tr>
-            <td>钻石会员</td>
-            <td>10000</td>
-            <td>80%</td>
-        </tr>
-        </tbody>
-    </table>
+    </div>
 
-</div>
-
-<!--全部订单-->
+    <!--全部订单-->
 
 
 
