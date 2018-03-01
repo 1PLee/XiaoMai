@@ -226,6 +226,24 @@ p{
 
 }
 
+#getCouponDiv h4{
+    margin-left: 30px;
+}
+
+/*会员积分 （兑换优惠券）*/
+#myScoreP{
+    margin-left: 120px;
+    margin-top: -35px;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+/*积分兑换表格*/
+#converCouponTable{
+    margin-left: 40px;
+    margin-top: 50px;
+}
+
 @font-face {
     font-family: 'iconfont';  /* project id 569287 */
     src: url('//at.alicdn.com/t/font_569287_tugyco1km15g66r.eot');

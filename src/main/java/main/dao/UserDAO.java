@@ -27,6 +27,8 @@ public interface UserDAO {
 
         List<CouponEntity> getCoupon(String userId);
 
+        ResultMessage convertCoupon(CouponEntity couponEntity);
 
+        ResultMessage updateScore(String userId, int needScore); //兑换优惠券后减少会员积分
 
 }

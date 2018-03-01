@@ -25,5 +25,6 @@ public interface UserService {
 
     List<CouponVO> getCoupon(String userId);
 
+    ResultMessage convertCoupon(String description, String time ,String userId, int needScore);
 
 }

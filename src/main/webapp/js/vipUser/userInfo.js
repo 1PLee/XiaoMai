@@ -3,66 +3,57 @@
  */
 
 var userId;
+var couponNum;//个人优惠券数量
+var urInfo;
+var userMail;
+var vipGrade;
+var vipScore;
+var vipIsStop;
+
+var convertCouponVO;//用于兑换优惠券时提交的VO
 
 $(document).ready(function () {
     allHide();
     showUser();
     userId = sessionStorage.getItem("userID");
+    loadUserInfo();
     loadCouponInfo();
+
 });
+
+
+function loadUserInfo() {
+
+    /*获取个人信息*/
+    $.ajax({
+        type:"get",
+        url:"/User/getUserInfo",
+        contentType:'application/json;charset=utf-8',
+        data:{"userId":userId},
+        success:function (result) {
+
+            urInfo = result.userInfo;
+            userMail = urInfo.mail;
+
+            vipGrade = urInfo.vipGrade;
+            vipScore = urInfo.vipScore;
+            vipIsStop = urInfo.vipIsStop;
+
+        },
+        error:function () {
+            alert('getUserInfo failed');
+        }
+
+    });
+}
 
 /*查看个人信息*/
 $(document).on(
     {
         click:function () {
-            var urInfo;
-            var userMail;
-            var vipGrade;
-            var vipScore;
-            var vipIsStop;
-
-            /*获取个人信息*/
-            $.ajax({
-               type:"get",
-                url:"/User/getUserInfo",
-                contentType:'application/json;charset=utf-8',
-                data:{"userId":userId},
-                success:function (result) {
-
-                    urInfo = result.userInfo;
-                    userMail = urInfo.mail;
-
-                    vipGrade = urInfo.vipGrade;
-                    vipScore = urInfo.vipScore;
-                    vipIsStop = urInfo.vipIsStop;
-                    $('#pUserID').html(userId);
-                    $('#pUserMail').html(userMail);
-                    if(vipIsStop != 0){
-                        $('#pVipGrade').html("会员失效");
-                        $('#cancelVIP').hide();
-                    }else {
-
-                        if(vipGrade == 1){
-                            $('#pVipGrade').html("白银会员");
-                        }else if(vipGrade == 2){
-                            $('#pVipGrade').html("黄金会员");
-                        }else {
-                            $('#pVipGrade').html("钻石会员");
-                        }
-
-                    }
 
 
-                    $('#pVipScore').html(vipScore);
-
-                },
-                error:function () {
-                    alert('getUserInfo failed');
-                }
-
-            });
-
-            /*获取个人优惠券信息*/
+/*            /!*获取个人优惠券信息*!/
             $.ajax({
 
                 type:"get",
@@ -76,8 +67,27 @@ $(document).on(
                     alert("getCoupon failed!");
                 }
 
-            });
+            });*/
+            $('#pUserID').html(userId);
+            $('#pUserMail').html(userMail);
+            if(vipIsStop != 0){
+                $('#pVipGrade').html("会员失效");
+                $('#cancelVIP').hide();
+            }else {
 
+                if(vipGrade == 1){
+                    $('#pVipGrade').html("白银会员");
+                }else if(vipGrade == 2){
+                    $('#pVipGrade').html("黄金会员");
+                }else {
+                    $('#pVipGrade').html("钻石会员");
+                }
+
+            }
+
+            $('#pVipScore').html(vipScore);
+
+            $('#pCoupon').html(couponNum + " 张");
             allHide();
             $('#userInfoDiv').show();
 
@@ -135,6 +145,7 @@ function loadCouponInfo() {
         data:{"userId":userId},
         success:function (result) {
             couponArray = result;
+            couponNum = couponArray.length;
             for(var i =0;i<couponArray.length;i++){
                 var beginYear = new Date(couponArray[i].beginDate).getFullYear();
                 var beginMonth = new Date(couponArray[i].beginDate).getMonth()+1;
@@ -177,12 +188,10 @@ function loadCouponInfo() {
 }
 
 
-
 /*查看个人优惠券*/
 $(document).on(
     {
         click:function () {
-
 
             allHide();
             $('#seeMyCoupon').show();
@@ -216,6 +225,79 @@ $(document).on(
     },'#changePasswordLi'
 
 );
+
+/*兑换优惠券展示*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#myScoreP').html(vipScore);
+            $('#getCouponDiv').show();
+
+
+        }
+    },'#converCouponLi'
+
+);
+
+/*兑换优惠券按钮*/
+$(document).on(
+    {
+        click:function (node) {
+
+            var tr1 = node.target.parentNode.parentNode;
+            var description = tr1.cells[0].innerHTML;
+            var useTime = tr1.cells[1].innerHTML;
+            var needScore = tr1.cells[2].innerHTML;
+
+            if(needScore > vipScore){ //会员积分不足
+                alert("抱歉！ 您的积分不足");
+            }else {
+                 $('#confirmCoupon').modal();
+                 convertCouponVO = {
+                    "description": description,
+                    "useTime": useTime,
+                    "needScore": needScore,
+                    "userId": userId
+                };
+            }
+
+
+        }
+    },'td button'
+
+);
+
+/*确认兑换优惠券*/
+$(document).on(
+    {
+        click:function () {
+
+            $.ajax({
+
+                type:"POST",
+                url:"/User/convertCoupon",
+                contentType:'application/json;charset=utf-8',
+                data:JSON.stringify(convertCouponVO),
+                success:function (result) {
+                    if(result.result == "SUCCESS"){
+                        alert("兑换成功！");
+                        window.location.href = "./userInfo.html";
+                    }
+                },
+                error:function () {
+                    alert("convertCoupon failed!");
+                }
+            });
+
+
+        }
+    },'#confirmConvert'
+
+);
+
+
 
 /*修改密码 按钮*/
 $(document).on(
@@ -276,4 +358,5 @@ function allHide() {
     $('#vipGradeFormDiv').hide();
     $('#changePasswordDiv').hide();
     $('#seeMyCoupon').hide();
+    $('#getCouponDiv').hide()
 }

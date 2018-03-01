@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by liyipeng on 2018/2/9.
@@ -114,6 +116,23 @@ public class UserController {
 
 
         return allCoupon;
+    }
+
+    @RequestMapping(value = "/convertCoupon", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject convertCoupon(@RequestBody JSONObject convertInfo){
+        String description = (String) convertInfo.get("description");
+        String useTime = (String) convertInfo.get("useTime");
+        int needScore = Integer.parseInt((String) convertInfo.get("needScore")); //兑换需要的积分
+        String userId = (String) convertInfo.get("userId");
+
+        ResultMessage result = null;
+        result =  userService.convertCoupon(description, useTime, userId, needScore);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", result);
+
+        return jsonObject;
     }
 
 

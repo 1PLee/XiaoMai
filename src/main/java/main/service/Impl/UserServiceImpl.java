@@ -5,6 +5,8 @@ import main.dao.UserDAO;
 import main.entity.CouponEntity;
 import main.entity.UserEntity;
 import main.service.UserService;
+import main.util.Compile;
+import main.util.DateUtil;
 import main.util.MailCodeMap;
 import main.util.ResultMessage;
 import main.vo.CouponVO;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.GeneralSecurityException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -238,6 +241,62 @@ public class UserServiceImpl implements UserService {
         }
 
         return couponVOList;
+    }
+
+    @Transactional
+    public ResultMessage convertCoupon(String description, String time, String userId, int needScore) {
+
+        ResultMessage result = null;
+        CouponVO couponVO = new CouponVO();
+        CouponEntity couponEntity = new CouponEntity();
+        List<Integer> couponInfo = new ArrayList<Integer>();
+
+
+        couponInfo = Compile.getAllInteger(description);
+
+        switch (couponInfo.get(0)) {
+            case 100:
+                couponVO.setType(1);
+                break;
+            case 200:
+                couponVO.setType(2);
+                break;
+            case 300:
+                couponVO.setType(3);
+                break;
+            case 1000:
+                couponVO.setType(10);
+                break;
+        }
+
+        couponVO.setMoney(couponInfo.get(1));
+        couponVO.setUse(false);
+        couponVO.setUserId(userId);
+
+        String[] useTime = time.split("--");
+        System.out.println("the useTime0: " + useTime[0]);
+        System.out.println("the useTime1: " + useTime[1]);
+        Timestamp beginDate = DateUtil.String2Timestamp(useTime[0]);
+        Timestamp endDate = DateUtil.String2Timestamp(useTime[1]);
+        System.out.println("begin:" + beginDate);
+        System.out.println("end:" + endDate);
+        couponVO.setBeginDate(beginDate);
+        couponVO.setEndDate(endDate);
+
+        couponEntity.setBeginDate(couponVO.getBeginDate());
+        couponEntity.setEndDate(couponVO.getEndDate());
+        couponEntity.setIsUse(0);
+        couponEntity.setMoney(couponVO.getMoney());
+        couponEntity.setType(couponVO.getType());
+        couponEntity.setUserId(couponVO.getUserId());
+
+        result = userDAO.convertCoupon(couponEntity);
+
+        if(result == ResultMessage.SUCCESS){
+            result = userDAO.updateScore(userId, needScore);
+        }
+
+        return result;
     }
 
 

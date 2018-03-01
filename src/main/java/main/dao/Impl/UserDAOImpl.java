@@ -128,4 +128,30 @@ public class UserDAOImpl implements UserDAO {
     }
 
 
+    public ResultMessage convertCoupon(CouponEntity couponEntity) {
+        try {
+            int couponID = (Integer) baseDAO.save(couponEntity);
+            if(couponID != 0){
+                return ResultMessage.SUCCESS;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ResultMessage.FAILURE;
+    }
+
+    public ResultMessage updateScore(String userId, int needScore) {
+        ResultMessage result = null;
+        UserEntity theUser = baseDAO.getEntity(UserEntity.class, userId);
+        int primaryScore = theUser.getVipScore();
+        int userScore = primaryScore - needScore;
+        System.out.println("update Score:  " + userScore);
+        theUser.setVipScore(userScore);
+        result = baseDAO.saveOrUpdate(theUser);
+
+        return result;
+    }
+
+
 }

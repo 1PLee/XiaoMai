@@ -48,7 +48,7 @@
         <li class="slideLi" id="changePasswordLi"><i class="slideUserInfo">&#xe611;</i>修改密码</li>
         <li class="slideLi" id="vipGradeLi"><i class="slideUserInfo">&#xe661;</i>会员等级</li>
         <li class="slideLi"><i class="slideUserInfo">&#xe64a;</i>消费统计</li>
-        <li class="slideLi"><i class="slideUserInfo">&#xe665;</i>优惠券兑换</li>
+        <li class="slideLi" id="converCouponLi"><i class="slideUserInfo">&#xe665;</i>优惠券兑换</li>
         <li class="orderLi">
             <div class="dropdown" id="checkOrder">
                     <span class="orderSpan" data-toggle="collapse" href="#order">
@@ -88,31 +88,6 @@
         <h3>可以使用的优惠券:</h3>
         <hr>
         <ul id="myCoupon">
-            <!--<li>
-            &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
-            <p>2018.03.01-2018.05.01</p>
-            <p>满100减30</p>
-            </li>
-            <li>
-                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
-                <p>2018.03.01-2018.05.01</p>
-                <p>满100减30</p>
-            </li>
-            <li>
-                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
-                <p>2018.03.01-2018.05.01</p>
-                <p>满100减30</p>
-            </li>
-            <li>
-                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
-                <p>2018.03.01-2018.05.01</p>
-                <p>满100减30</p>
-            </li>
-            <li>
-                &lt;!&ndash;<p>满减优惠:</p>&ndash;&gt;
-                <p>2018.03.01-2018.05.01</p>
-                <p>满100减30</p>
-            </li>-->
         </ul>
 
         <h3>已使用的优惠券:</h3>
@@ -120,8 +95,6 @@
         <ul id="hasUsedCoupon">
 
         </ul>
-
-
 
     </div>
 
@@ -192,7 +165,70 @@
 
     <!--优惠券兑换-->
     <div id="getCouponDiv" class="col-md-9">
+        <h4>我的积分:</h4>
+        <p id="myScoreP"></p>
 
+        <table class="table" id="converCouponTable">
+            <caption>优惠券兑换</caption>
+            <thead>
+            <tr>
+                <th>描述</th>
+                <th>使用时间</th>
+                <th>所需积分</th>
+                <th>兑换</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>满100减30</td>
+                <td>2018.06.01--2018.11.01</td>
+                <td>500</td>
+                <td><button  class="btn btn-success">兑换</button></td>
+            </tr>
+            <tr>
+                <td>满200减60</td>
+                <td>2018.06.01--2018.09.01</td>
+                <td>400</td>
+                <td><button  class="btn btn-success">兑换</button></td>
+            </tr>
+            <tr>
+                <td>满300减100</td>
+                <td>2018.07.01--2018.09.01</td>
+                <td>800</td>
+                <td><button  class="btn btn-success">兑换</button></td>
+            </tr>
+            <tr>
+                <td>满100减15</td>
+                <td>2018.05.01--2018.10.01</td>
+                <td>200</td>
+                <td><button  class="btn btn-success">兑换</button></td>
+            </tr>
+            <tr>
+                <td>满1000减300</td>
+                <td>2018.05.01--2018.09.01</td>
+                <td>1000</td>
+                <td><button  class="btn btn-success">兑换</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!--确认兑换优惠券模态框-->
+    <div class="modal fade" id="confirmCoupon" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="">兑换优惠券确认</h4>
+                </div>
+                <div class="modal-body">您确认要兑换优惠券吗（确认后不可取消）</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                    <button type="button" class="btn btn-primary" id="confirmConvert">确认兑换</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--全部订单-->

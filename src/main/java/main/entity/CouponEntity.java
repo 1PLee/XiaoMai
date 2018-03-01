@@ -19,6 +19,7 @@ public class CouponEntity {
 
     @Id
     @Column(name = "couponId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getCouponId() {
         return couponId;
     }
