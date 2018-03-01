@@ -11,11 +11,14 @@ var descriptionP;//演出描述
 var allPrice; //演出所有的价格区间
 var allSeat;  //演出的每个价格对应座位数量
 
-$(document).ready(function () {
+var selectNum; //选择的座位数
 
+$(document).ready(function () {
+    selectNum = 0;
     loadPerform();
     showUser();
 
+    $('#selectNumDiv').hide();
 });
 
 /*加载表演的各种信息*/
@@ -46,9 +49,18 @@ function loadPerform() {
                     break;
                 }
                 var priceLi = document.createElement("li");
-                priceLi.innerHTML = allPrice[i];
-                priceLi.setAttribute("id", "price" + i);
+
                 priceUl.append(priceLi);
+                if(allSeat[i] == 0){
+
+                    priceLi.setAttribute("id", "price" + i +"Out");
+                }else {
+
+                    priceLi.setAttribute("id", "price" + i);
+                }
+                priceLi.innerHTML = allPrice[i];
+
+
             }
 
         },
@@ -130,5 +142,72 @@ $(document).on(
 
         }
     },'#price'
+
+);
+
+/*选择价格(座位)后弹出数量框*/
+$(document).on(
+    {
+        click:function (e) {
+            if(e.target.id.indexOf("Out") > -1) {
+                alert("抱歉 票已经卖完了")
+            }else {
+                selectNum = 1;
+                $('#selectNumP').html(selectNum);
+                $('#selectNumDiv').show();
+            }
+
+        }
+    },'#price li'
+
+);
+
+/*增加票数*/
+$(document).on(
+    {
+        click:function (e) {
+
+            if(selectNum == 6){
+                alert("一次最多只能买6张！");
+            }else {
+                selectNum++;
+                $('#selectNumP').html(selectNum);
+            }
+        }
+    },'#jiahao'
+
+);
+
+/*减少票数*/
+$(document).on(
+    {
+        click:function (e) {
+            if(selectNum == 1){
+
+            }else {
+                selectNum --;
+                $('#selectNumP').html(selectNum);
+            }
+        }
+    },'#jianhao'
+
+);
+
+
+/*买票*/
+$(document).on(
+    {
+        click:function () {
+            var isLogin = showUser();
+            if(isLogin){ //有用户登录
+                var userId = sessionStorage.getItem("userID");
+                window.location.href = "vipUser/buyTickets.html";
+
+            }else {
+                alert("请先登录账号！");
+            }
+
+        }
+    },'#buyTickets'
 
 );

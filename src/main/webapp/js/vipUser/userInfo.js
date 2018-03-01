@@ -10,9 +10,11 @@ var vipGrade;
 var vipScore;
 var vipIsStop;
 
+var couponArray; //存放从后端得到的关于优惠券的信息
 var convertCouponVO;//用于兑换优惠券时提交的VO
 
 $(document).ready(function () {
+    alert("执行");
     allHide();
     showUser();
     userId = sessionStorage.getItem("userID");
@@ -123,7 +125,7 @@ $(document).on(
 
 /*加载个人优惠券信息*/
 function loadCouponInfo() {
-    var couponArray = new Array();
+    couponArray = new Array();
     var nowDate = new Date();
 
     var nowYear = nowDate.getYear();

@@ -9,6 +9,7 @@
 }
 
 
+
 #price, #price li {
     list-style:none; /* 将默认的列表符号去掉 */
     padding:0; /* 将默认的内边距去掉 */
@@ -27,7 +28,27 @@
 
 }
 
-#price li:hover{
+#price0:hover {
+    cursor: pointer;
+}
+
+#price1:hover {
+    cursor: pointer;
+}
+
+#price2:hover {
+    cursor: pointer;
+}
+
+#price3:hover {
+    cursor: pointer;
+}
+
+#price4:hover {
+    cursor: pointer;
+}
+
+#price5:hover {
     cursor: pointer;
 }
 
@@ -51,7 +72,7 @@
     cursor: no-drop;
 }
 
-#price6Out:hover{
+#price0Out:hover{
     cursor: no-drop;
 }
 
@@ -105,4 +126,48 @@ hr{
 
 #descriptionP{
     margin-left: 500px;
+}
+
+#selectNumDiv{
+    float: left;
+}
+
+
+/*选票数量加减icon*/
+.iconSelectNum {
+    width: 3em; height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+#jianhao{
+    margin-left: 600px;
+    margin-top: 30px;
+    margin-bottom: -25px;
+}
+
+#jianhao:hover{
+    cursor: pointer;
+}
+
+
+#jiahao{
+    margin-left: 800px;
+}
+
+#jiahao:hover{
+    cursor: pointer;
+}
+
+
+/*选座数量*/
+#selectNumP{
+    text-align: center;
+    margin-left: 685px;
+    width: 75px;
+    border: 1px solid #c7c7c7 ;
+    border-radius: 25px;
+
+    margin-bottom: -25px;
 }
