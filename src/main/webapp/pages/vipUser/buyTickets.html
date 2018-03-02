@@ -5,7 +5,8 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/header.css" rel="stylesheet" type="text/css">
-    <link href="../../css/vipUser/buyTickets.css">
+    <link href="../../css/vipUser/buyTickets.css" rel="stylesheet" type="text/css">
+
 
     <title>Order</title>
 </head>
@@ -46,7 +47,78 @@
     </nav>
 
     <!--订单基本信息-->
-    <div>
+    <div id="orderBase">
+        <h4>订单名称</h4>
+        <p id="performNameP">2018五月天LIFE[人生无限公司]世界巡回演唱会 长沙站</p>
+
+        <h4>演出时间</h4>
+        <p id="performTimeP">2018.5.12</p>
+
+        <h4>预定票数</h4>
+        <!--<p id="orderNum">5</p>-->
+        <!--选择数量-->
+
+                <svg id="jianhao" class="iconSelectNum" aria-hidden="true">
+                        <use xlink:href="#icon-jianhao"></use>
+                </svg>
+
+            <label id="selectNumP">1</label>
+
+                <svg id="jiahao" class="iconSelectNum" aria-hidden="true">
+                        <use xlink:href="#icon-jiahao"></use>
+                    </svg>
+
+
+
+        <h4>订单金额</h4>
+        <p id="moneyTotal"></p>
+
+        <hr style="margin-left: -300px" width="1000px">
+
+        <h4>会员折扣</h4>
+        <p id="personVip">白金会员（95%）</p>
+
+
+        <h4>可用优惠券</h4>
+        <div class="dropdown selectCoupon">
+            <button id="useCoupon" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                <span class="caret"></span>
+            </button>
+            <ul id="useUl" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+            </ul>
+        </div>
+
+        <h4>应付金额</h4>
+        <p id="endPay">3275*0.95-90=3021.25</p>
+
+        <button class="btn btn-default" id="cancelPay" data-toggle="modal" data-target="#cancelOrderModal">取消</button>
+        <button class="btn btn-info" id="confirmPay">确认支付</button>
+
+    </div>
+
+
+    <!--取消订单模态框-->
+    <div class="modal fade" id="cancelOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="">取消订单确认</h4>
+                </div>
+                <div class="modal-body">您确认要取消订单吗（确认后订单数据全部清除）</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                    <button type="button" class="btn btn-primary" id="confirmCancelOrder">确认取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--个人付款信息-->
+    <div id="personPay">
+
 
     </div>
 
@@ -57,9 +129,8 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//at.alicdn.com/t/font_569287_wwjziztudefusor.js"></script>
     <script src="../../js/tool.js"></script>
-
-    <script src="../../js/vipUser/userInfo.js"></script>
     <script src="../../js/vipUser/buyTickets.js"></script>
 </body>
 </html>

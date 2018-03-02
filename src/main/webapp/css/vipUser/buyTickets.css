@@ -1,0 +1,101 @@
+
+#orderBase {
+    margin-left: 500px;
+    /*margin-top: 50px;*/
+}
+
+#orderBase h4{
+    margin-top: 50px;
+}
+
+#orderBase p{
+    margin-left: 100px;
+    margin-top: -28px;
+    text-decoration: underline;
+    letter-spacing: 1px
+}
+
+.dropdown-toggle{
+    background-color: transparent;
+}
+
+/*选择优惠券下拉菜单*/
+.selectCoupon{
+    margin-left: 110px;
+    margin-top: -28px;
+}
+
+.selectCoupon li{
+    height: 30px;
+}
+
+.selectCoupon li:hover{
+    cursor: pointer;
+}
+
+#cancelPay{
+    margin-left: 200px;
+    margin-top: 100px;
+}
+
+#confirmPay{
+    margin-top: 100px;
+    margin-left: 30px;
+}
+
+/*选票数量加减icon*/
+.iconSelectNum {
+    width: 3em; height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+#jianhao{
+    margin-left: 100px;
+    float: left;
+
+    margin-top: -30px
+}
+
+#jianhao:hover{
+    cursor: pointer;
+}
+
+
+#jiahao{
+    float: left;
+    margin-left: 233px;
+    margin-top: -30px;
+}
+
+#jiahao:hover{
+    cursor: pointer;
+}
+
+/*选座数量*/
+#selectNumP{
+    text-align: center;
+    float: left;
+    margin-left: 150px;
+    width: 75px;
+    border: 1px solid #c7c7c7;
+    border-radius: 25px;
+    margin-bottom: -35px;
+    margin-top: -27px;
+}
+/*
+#performNameP{
+    margin-left: 100px;
+    margin-top: -28px;
+    text-decoration: underline;
+    letter-spacing: 1px
+}
+
+#performTimeP{
+    margin-left: 100px;
+    margin-top: -28px;
+    text-decoration: underline;
+    letter-spacing: 1px
+}*/
+

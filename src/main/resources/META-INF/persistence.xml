@@ -10,6 +10,7 @@
         <class>main.entity.UserEntity</class>
         <class>main.entity.CouponEntity</class>
         <class>main.entity.SeatEntity</class>
+        <class>main.entity.OrderEntity</class>
 
 
         <properties>

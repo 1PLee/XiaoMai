@@ -127,13 +127,14 @@ hr{
 #descriptionP{
     margin-left: 500px;
 }
+/*
 
 #selectNumDiv{
     float: left;
 }
 
 
-/*选票数量加减icon*/
+!*选票数量加减icon*!
 .iconSelectNum {
     width: 3em; height: 2em;
     vertical-align: -0.15em;
@@ -161,7 +162,7 @@ hr{
 }
 
 
-/*选座数量*/
+!*选座数量*!
 #selectNumP{
     text-align: center;
     margin-left: 685px;
@@ -171,3 +172,4 @@ hr{
 
     margin-bottom: -25px;
 }
+*/

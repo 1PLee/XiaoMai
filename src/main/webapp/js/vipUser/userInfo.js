@@ -14,7 +14,7 @@ var couponArray; //存放从后端得到的关于优惠券的信息
 var convertCouponVO;//用于兑换优惠券时提交的VO
 
 $(document).ready(function () {
-    alert("执行");
+
     allHide();
     showUser();
     userId = sessionStorage.getItem("userID");
@@ -36,7 +36,6 @@ function loadUserInfo() {
 
             urInfo = result.userInfo;
             userMail = urInfo.mail;
-
             vipGrade = urInfo.vipGrade;
             vipScore = urInfo.vipScore;
             vipIsStop = urInfo.vipIsStop;

@@ -11,7 +11,7 @@ var descriptionP;//演出描述
 var allPrice; //演出所有的价格区间
 var allSeat;  //演出的每个价格对应座位数量
 
-var selectNum; //选择的座位数
+var selectSeat;//选择的是哪个等级的座位
 
 $(document).ready(function () {
     selectNum = 0;
@@ -139,6 +139,12 @@ $(document).on(
             var liID = e.target.id;
             $('#' + liID).addClass("slectedLi");
             selectPrice = $('#'+liID).html();
+            for(var i =0; i<allPrice.length; i++){
+                if(selectPrice == allPrice[i]){
+                    selectSeat = i + 1;
+                    break;
+                }
+            }
 
         }
     },'#price'
@@ -146,7 +152,7 @@ $(document).on(
 );
 
 /*选择价格(座位)后弹出数量框*/
-$(document).on(
+/*$(document).on(
     {
         click:function (e) {
             if(e.target.id.indexOf("Out") > -1) {
@@ -160,38 +166,8 @@ $(document).on(
         }
     },'#price li'
 
-);
+);*/
 
-/*增加票数*/
-$(document).on(
-    {
-        click:function (e) {
-
-            if(selectNum == 6){
-                alert("一次最多只能买6张！");
-            }else {
-                selectNum++;
-                $('#selectNumP').html(selectNum);
-            }
-        }
-    },'#jiahao'
-
-);
-
-/*减少票数*/
-$(document).on(
-    {
-        click:function (e) {
-            if(selectNum == 1){
-
-            }else {
-                selectNum --;
-                $('#selectNumP').html(selectNum);
-            }
-        }
-    },'#jianhao'
-
-);
 
 
 /*买票*/
@@ -199,8 +175,22 @@ $(document).on(
     {
         click:function () {
             var isLogin = showUser();
+            var ticketNum;
+            var buyTicketsVO;
             if(isLogin){ //有用户登录
+
                 var userId = sessionStorage.getItem("userID");
+
+                buyTicketsVO = {  //如果selectPrice为 null 代表没有选座
+                    "userId": userId,
+                    "ticketMoney": selectPrice,
+                    "performMinMoney": allPrice[0],// 非选座购票默认最低价
+                    "selectSeat": selectSeat
+                };
+
+
+                sessionStorage.setItem("buyTicketsVO", JSON.stringify(buyTicketsVO));
+
                 window.location.href = "vipUser/buyTickets.html";
 
             }else {

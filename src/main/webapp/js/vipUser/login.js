@@ -18,7 +18,7 @@ $(document).on(
             loginVO = {
                 "id": userID.value,
                 "password": password.value
-            }
+            };
             $.ajax({
                 type:"post",
                 url:"/User/login",
