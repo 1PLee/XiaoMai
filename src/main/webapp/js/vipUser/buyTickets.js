@@ -225,18 +225,40 @@ $(document).on(
     {
         click:function () {
             var orderVO;
+            if(useCouponId == null){
+                useCouponId = 0;
+            }
+
             orderVO = {
                 "userId":userId,
-                "useCoupon":useCouponId,
+                "couponId":useCouponId,
                 "performId":performId,
                 "ticketSeat": ticketSeat,
                 "ticketNum":ticketNum,
                 "ticketMoney":ticketMoney,
-                "totalPay":totalMoney
+                "orderMoney":totalMoney
             };
 
-            sessionStorage.setItem("orderVO", JSON.stringify(orderVO));
-            window.location.href = "./payOrder.html";
+
+            /*在后台创建订单*/
+            $.ajax({
+               type:"post",
+                url:"/Order/createOrder",
+                contentType:'application/json;charset=utf-8',
+                data:JSON.stringify(orderVO),
+                success:function (result) {
+                    alert(result);
+                    sessionStorage.setItem("orderVO", JSON.stringify(orderVO));
+                    window.location.href = "./payOrder.html";
+                },
+                error:function () {
+                    alert("createOrder failed!")
+                }
+
+            });
+
+
+
 
         }
     },'#confirmPay'

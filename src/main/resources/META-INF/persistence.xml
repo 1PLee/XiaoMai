@@ -11,6 +11,7 @@
         <class>main.entity.CouponEntity</class>
         <class>main.entity.SeatEntity</class>
         <class>main.entity.OrderEntity</class>
+        <class>main.entity.TicketOrderEntity</class>
 
 
         <properties>

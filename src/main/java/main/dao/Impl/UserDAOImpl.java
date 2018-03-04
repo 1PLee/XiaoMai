@@ -153,5 +153,27 @@ public class UserDAOImpl implements UserDAO {
         return result;
     }
 
+    public ResultMessage updateCouponState(String userId, int couponId) {
+        ResultMessage result = null;
+        int updatedEntities = 0;
+        Session session = getCurrentSession();
+
+        updatedEntities = session.createQuery(
+                "update CouponEntity " +
+                        "set isUse = :useState " +
+                        "where userId = :userId and couponId = :couponId"
+        )
+                .setParameter("useState", 1)
+                .setParameter("userId", userId)
+                .setParameter("couponId", couponId)
+                .executeUpdate();
+
+        if(updatedEntities == 0){
+            return ResultMessage.FAILURE;
+        }
+
+        return ResultMessage.SUCCESS;
+    }
+
 
 }

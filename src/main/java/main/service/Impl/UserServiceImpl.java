@@ -274,12 +274,10 @@ public class UserServiceImpl implements UserService {
         couponVO.setUserId(userId);
 
         String[] useTime = time.split("--");
-        System.out.println("the useTime0: " + useTime[0]);
-        System.out.println("the useTime1: " + useTime[1]);
+
         Timestamp beginDate = DateUtil.String2Timestamp(useTime[0]);
         Timestamp endDate = DateUtil.String2Timestamp(useTime[1]);
-        System.out.println("begin:" + beginDate);
-        System.out.println("end:" + endDate);
+
         couponVO.setBeginDate(beginDate);
         couponVO.setEndDate(endDate);
 

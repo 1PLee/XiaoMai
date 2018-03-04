@@ -1,9 +1,7 @@
 package main.dao;
 
-import main.entity.DescriptionEntity;
-import main.entity.PerformEntity;
-import main.entity.PriceEntity;
-import main.entity.VenueEntity;
+import main.entity.*;
+import main.util.ResultMessage;
 
 import java.util.List;
 
@@ -23,6 +21,8 @@ public interface PerformDAO {
     List<Object[]> getSeat(int performID);
 
     DescriptionEntity getDescription(int performID);
+
+    ResultMessage updatePerformSeat(int performID, int seatGrade, int seatNum ,int type); //下单时表演对应的座位更改, type为1代表加 0代表减
 
 
 }

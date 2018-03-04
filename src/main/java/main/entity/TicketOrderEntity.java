@@ -4,23 +4,26 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by liyipeng on 2018/3/2.
+ * Created by liyipeng on 2018/3/4.
  */
 @Entity
-@Table(name = "order", schema = "XiaoMai")
-public class OrderEntity {
+@Table(name = "ticketOrder", schema = "XiaoMai")
+public class TicketOrderEntity {
     private int orderId;
-    private Integer userId;
+    private String userId;
     private Integer performId;
     private Integer ticketNum;
-    private Integer ticketMoney; //票单价
+    private Integer ticketMoney;
     private Double orderMoney;
     private Timestamp orderTime;
-    private Integer orderType; //订单类型
-    private Integer couponId; //使用的优惠券id 如果没有可以为null
+    private Integer orderType;
+    private Integer couponId;
+    private Timestamp shouldPay;
+    private Double backMoney;
 
     @Id
     @Column(name = "orderId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getOrderId() {
         return orderId;
     }
@@ -31,11 +34,11 @@ public class OrderEntity {
 
     @Basic
     @Column(name = "userId")
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -109,12 +112,32 @@ public class OrderEntity {
         this.couponId = couponId;
     }
 
+    @Basic
+    @Column(name = "shouldPay")
+    public Timestamp getShouldPay() {
+        return shouldPay;
+    }
+
+    public void setShouldPay(Timestamp shouldPay) {
+        this.shouldPay = shouldPay;
+    }
+
+    @Basic
+    @Column(name = "backMoney")
+    public Double getBackMoney() {
+        return backMoney;
+    }
+
+    public void setBackMoney(Double backMoney) {
+        this.backMoney = backMoney;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderEntity that = (OrderEntity) o;
+        TicketOrderEntity that = (TicketOrderEntity) o;
 
         if (orderId != that.orderId) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
@@ -125,6 +148,8 @@ public class OrderEntity {
         if (orderTime != null ? !orderTime.equals(that.orderTime) : that.orderTime != null) return false;
         if (orderType != null ? !orderType.equals(that.orderType) : that.orderType != null) return false;
         if (couponId != null ? !couponId.equals(that.couponId) : that.couponId != null) return false;
+        if (shouldPay != null ? !shouldPay.equals(that.shouldPay) : that.shouldPay != null) return false;
+        if (backMoney != null ? !backMoney.equals(that.backMoney) : that.backMoney != null) return false;
 
         return true;
     }
@@ -140,6 +165,8 @@ public class OrderEntity {
         result = 31 * result + (orderTime != null ? orderTime.hashCode() : 0);
         result = 31 * result + (orderType != null ? orderType.hashCode() : 0);
         result = 31 * result + (couponId != null ? couponId.hashCode() : 0);
+        result = 31 * result + (shouldPay != null ? shouldPay.hashCode() : 0);
+        result = 31 * result + (backMoney != null ? backMoney.hashCode() : 0);
         return result;
     }
 }
