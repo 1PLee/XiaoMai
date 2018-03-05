@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.service.ManagerService;
+import main.util.ResultMessage;
 import main.vo.VenueVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,16 @@ public class ManagerController {
         venueVOList = managerService.showVenueList(type);
 
         return  venueVOList;
+    }
+
+    @RequestMapping(value = "/checkVenueRegister", method = RequestMethod.GET)
+    @ResponseBody
+    public String checkVenueRegister(@RequestParam("venue") String venue, @RequestParam("action") int action){
+        ResultMessage result = null;
+
+        result = managerService.checkVenue(venue, action);
+
+        return result.toShow();
     }
 
 }

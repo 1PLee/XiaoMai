@@ -28,6 +28,7 @@ public class VenueServiceImpl implements VenueService {
         theVenue.setLocation(venueEntity.getLocation());
         theVenue.setCapacity(venueEntity.getCapacity());
         theVenue.setVenueID(venueEntity.getVenueId());
+        theVenue.setMail(venueEntity.getMail());
 
         return theVenue;
     }
@@ -48,9 +49,10 @@ public class VenueServiceImpl implements VenueService {
 
         return result;
     }
-    public ResultMessage checkVenue(String venue) {
-        return null;
-    }
+
+
+
+
 
     public ResultMessage loginVenue(VenueVO venueVO) {
         return null;

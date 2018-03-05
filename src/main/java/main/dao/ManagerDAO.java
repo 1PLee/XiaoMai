@@ -1,6 +1,7 @@
 package main.dao;
 
 import main.entity.VenueEntity;
+import main.util.ResultMessage;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public interface ManagerDAO {
 
     List<VenueEntity> showVenueList(int type);
+
+    ResultMessage checkVenue(String venue, int action, int code); //审批场馆注册申请 如果通过 code为识别码 否则为null
 
 
 }

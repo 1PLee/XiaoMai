@@ -11,4 +11,6 @@ public interface VenueDAO {
     VenueEntity getVenueInfo(String venue);
 
     ResultMessage registerVenue(VenueEntity venueEntity);
+
+
 }

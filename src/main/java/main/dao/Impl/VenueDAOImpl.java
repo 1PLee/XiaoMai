@@ -33,14 +33,14 @@ public class VenueDAOImpl implements VenueDAO {
     }
 
 
-    @Transactional
+
     public VenueEntity getVenueInfo(String venue) {
         VenueEntity theVenue = new VenueEntity();
         Session session = getCurrentSession();
         List<Object[]> venueList = new ArrayList<Object[]>();
 
         venueList = session.createQuery(
-                "select  description, location, capacity, venueId " +
+                "select  description, location, capacity, venueId, mail " +
                         "from VenueEntity " +
                         "where venue = :venue"
         )
@@ -52,6 +52,7 @@ public class VenueDAOImpl implements VenueDAO {
         theVenue.setLocation((String) venueInfo[1]);
         theVenue.setCapacity((Integer)venueInfo[2]);
         theVenue.setVenueId((Integer)venueInfo[3]);
+        theVenue.setMail((String)venueInfo[4]);
 
 
         return theVenue;
@@ -63,7 +64,7 @@ public class VenueDAOImpl implements VenueDAO {
         try {
             venueId = baseDAO.save(venueEntity);
             if(venueId != 0){
-                System.out.println("准备成功了");
+
                 return ResultMessage.SUCCESS;
             }
         } catch (Exception e) {
@@ -73,4 +74,6 @@ public class VenueDAOImpl implements VenueDAO {
 
         return ResultMessage.FAILURE;
     }
+
+
 }

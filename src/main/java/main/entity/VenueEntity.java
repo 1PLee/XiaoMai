@@ -12,7 +12,7 @@ public class VenueEntity {
     private String description;
     private String venue;
     private String location;
-    private int type; //0 代表未审核 1代表已审核 2代表提交修改申请的
+    private int type; //0 代表未审核 1代表已审核
     private int capacity; //场馆容纳量
 
     private String mail;
