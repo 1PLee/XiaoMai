@@ -5,6 +5,7 @@
 var venueName;
 var venueLocation;
 var venueDescription;
+var venueCapacity;
 
 $(document).ready(function () {
    
@@ -28,8 +29,10 @@ function loadVenue() {
 
            venueDescription = result.description;
            venueLocation = result.location;
+           venueCapacity = result.capacity;
            $('#desP').html(venueDescription);
            $('#locationP').html(venueLocation);
+           $('#capacityP').html(venueCapacity+"人")
        },
        error:function () {
            alert("getVenueInfo failed");

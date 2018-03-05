@@ -12,6 +12,7 @@
         <class>main.entity.SeatEntity</class>
         <class>main.entity.OrderEntity</class>
         <class>main.entity.TicketOrderEntity</class>
+        <class>main.entity.UserMoneyEntity</class>
 
 
         <properties>

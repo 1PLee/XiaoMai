@@ -39,7 +39,7 @@ public class VenueDAOImpl implements VenueDAO {
         List<Object[]> venueList = new ArrayList<Object[]>();
 
         venueList = session.createQuery(
-                "select  description, location " +
+                "select  description, location, capacity " +
                         "from VenueEntity " +
                         "where venue = :venue"
         )
@@ -49,6 +49,7 @@ public class VenueDAOImpl implements VenueDAO {
 
         theVenue.setDescription((String) venueInfo[0]);
         theVenue.setLocation((String) venueInfo[1]);
+        theVenue.setCapacity((Integer)venueInfo[2]);
 
 
         return theVenue;

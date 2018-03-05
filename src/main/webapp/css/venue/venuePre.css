@@ -17,6 +17,11 @@ h3{
     margin-top: 100px;
 }
 
+p{
+    font-size: 18px;
+    margin-left: 800px;
+    letter-spacing: 1px;
+}
 
 #locationP{
     font-size: 18px;
@@ -32,5 +37,10 @@ h3{
     margin-top: -25px;
     font-size: 18px;
     letter-spacing: 1px;
+}
+
+#capacityP{
+    font-size: 18px;
+    margin-top: -30px;
 }
 

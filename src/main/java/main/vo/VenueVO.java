@@ -8,6 +8,8 @@ public class VenueVO {
     public String name;
     public String description;
     public String location;
+    public int type;
+    public int capacity;
 
     public int getVenueID() {
         return venueID;
@@ -39,5 +41,21 @@ public class VenueVO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }
