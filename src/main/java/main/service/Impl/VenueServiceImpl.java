@@ -26,6 +26,7 @@ public class VenueServiceImpl implements VenueService {
         theVenue.setDescription(venueEntity.getDescription());
         theVenue.setLocation(venueEntity.getLocation());
         theVenue.setCapacity(venueEntity.getCapacity());
+        theVenue.setVenueID(venueEntity.getVenueId());
 
         return theVenue;
     }

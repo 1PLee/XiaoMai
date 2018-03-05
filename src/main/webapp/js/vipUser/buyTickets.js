@@ -88,6 +88,7 @@ function loadDiscount() {
                         break;
                 }
                 vipMoney = ticketNum * ticketMoney * vipDiscount;
+                totalMoney = vipMoney;
                 loadCouponUl();
 
                 $('#endPay').html(ticketMoney + " * " + ticketNum + " * " + vipDiscount + " = " + vipMoney);
@@ -100,6 +101,7 @@ function loadDiscount() {
 
     }else { //根据票数的不同动态加载金额
         vipMoney = ticketNum * ticketMoney * vipDiscount;
+        totalMoney = vipMoney;
         useCouponId = null; //将优惠券信息清空
         loadCouponUl();
         $('#endPay').html(ticketMoney + " * " + ticketNum + " * " + vipDiscount + " = " + vipMoney);
@@ -145,7 +147,7 @@ function loadCouponUl() {
 }
 
 
-/*根据票数的改变显示订单金额*/
+/*根据票数的改变显示订单金额(非实付金额)*/
 function showOrderMoney() {
     var orderMoney = 0;
     orderMoney = ticketNum * ticketMoney;

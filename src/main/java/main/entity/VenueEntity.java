@@ -14,6 +14,7 @@ public class VenueEntity {
     private String location;
     private int type; //0 代表未审核 1代表已审核
     private int capacity; //场馆容纳量
+    private int password;
 
     @Id
     @Column(name = "venueID")
@@ -73,6 +74,16 @@ public class VenueEntity {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public int getPassword(){
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
     }
 
     @Override

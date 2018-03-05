@@ -54,6 +54,7 @@ public class OrderServiceImpl implements OrderService{
         orderEntity.setPerformId(performId);
         orderEntity.setTicketNum(orderVO.getTicketNum());
         orderEntity.setTicketMoney(orderVO.getTicketMoney());
+        System.out.println("look the orderMoney:"+ orderVO.getOrderMoney());
         orderEntity.setOrderMoney(orderVO.getOrderMoney());
         orderEntity.setOrderType(0); //待支付
         orderEntity.setOrderTime(now);

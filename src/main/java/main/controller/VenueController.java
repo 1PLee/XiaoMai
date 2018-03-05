@@ -28,4 +28,12 @@ public class VenueController {
 
         return theVenue;
     }
+
+
+    @RequestMapping(value = "/getVenueById", method = RequestMethod.GET)
+    @ResponseBody
+    public VenueVO getVenueById(@RequestParam("venueId") int venueId){ //场馆账号用venueId登录
+
+        return null;
+    }
 }
