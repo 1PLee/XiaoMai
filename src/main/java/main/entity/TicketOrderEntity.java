@@ -16,7 +16,7 @@ public class TicketOrderEntity {
     private Integer ticketMoney;
     private Double orderMoney;
     private Timestamp orderTime;
-    private Integer orderType;
+    private Integer orderType; //0代表未支付 1代表已支付 2代表已检票 4代表退款
     private Integer couponId;
     private Timestamp shouldPay;
     private Double backMoney;

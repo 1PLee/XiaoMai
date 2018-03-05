@@ -10,7 +10,8 @@ public class VenueVO {
     public String location;
     public int type;
     public int capacity;
-    public int password;
+    public int code;
+    public String mail;
 
     public int getVenueID() {
         return venueID;
@@ -60,12 +61,19 @@ public class VenueVO {
         this.capacity = capacity;
     }
 
-    public int getPassword() {
-        return password;
+    public int getCode() {
+        return code;
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public void setCode(int code) {
+        this.code = code;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 }

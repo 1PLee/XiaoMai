@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by liyipeng on 2018/3/5.
  */
 @Entity
-@Table(name = "venue", schema = "XiaoMai")
+@Table(name = "venue", schema = "XiaoMai", catalog = "")
 public class VenueEntity {
     private int venueId;
     private String description;
@@ -14,10 +14,13 @@ public class VenueEntity {
     private String location;
     private int type; //0 代表未审核 1代表已审核
     private int capacity; //场馆容纳量
-    private int password;
+
+    private String mail;
+    private int code;
 
     @Id
     @Column(name = "venueID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getVenueId() {
         return venueId;
     }
@@ -76,15 +79,6 @@ public class VenueEntity {
         this.capacity = capacity;
     }
 
-    @Basic
-    @Column(name = "password")
-    public int getPassword(){
-        return password;
-    }
-
-    public void setPassword(int password) {
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -112,5 +106,25 @@ public class VenueEntity {
         result = 31 * result + type;
         result = 31 * result + capacity;
         return result;
+    }
+
+    @Basic
+    @Column(name = "mail")
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    @Basic
+    @Column(name = "code")
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

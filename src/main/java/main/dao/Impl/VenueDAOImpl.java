@@ -3,6 +3,7 @@ package main.dao.Impl;
 import main.dao.BaseDAO;
 import main.dao.VenueDAO;
 import main.entity.VenueEntity;
+import main.util.ResultMessage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,22 @@ public class VenueDAOImpl implements VenueDAO {
 
 
         return theVenue;
+    }
+
+    public ResultMessage registerVenue(VenueEntity venueEntity) {
+        int venueId = 0;
+
+        try {
+            venueId = baseDAO.save(venueEntity);
+            if(venueId != 0){
+                System.out.println("准备成功了");
+                return ResultMessage.SUCCESS;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return ResultMessage.FAILURE;
     }
 }

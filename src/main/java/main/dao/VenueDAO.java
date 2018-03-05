@@ -1,6 +1,7 @@
 package main.dao;
 
 import main.entity.VenueEntity;
+import main.util.ResultMessage;
 
 /**
  * Created by liyipeng on 2018/2/27.
@@ -8,4 +9,6 @@ import main.entity.VenueEntity;
 public interface VenueDAO {
 
     VenueEntity getVenueInfo(String venue);
+
+    ResultMessage registerVenue(VenueEntity venueEntity);
 }

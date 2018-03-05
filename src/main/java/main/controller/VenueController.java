@@ -1,13 +1,11 @@
 package main.controller;
 
 import main.service.VenueService;
+import main.util.ResultMessage;
 import main.vo.VenueVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by liyipeng on 2018/2/27.
@@ -30,10 +28,15 @@ public class VenueController {
     }
 
 
-    @RequestMapping(value = "/getVenueById", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerVenue", method = RequestMethod.POST)
     @ResponseBody
-    public VenueVO getVenueById(@RequestParam("venueId") int venueId){ //场馆账号用venueId登录
+    public String registerVenue(@RequestBody VenueVO venueVO) {
+        ResultMessage result = null;
 
-        return null;
+        result = venueService.registerVenue(venueVO);
+
+        return result.toShow();
     }
+
+
 }
