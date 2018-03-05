@@ -5,10 +5,7 @@ import main.dao.UserDAO;
 import main.entity.CouponEntity;
 import main.entity.UserEntity;
 import main.service.UserService;
-import main.util.Compile;
-import main.util.DateUtil;
-import main.util.MailCodeMap;
-import main.util.ResultMessage;
+import main.util.*;
 import main.vo.CouponVO;
 import main.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,7 +120,15 @@ public class UserServiceImpl implements UserService {
             code += 100000;
         }
 
-        final String from = "1017270947@qq.com";
+        if(SendMailCode.sendMailCode(mail,code) == ResultMessage.SUCCESS){
+            MailCodeMap.getInstance().put(userID, code);
+            return ResultMessage.SUCCESS;
+        }
+
+
+        return ResultMessage.FAILURE;
+
+/*        final String from = "1017270947@qq.com";
         final String password = "zuahyzeeokejbfdj";// 授权码
         String host = "smtp.qq.com";
         Properties properties = System.getProperties(); //获取系统属性
@@ -168,11 +173,9 @@ public class UserServiceImpl implements UserService {
             transport.close();
         } catch (MessagingException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        MailCodeMap.getInstance().put(userID, code);
 
-        return ResultMessage.SUCCESS;
     }
 
 
