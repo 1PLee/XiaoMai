@@ -1,13 +1,14 @@
 /**
  * Created by liyipeng on 2018/3/2.
  */
-
+var userId;
 
 $(document).ready(function () {
     showUser();
-
+    userId = sessionStorage.getItem("userID");
     var orderVO = sessionStorage.getItem("orderVO");
     orderVO = JSON.parse(orderVO);
+    $('#payMoneyP').html(orderVO.orderMoney);
 
     countTime();
 });
@@ -35,3 +36,41 @@ function countTime() {
 
 
 }
+
+/*确认支付*/
+$(document).on(
+    {
+        click:function (e) {
+            var userName = $('#userNameInput').val();
+            var password = parseInt($('#pwdInput').val());
+            var orderMoney = parseFloat($('#payMoneyP').html());
+
+            var payOrderVO = {
+                "userName": userName,
+                "password": password,
+                "orderMoney": orderMoney,
+                "userId": userId
+            };
+
+            $.ajax({
+               type:"post",
+                url:"/Order/payOrder",
+                contentType:'application/json;charset=utf-8',
+                data: JSON.stringify(payOrderVO),
+                success: function (result) {
+                   alert(result);
+                   window.location.href = "./userInfo.html";
+
+
+                },
+                error: function () {
+                    alert("payOrder failed!")
+                }
+
+            });
+
+
+        }
+    },'#conformPay'
+
+);

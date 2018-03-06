@@ -3,7 +3,11 @@ package main.dao.Impl;
 import main.dao.BaseDAO;
 import main.dao.OrderDAO;
 import main.entity.TicketOrderEntity;
+import main.entity.UserMoneyEntity;
 import main.util.ResultMessage;
+import main.vo.UserMoneyVO;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +20,14 @@ public class OrderDAOImpl implements OrderDAO {
     @Autowired
     BaseDAO baseDAO;
 
+    @Autowired
+    protected SessionFactory sessionFactory;
+
+    private Session getCurrentSession(){
+        Session session=sessionFactory.getCurrentSession();
+
+        return session;
+    }
 
 
     public ResultMessage createOrder(TicketOrderEntity orderEntity) {
@@ -31,5 +43,39 @@ public class OrderDAOImpl implements OrderDAO {
         }
 
         return ResultMessage.FAILURE;
+    }
+
+    public ResultMessage checkPayUser(UserMoneyVO userMoneyVO) {
+        UserMoneyEntity theUser = new UserMoneyEntity();
+        String userId = userMoneyVO.getUserId();
+        int password = 0;
+
+        theUser = baseDAO.getEntity(UserMoneyEntity.class, userId);
+
+        password = theUser.getPassword();
+
+        if(password != userMoneyVO.getPassword()){
+            return ResultMessage.WRONG_PASSWORD;
+
+        }
+
+
+        return ResultMessage.SUCCESS;
+    }
+
+    public ResultMessage updatePayMoney(String userName, double orderMoney) {
+        Session session = getCurrentSession();
+        UserMoneyEntity theUser = new UserMoneyEntity();
+        theUser = baseDAO.getEntity(UserMoneyEntity.class, userName);
+        double primaryMoney = theUser.getMoney();
+        double newMoney = primaryMoney - orderMoney;
+
+        theUser.setMoney(newMoney);
+
+        ResultMessage result = baseDAO.saveOrUpdate(theUser);
+
+
+
+        return result;
     }
 }

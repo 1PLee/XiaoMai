@@ -4,9 +4,11 @@ import main.dao.OrderDAO;
 import main.dao.PerformDAO;
 import main.dao.UserDAO;
 import main.entity.TicketOrderEntity;
+import main.entity.UserMoneyEntity;
 import main.service.OrderService;
 import main.util.ResultMessage;
 import main.vo.OrderVO;
+import main.vo.UserMoneyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,5 +74,30 @@ public class OrderServiceImpl implements OrderService{
         result = orderDAO.createOrder(orderEntity);
 
         return result;
+    }
+
+
+    @Transactional
+    public ResultMessage payOrder(UserMoneyVO userMoneyVO, double orderMoney, String userId) {
+        ResultMessage check = orderDAO.checkPayUser(userMoneyVO);
+        String payUser = userMoneyVO.getUserId();
+
+        if(check != ResultMessage.SUCCESS){
+            return check;
+        }
+
+        ResultMessage payOrderResult = orderDAO.updatePayMoney(payUser, orderMoney);
+
+        if(payOrderResult != ResultMessage.SUCCESS){
+            return payOrderResult;
+        }
+
+        ResultMessage updateScoreResult = null;
+
+
+        updateScoreResult = userDAO.updateScore(userId, (int) orderMoney, 1);
+
+
+        return updateScoreResult;
     }
 }

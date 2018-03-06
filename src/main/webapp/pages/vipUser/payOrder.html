@@ -53,13 +53,19 @@
 
     <!--订单信息最后确认-->
     <div id="conformOrderDiv">
-        <p class="baseInfo">用户名:</p>
-        <p class="userInfo" id="userIdP">lyp13</p>
-        <p class="baseInfo">用户余额:</p>
-        <p class="userInfo" id="userMoneyP">5000</p>
-        <p class="baseInfo">支付金额:</p>
-        <p class="userInfo" id="payMoneyP">1699</p>
+      <!--  <p class="baseInfo col-md-5">用户名:</p>
+        <p class="userInfo col-md-7" id="userIdP">lyp13</p>
+        <p class="baseInfo col-md-5">用户余额:</p>
+        <p class="userInfo col-md-7" id="userMoneyP">5000</p>-->
+        <p class="baseInfo col-md-5">支付金额:</p>
+        <p class="userInfo col-md-7" id="payMoneyP"></p>
+        <p class="baseInfo col-md-5">账户名</p>
+        <input type="text" class="form-control col-md-7 userInfo" id="userNameInput">
+        <p class="baseInfo col-md-5">支付密码</p>
+        <input type="password" class="form-control col-md-7 userInfo" id="pwdInput">
 
+
+        <button id="conformPay" class="btn btn-success">确认支付</button>
     </div>
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

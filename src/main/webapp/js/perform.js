@@ -137,36 +137,34 @@ $(document).on(
         click:function (e) {
             $('#price li').removeClass("slectedLi");
             var liID = e.target.id;
-            $('#' + liID).addClass("slectedLi");
-            selectPrice = $('#'+liID).html();
-            for(var i =0; i<allPrice.length; i++){
-                if(selectPrice == allPrice[i]){
-                    selectSeat = i + 1;
-                    break;
+            if(liID.indexOf("Out") == -1){
+                $('#' + liID).addClass("slectedLi");
+                selectPrice = $('#'+liID).html();
+                for(var i =0; i<allPrice.length; i++){
+                    if(selectPrice == allPrice[i]){
+                        selectSeat = i + 1;
+                        break;
+                    }
                 }
             }
+
 
         }
     },'#price'
 
 );
 
-/*选择价格(座位)后弹出数量框*/
-/*$(document).on(
+//选择价格(座位)后弹出数量框
+$(document).on(
     {
         click:function (e) {
             if(e.target.id.indexOf("Out") > -1) {
                 alert("抱歉 票已经卖完了")
-            }else {
-                selectNum = 1;
-                $('#selectNumP').html(selectNum);
-                $('#selectNumDiv').show();
             }
-
         }
     },'#price li'
 
-);*/
+);
 
 
 

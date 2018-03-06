@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class UserMoneyEntity {
     private String userId;
     private Double money;
+    private int password;
 
     @Id
     @Column(name = "userId")
@@ -29,6 +30,16 @@ public class UserMoneyEntity {
 
     public void setMoney(Double money) {
         this.money = money;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public int getPassword(){
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
     }
 
     @Override

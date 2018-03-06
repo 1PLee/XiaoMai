@@ -246,7 +246,7 @@ public class UserServiceImpl implements UserService {
         result = userDAO.convertCoupon(couponEntity);
 
         if(result == ResultMessage.SUCCESS){
-            result = userDAO.updateScore(userId, needScore);
+            result = userDAO.updateScore(userId, needScore, 2);
         }
 
         return result;

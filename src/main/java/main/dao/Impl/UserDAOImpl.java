@@ -141,11 +141,20 @@ public class UserDAOImpl implements UserDAO {
         return ResultMessage.FAILURE;
     }
 
-    public ResultMessage updateScore(String userId, int needScore) {
+    public ResultMessage updateScore(String userId, int score, int action) {
         ResultMessage result = null;
         UserEntity theUser = baseDAO.getEntity(UserEntity.class, userId);
         int primaryScore = theUser.getVipScore();
-        int userScore = primaryScore - needScore;
+        int userScore = 0;
+
+        if(action == 2){ //用优惠券兑换积分
+             userScore = primaryScore - score;
+
+        }else { //下订单增加积分
+            userScore = primaryScore + score;
+        }
+
+
         System.out.println("update Score:  " + userScore);
         theUser.setVipScore(userScore);
         result = baseDAO.saveOrUpdate(theUser);
