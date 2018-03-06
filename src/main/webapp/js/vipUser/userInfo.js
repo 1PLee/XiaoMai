@@ -16,10 +16,16 @@ var convertCouponVO;//用于兑换优惠券时提交的VO
 $(document).ready(function () {
 
     allHide();
+
     showUser();
     userId = sessionStorage.getItem("userID");
     loadUserInfo();
     loadCouponInfo();
+    loadAllOrders();
+    loadPayOrders();
+    loadCompleteOrders();
+    loadUnPayOrders();
+    loadInvalidOrders();
 
 });
 
@@ -354,10 +360,374 @@ $(document).on(
 
 );
 
+/*显示全部订单*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#showAllOrderDiv').show();
+
+
+        }
+    },'#allOrder'
+
+);
+
+/*显示未完成订单（已经支付但是没有检票）*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#showPayOrderDiv').show();
+
+
+        }
+    },'#unEndOrder'
+
+);
+
+/*显示已完成订单*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#showCompleteOrderDiv').show();
+
+        }
+    },'#endOrder'
+
+);
+
+/*显示待支付订单*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#showUnPayOrderDiv').show();
+
+
+        }
+    },'#unPayOrder'
+
+);
+
+/*显示无效订单*/
+$(document).on(
+    {
+        click:function () {
+
+            allHide();
+            $('#showInvalidOrderDiv').show();
+
+
+        }
+    },'#invalidOrder'
+
+);
+
+/*全部订单*/
+function loadAllOrders() {
+    $('#showAllOrderTable').DataTable( {
+        "pageLength": 15,
+        "ajax": {
+            "url": "/UserOrder/getAllOrders",
+            "data": {
+                "userId": userId
+            }
+        },
+        "columns": [
+            { "data": "orderId" },
+            { "data": "performName" },
+            { "data": "orderTime" },
+            { "data": "ticketMoney" },
+            { "data": "ticketNum" },
+            { "data": "orderMoney" },
+            { "data": "orderType" }
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+
+            switch (data["orderType"])
+            {
+                case 0:
+                    $(row).addClass("danger");
+                    break;
+                case 1:
+                    $(row).addClass("warning");
+                    break;
+                case 2:
+                    $(row).addClass("success");
+                    break;
+                case 3:
+                    $(row).addClass("active");
+                    break;
+                default:
+                    $(row).addClass("active"); // type == 4
+            }
+
+
+        },
+        "columnDefs":[{
+            "targets": 2,
+            "createdCell":function (td, cellData, rowData, row, col) {
+                var date = new Date(cellData);
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                $(td).html(Y+M+D+h+m+s)
+
+            }
+        },
+            {
+                "targets": 6,
+                "createdCell":function (td, cellData, rowData, row, col) {
+
+                    switch (cellData){
+                        case 0:
+                            $(td).html("待支付");
+                            break;
+                        case 1:
+                            $(td).html("未完成");
+                            break;
+                        case 2:
+                            $(td).html("已完成");
+                            break;
+                        case 3:
+                            $(td).html("无效");
+                            break;
+                        default:
+                            $(td).html("已退款"); // type == 4
+                    }
+                }
+            }
+        ]
+
+
+    } );
+}
+
+/*未完成订单*/
+function loadPayOrders() {
+    $('#showPayOrderTable').DataTable( {
+        "pageLength": 15,
+        "ajax": {
+            "url": "/UserOrder/getPayOrders",
+            "data": {
+                "userId": userId
+            }
+        },
+        "columns": [
+            { "data": "orderId" },
+            { "data": "performName" },
+            { "data": "orderTime" },
+            { "data": "ticketMoney" },
+            { "data": "ticketNum" },
+            { "data": "orderMoney" },
+            { "data": "orderType" }
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).addClass("warning");
+
+        },
+        "columnDefs":[{
+            "targets": 2,
+            "createdCell":function (td, cellData, rowData, row, col) {
+                var date = new Date(cellData);
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                $(td).html(Y+M+D+h+m+s)
+
+            }
+        },
+            {
+                "targets": 6,
+                "createdCell":function (td, cellData, rowData, row, col) {
+                    $(td).html("未完成");
+                }
+            }
+        ]
+
+
+    } );
+
+}
+
+/*已完成订单*/
+function loadCompleteOrders() {
+
+    $('#showCompleteOrderTable').DataTable( {
+        "pageLength": 15,
+        "ajax": {
+            "url": "/UserOrder/getCompleteOrders",
+            "data": {
+                "userId": userId
+            }
+        },
+        "columns": [
+            { "data": "orderId" },
+            { "data": "performName" },
+            { "data": "orderTime" },
+            { "data": "ticketMoney" },
+            { "data": "ticketNum" },
+            { "data": "orderMoney" },
+            { "data": "orderType" }
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).addClass("success");
+
+        },
+        "columnDefs":[{
+            "targets": 2,
+            "createdCell":function (td, cellData, rowData, row, col) {
+                var date = new Date(cellData);
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                $(td).html(Y+M+D+h+m+s)
+
+            }
+        },
+            {
+                "targets": 6,
+                "createdCell":function (td, cellData, rowData, row, col) {
+                    $(td).html("已完成");
+                }
+            }
+        ]
+
+    } );
+}
+
+/*待支付订单*/
+function loadUnPayOrders() {
+
+    $('#showUnPayOrderTable').DataTable( {
+
+        "pageLength": 15,
+        "ajax": {
+            "url": "/UserOrder/getUnPayOrders",
+            "data": {
+                "userId": userId
+            }
+        },
+        "columns": [
+            { "data": "orderId" },
+            { "data": "performName" },
+            { "data": "orderTime" },
+            { "data": "ticketMoney" },
+            { "data": "ticketNum" },
+            { "data": "orderMoney" },
+            { "data": "orderType" }
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).addClass("danger");
+
+        },
+        "columnDefs":[{
+            "targets": 2,
+            "createdCell":function (td, cellData, rowData, row, col) {
+                var date = new Date(cellData);
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                $(td).html(Y+M+D+h+m+s)
+
+            }
+        },
+            {
+                "targets": 6,
+                "createdCell":function (td, cellData, rowData, row, col) {
+                    $(td).html("待支付");
+                }
+            }
+        ]
+
+    } );
+}
+
+/*无效订单(包括退款和逾期未付)*/
+function loadInvalidOrders() {
+
+    $('#showInvalidOrderTable').DataTable( {
+        "pageLength": 15,
+        "ajax": {
+            "url": "/UserOrder/getInvalidOrders",
+            "data": {
+                "userId": userId
+            }
+        },
+        "columns": [
+            { "data": "orderId" },
+            { "data": "performName" },
+            { "data": "orderTime" },
+            { "data": "ticketMoney" },
+            { "data": "ticketNum" },
+            { "data": "orderMoney" },
+            { "data": "orderType" }
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            $(row).addClass("active");
+
+        },
+        "columnDefs":[{
+            "targets": 2,
+            "createdCell":function (td, cellData, rowData, row, col) {
+                var date = new Date(cellData);
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                $(td).html(Y+M+D+h+m+s)
+
+            }
+        },
+            {
+                "targets": 6,
+                "createdCell":function (td, cellData, rowData, row, col) {
+                    $(td).html("无效");
+                }
+            }
+        ]
+
+    } );
+}
+
+
 function allHide() {
     $('#userInfoDiv').hide();
     $('#vipGradeFormDiv').hide();
     $('#changePasswordDiv').hide();
     $('#seeMyCoupon').hide();
-    $('#getCouponDiv').hide()
+    $('#getCouponDiv').hide();
+    $('#showAllOrderDiv').hide();
+    $('#showPayOrderDiv').hide();
+    $('#showCompleteOrderDiv').hide();
+    $('#showUnPayOrderDiv').hide();
+    $('#showInvalidOrderDiv').hide();
+
 }
+
+

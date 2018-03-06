@@ -17,7 +17,7 @@ public class OrderVO {
     public int couponId;
     public Timestamp shouldPay;
     public int ticketSeat;//座位等级
-    public String performName; //演出描述
+    public String performName; //演出名称
     public double backMoney; //退款金额
 
 

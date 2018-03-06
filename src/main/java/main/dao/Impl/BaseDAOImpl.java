@@ -104,7 +104,7 @@ public class BaseDAOImpl implements BaseDAO {
             cache.evictQueryRegions();
             cache.evictNaturalIdRegions();
         }*/
-        System.out.println("this baseDao id:"+id);
+        //System.out.println("this baseDao id:"+id);
         T entity = session.get(c,id);
         return entity;
     }

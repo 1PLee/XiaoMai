@@ -244,6 +244,11 @@ p{
     margin-top: 50px;
 }
 
+
+#showOrderDiv{
+    margin-left: 30px;
+}
+
 @font-face {
     font-family: 'iconfont';  /* project id 569287 */
     src: url('//at.alicdn.com/t/font_569287_wwjziztudefusor.eot');
