@@ -11,6 +11,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by liyipeng on 2018/3/1.
  */
@@ -90,5 +93,13 @@ public class OrderDAOImpl implements OrderDAO {
         result = baseDAO.saveOrUpdate(theOrder);
 
         return result;
+    }
+
+    public List<TicketOrderEntity> getAllOrders() {
+        List<TicketOrderEntity> allOrders = new ArrayList<TicketOrderEntity>();
+
+        allOrders = baseDAO.getAll(TicketOrderEntity.class);
+
+        return allOrders;
     }
 }

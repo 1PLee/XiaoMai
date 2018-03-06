@@ -6,6 +6,8 @@ import main.util.ResultMessage;
 import main.vo.UserMoneyVO;
 import main.vo.UserVO;
 
+import java.util.List;
+
 /**
  * Created by liyipeng on 2018/3/1.
  */
@@ -18,6 +20,8 @@ public interface OrderDAO {
     ResultMessage updatePayMoney(String userName, double orderMoney); //更新支付账户余额
 
     ResultMessage confirmOrderPay(int orderId); //确认订单支付
+
+    List<TicketOrderEntity> getAllOrders();
 
 
 }
