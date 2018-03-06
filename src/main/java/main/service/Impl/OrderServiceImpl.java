@@ -7,6 +7,7 @@ import main.entity.TicketOrderEntity;
 import main.entity.UserMoneyEntity;
 import main.service.OrderService;
 import main.util.ResultMessage;
+import main.vo.CreateOrderResultVO;
 import main.vo.OrderVO;
 import main.vo.UserMoneyVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class OrderServiceImpl implements OrderService{
     PerformDAO performDAO;
 
     @Transactional
-    public ResultMessage createOrder(OrderVO orderVO) {
+    public CreateOrderResultVO createOrder(OrderVO orderVO) {
+        CreateOrderResultVO resultVO = new CreateOrderResultVO();
+
         TicketOrderEntity orderEntity = new TicketOrderEntity();
         int couponId = orderVO.getCouponId();
         String userId = orderVO.getUserId();
@@ -48,7 +51,10 @@ public class OrderServiceImpl implements OrderService{
             if(userDAO.updateCouponState(userId, couponId) == ResultMessage.SUCCESS){
                 orderEntity.setCouponId(orderVO.getCouponId());
             }else {
-                return ResultMessage.FAILURE_COUPONUPDATE;
+
+                resultVO.setResult(ResultMessage.FAILURE_COUPONUPDATE);
+                resultVO.setOrderId(0);
+                return resultVO;
             }
 
         }
@@ -65,20 +71,22 @@ public class OrderServiceImpl implements OrderService{
 
         /*对相应的perform的座位进行锁单*/
         if (performDAO.updatePerformSeat(performId, orderVO.getTicketSeat(), orderVO.getTicketNum(), 0) == ResultMessage.FAILURE_NONESEAT) {
+            resultVO.setResult(ResultMessage.FAILURE_NONESEAT);
+            resultVO.setOrderId(0);
 
-            return ResultMessage.FAILURE_NONESEAT;
+            return resultVO;
         }
 
+        int orderId = orderDAO.createOrder(orderEntity);
+        resultVO.setOrderId(orderId);
+        resultVO.setResult(ResultMessage.SUCCESS);
 
-        ResultMessage result = null;
-        result = orderDAO.createOrder(orderEntity);
-
-        return result;
+        return resultVO;
     }
 
 
     @Transactional
-    public ResultMessage payOrder(UserMoneyVO userMoneyVO, double orderMoney, String userId) {
+    public ResultMessage payOrder(UserMoneyVO userMoneyVO, double orderMoney, String userId, int orderId) {
         ResultMessage check = orderDAO.checkPayUser(userMoneyVO);
         String payUser = userMoneyVO.getUserId();
 
@@ -97,7 +105,13 @@ public class OrderServiceImpl implements OrderService{
 
         updateScoreResult = userDAO.updateScore(userId, (int) orderMoney, 1);
 
+        if(updateScoreResult != ResultMessage.SUCCESS){
+            return updateScoreResult;
+        }
 
-        return updateScoreResult;
+        ResultMessage confirmPay = orderDAO.confirmOrderPay(orderId);
+
+
+        return confirmPay;
     }
 }

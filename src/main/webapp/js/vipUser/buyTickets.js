@@ -249,9 +249,9 @@ $(document).on(
                 contentType:'application/json;charset=utf-8',
                 data:JSON.stringify(orderVO),
                 success:function (result) {
-                    alert(result);
+                    alert(result.result);
                     sessionStorage.setItem("orderVO", JSON.stringify(orderVO));
-                    window.location.href = "./payOrder.html";
+                    window.location.href = "./payOrder.html?orderId="+result.orderId;
                 },
                 error:function () {
                     alert("createOrder failed!")

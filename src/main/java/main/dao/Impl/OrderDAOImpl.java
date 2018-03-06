@@ -30,19 +30,19 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
 
-    public ResultMessage createOrder(TicketOrderEntity orderEntity) {
+    public int createOrder(TicketOrderEntity orderEntity) {
         try {
             int resultId = (Integer) baseDAO.save(orderEntity);
             System.out.println("look resultId: " + resultId);
             if(resultId >0){
-                return ResultMessage.SUCCESS;
+                return resultId;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return ResultMessage.FAILURE;
+        return 0;
     }
 
     public ResultMessage checkPayUser(UserMoneyVO userMoneyVO) {
@@ -75,6 +75,19 @@ public class OrderDAOImpl implements OrderDAO {
         ResultMessage result = baseDAO.saveOrUpdate(theUser);
 
 
+
+        return result;
+    }
+
+    public ResultMessage confirmOrderPay(int orderId) {
+        ResultMessage result = null;
+
+        TicketOrderEntity theOrder = new TicketOrderEntity();
+        theOrder = baseDAO.getEntity(TicketOrderEntity.class, orderId);
+
+        theOrder.setOrderType(1); //确认支付
+
+        result = baseDAO.saveOrUpdate(theOrder);
 
         return result;
     }

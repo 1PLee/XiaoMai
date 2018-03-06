@@ -11,11 +11,13 @@ import main.vo.UserVO;
  */
 public interface OrderDAO {
 
-    ResultMessage createOrder(TicketOrderEntity orderEntity);
+    int createOrder(TicketOrderEntity orderEntity); //返回orderId 失败返回0
 
     ResultMessage checkPayUser(UserMoneyVO userMoneyVO); //检查支付账号密码是否正确
 
     ResultMessage updatePayMoney(String userName, double orderMoney); //更新支付账户余额
+
+    ResultMessage confirmOrderPay(int orderId); //确认订单支付
 
 
 }

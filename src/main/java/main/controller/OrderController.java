@@ -2,6 +2,7 @@ package main.controller;
 
 import main.service.OrderService;
 import main.util.ResultMessage;
+import main.vo.CreateOrderResultVO;
 import main.vo.OrderVO;
 import main.vo.UserMoneyVO;
 import net.sf.json.JSONObject;
@@ -24,12 +25,12 @@ public class OrderController {
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
     @ResponseBody
-    public String createOrder(@RequestBody OrderVO orderVO){
+    public CreateOrderResultVO createOrder(@RequestBody OrderVO orderVO){
 
-        ResultMessage result = null;
-        result = orderService.createOrder(orderVO);
+        CreateOrderResultVO resultVO = new CreateOrderResultVO();
+        resultVO = orderService.createOrder(orderVO);
 
-        return result.toShow();
+        return resultVO;
     }
 
 
@@ -41,13 +42,14 @@ public class OrderController {
         int password = (Integer) jsonObject.get("password");
         double orderMoney = (Double) jsonObject.get("orderMoney");
         String userId = (String) jsonObject.get("userId");
+        int orderId = (Integer) jsonObject.get("orderId");
+
 
         userMoneyVO.setUserId(userPayName);
         userMoneyVO.setPassword(password);
 
         ResultMessage result = null;
-        result = orderService.payOrder(userMoneyVO, orderMoney, userId);
-
+        result = orderService.payOrder(userMoneyVO, orderMoney, userId, orderId);
 
         return result.toShow();
     }

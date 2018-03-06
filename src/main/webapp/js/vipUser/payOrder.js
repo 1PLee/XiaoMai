@@ -2,9 +2,11 @@
  * Created by liyipeng on 2018/3/2.
  */
 var userId;
-
+var orderId;
 $(document).ready(function () {
     showUser();
+    orderId = parseInt(getQueryString("orderId"));
+    alert(orderId);
     userId = sessionStorage.getItem("userID");
     var orderVO = sessionStorage.getItem("orderVO");
     orderVO = JSON.parse(orderVO);
@@ -49,7 +51,8 @@ $(document).on(
                 "userName": userName,
                 "password": password,
                 "orderMoney": orderMoney,
-                "userId": userId
+                "userId": userId,
+                "orderId": orderId
             };
 
             $.ajax({
