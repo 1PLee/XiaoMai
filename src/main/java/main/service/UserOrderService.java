@@ -18,4 +18,6 @@ public interface UserOrderService {
     ResultMessage payOrder(UserMoneyVO userMoneyVO, double orderMoney, String userId, int orderId);
 
     List<OrderVO> getAllOrders(String userId); //得到用户全部订单
+
+    List<OrderVO> getUserOrder(String userId, int type); //得到用户的不同类型的订单
 }

@@ -149,11 +149,48 @@ public class UserOrderServiceImpl implements UserOrderService {
             anOrder.setPerformName(oneOrder.getPerform().getName());
             anOrder.setTicketNum(oneOrder.getTicketNum());
             anOrder.setTicketMoney(oneOrder.getTicketMoney());
+            anOrder.setBackMoney(oneOrder.getBackMoney());
 
             allOrdersVOList.add(anOrder);
         }
 
 
         return allOrdersVOList;
+    }
+
+
+    @Transactional
+    public List<OrderVO> getUserOrder(String userId, int type) {
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+        List<TicketOrderEntity> ticketOrderEntityList = new ArrayList<TicketOrderEntity>();
+
+        ticketOrderEntityList = userOrderDAO.getUserOrders(userId, type);
+
+        TicketOrderEntity orderEntity = null;
+        OrderVO orderVO = null;
+
+        Iterator<TicketOrderEntity> iterator = ticketOrderEntityList.iterator();
+
+        while (iterator.hasNext()){
+            orderEntity = iterator.next();
+
+            orderVO = new OrderVO();
+            orderVO.setOrderId(orderEntity.getOrderId());
+            orderVO.setPerformId(orderEntity.getPerform().getId());
+            orderVO.setPerformName(orderEntity.getPerform().getName());
+            orderVO.setCouponId(orderEntity.getCouponId());
+            orderVO.setOrderType(orderEntity.getOrderType());
+            orderVO.setTicketMoney(orderEntity.getTicketMoney());
+            orderVO.setTicketNum(orderEntity.getTicketNum());
+            orderVO.setOrderTime(orderEntity.getOrderTime());
+            orderVO.setOrderMoney(orderEntity.getOrderMoney());
+            orderVO.setBackMoney(orderEntity.getBackMoney());
+
+            orderVOList.add(orderVO);
+
+        }
+
+
+        return orderVOList;
     }
 }

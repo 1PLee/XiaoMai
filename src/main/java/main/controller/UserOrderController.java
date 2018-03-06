@@ -1,5 +1,6 @@
 package main.controller;
 
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import main.service.UserOrderService;
 import main.util.ResultMessage;
 import main.vo.CreateOrderResultVO;
@@ -67,6 +68,71 @@ public class UserOrderController {
         List<OrderVO> orderVOList = new ArrayList<OrderVO>();
 
         orderVOList = userOrderService.getAllOrders(userId);
+
+        resultMap.put("data", orderVOList);
+
+        return resultMap;
+    }
+
+    @RequestMapping(value = "/getUnPayOrders", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<OrderVO>> getUnPayOrders(@RequestParam("userId") String userId){
+        Map<String, List<OrderVO>> resultMap = new HashMap<String, List<OrderVO>>();
+
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+
+        orderVOList = userOrderService.getUserOrder(userId, 0);
+
+        resultMap.put("data", orderVOList);
+
+        return resultMap;
+    }
+
+
+    /*获得用户已经完成的（已检票）的订单*/
+    @RequestMapping(value = "/getCompleteOrders", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<OrderVO>> getCompleteOrders(@RequestParam("userId") String userId){
+        Map<String, List<OrderVO>> resultMap = new HashMap<String, List<OrderVO>>();
+
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+
+        orderVOList = userOrderService.getUserOrder(userId, 2);
+
+        resultMap.put("data", orderVOList);
+
+        return resultMap;
+    }
+
+    /*获得用户已经支付的订单*/
+    @RequestMapping(value = "/getPayOrders", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<OrderVO>> getPayOrders(@RequestParam("userId") String userId){
+        Map<String, List<OrderVO>> resultMap = new HashMap<String, List<OrderVO>>();
+
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+
+        orderVOList = userOrderService.getUserOrder(userId, 1);
+
+        resultMap.put("data", orderVOList);
+
+        return resultMap;
+    }
+
+    @RequestMapping(value = "/getInvalidOrders", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<OrderVO>> getInvalidOrders(@RequestParam("userId") String userId){
+        Map<String, List<OrderVO>> resultMap = new HashMap<String, List<OrderVO>>();
+
+        List<OrderVO> orderVOCancelList = new ArrayList<OrderVO>(); //逾期未支付订单
+        List<OrderVO> orderVOBackList = new ArrayList<OrderVO>(); //申请退款订单
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+
+        orderVOCancelList = userOrderService.getUserOrder(userId, 3);
+        orderVOBackList = userOrderService.getUserOrder(userId, 4);
+
+        orderVOList.addAll(orderVOCancelList);
+        orderVOList.addAll(orderVOBackList);
 
         resultMap.put("data", orderVOList);
 

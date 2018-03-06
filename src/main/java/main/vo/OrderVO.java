@@ -18,6 +18,7 @@ public class OrderVO {
     public Timestamp shouldPay;
     public int ticketSeat;//座位等级
     public String performName; //演出描述
+    public double backMoney; //退款金额
 
 
     public int getOrderId() {
@@ -115,4 +116,13 @@ public class OrderVO {
     public void setPerformName(String performName) {
         this.performName = performName;
     }
+
+    public double getBackMoney() {
+        return backMoney;
+    }
+
+    public void setBackMoney(double backMoney) {
+        this.backMoney = backMoney;
+    }
+
 }
