@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class TicketOrderEntity {
     private int orderId;
     private String userId;
-    private Integer performId;
+
     private Integer ticketNum;
     private Integer ticketMoney;
     private Double orderMoney;
@@ -20,6 +20,7 @@ public class TicketOrderEntity {
     private Integer couponId;
     private Timestamp shouldPay;
     private Double backMoney;
+    private PerformEntity perform;
 
     @Id
     @Column(name = "orderId")
@@ -42,15 +43,6 @@ public class TicketOrderEntity {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "performId")
-    public Integer getPerformId() {
-        return performId;
-    }
-
-    public void setPerformId(Integer performId) {
-        this.performId = performId;
-    }
 
     @Basic
     @Column(name = "ticketNum")
@@ -132,6 +124,17 @@ public class TicketOrderEntity {
         this.backMoney = backMoney;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "performId", referencedColumnName = "ID", nullable = false)
+    public PerformEntity getPerform(){
+        return perform;
+    }
+
+    public void setPerform(PerformEntity perform) {
+        this.perform = perform;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,7 +144,7 @@ public class TicketOrderEntity {
 
         if (orderId != that.orderId) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (performId != null ? !performId.equals(that.performId) : that.performId != null) return false;
+
         if (ticketNum != null ? !ticketNum.equals(that.ticketNum) : that.ticketNum != null) return false;
         if (ticketMoney != null ? !ticketMoney.equals(that.ticketMoney) : that.ticketMoney != null) return false;
         if (orderMoney != null ? !orderMoney.equals(that.orderMoney) : that.orderMoney != null) return false;
@@ -158,7 +161,7 @@ public class TicketOrderEntity {
     public int hashCode() {
         int result = orderId;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (performId != null ? performId.hashCode() : 0);
+
         result = 31 * result + (ticketNum != null ? ticketNum.hashCode() : 0);
         result = 31 * result + (ticketMoney != null ? ticketMoney.hashCode() : 0);
         result = 31 * result + (orderMoney != null ? orderMoney.hashCode() : 0);

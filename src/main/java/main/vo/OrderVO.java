@@ -17,6 +17,7 @@ public class OrderVO {
     public int couponId;
     public Timestamp shouldPay;
     public int ticketSeat;//座位等级
+    public String performName; //演出描述
 
 
     public int getOrderId() {
@@ -105,5 +106,13 @@ public class OrderVO {
 
     public void setTicketSeat(int ticketSeat) {
         this.ticketSeat = ticketSeat;
+    }
+
+    public String getPerformName() {
+        return performName;
+    }
+
+    public void setPerformName(String performName) {
+        this.performName = performName;
     }
 }

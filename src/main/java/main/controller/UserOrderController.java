@@ -1,6 +1,6 @@
 package main.controller;
 
-import main.service.OrderService;
+import main.service.UserOrderService;
 import main.util.ResultMessage;
 import main.vo.CreateOrderResultVO;
 import main.vo.OrderVO;
@@ -8,27 +8,33 @@ import main.vo.UserMoneyVO;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liyipeng on 2018/3/1.
+ *
+ * 有关用户订单的相关内容
  */
+
+
 @Controller
-@RequestMapping(value = "/Order")
-public class OrderController {
+@RequestMapping(value = "/UserOrder")
+public class UserOrderController {
 
     @Autowired
-    OrderService orderService;
+    UserOrderService userOrderService;
 
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
     @ResponseBody
     public CreateOrderResultVO createOrder(@RequestBody OrderVO orderVO){
 
         CreateOrderResultVO resultVO = new CreateOrderResultVO();
-        resultVO = orderService.createOrder(orderVO);
+        resultVO = userOrderService.createOrder(orderVO);
 
         return resultVO;
     }
@@ -44,15 +50,30 @@ public class OrderController {
         String userId = (String) jsonObject.get("userId");
         int orderId = (Integer) jsonObject.get("orderId");
 
-
         userMoneyVO.setUserId(userPayName);
         userMoneyVO.setPassword(password);
 
         ResultMessage result = null;
-        result = orderService.payOrder(userMoneyVO, orderMoney, userId, orderId);
+        result = userOrderService.payOrder(userMoneyVO, orderMoney, userId, orderId);
 
         return result.toShow();
     }
+
+    @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<OrderVO>> getAllOrders(@RequestParam("userId") String userId){
+        Map<String, List<OrderVO>> resultMap = new HashMap<String, List<OrderVO>>();
+
+        List<OrderVO> orderVOList = new ArrayList<OrderVO>();
+
+        orderVOList = userOrderService.getAllOrders(userId);
+
+        resultMap.put("data", orderVOList);
+
+        return resultMap;
+    }
+
+
 
 
 

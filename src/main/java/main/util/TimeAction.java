@@ -2,18 +2,15 @@ package main.util;
 
 
 import main.dao.BaseDAO;
-import main.dao.OrderDAO;
+import main.dao.UserOrderDAO;
 import main.entity.TicketOrderEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +21,7 @@ import java.util.List;
 public class TimeAction {
 
     @Autowired
-    OrderDAO orderDAO;
+    UserOrderDAO orderDAO;
 
     @Autowired
     BaseDAO baseDAO;

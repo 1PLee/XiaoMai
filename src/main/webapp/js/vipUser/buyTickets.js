@@ -245,7 +245,7 @@ $(document).on(
             /*在后台创建订单*/
             $.ajax({
                type:"post",
-                url:"/Order/createOrder",
+                url:"/UserOrder/createOrder",
                 contentType:'application/json;charset=utf-8',
                 data:JSON.stringify(orderVO),
                 success:function (result) {

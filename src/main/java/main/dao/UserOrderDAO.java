@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by liyipeng on 2018/3/1.
  */
-public interface OrderDAO {
+public interface UserOrderDAO {
 
     int createOrder(TicketOrderEntity orderEntity); //返回orderId 失败返回0
 
@@ -21,7 +21,15 @@ public interface OrderDAO {
 
     ResultMessage confirmOrderPay(int orderId); //确认订单支付
 
-    List<TicketOrderEntity> getAllOrders();
+
+    /*根据TicketOrderEntity 中的 orderType 返回不同类型的 订单*/
+    List<TicketOrderEntity> getUserOrders(String userId, int type);
+
+    List<TicketOrderEntity> getAllOrders(String userId);
+
+    List<TicketOrderEntity> getAllUnPayOrders(String userId); //某个用户所有待支付订单
+
+    List<TicketOrderEntity> getAllBackOrders(String userId); //得到某个用户所有退款的订单
 
 
 }

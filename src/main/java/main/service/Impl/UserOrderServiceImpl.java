@@ -1,11 +1,12 @@
 package main.service.Impl;
 
-import main.dao.OrderDAO;
+import main.dao.BaseDAO;
+import main.dao.UserOrderDAO;
 import main.dao.PerformDAO;
 import main.dao.UserDAO;
+import main.entity.PerformEntity;
 import main.entity.TicketOrderEntity;
-import main.entity.UserMoneyEntity;
-import main.service.OrderService;
+import main.service.UserOrderService;
 import main.util.ResultMessage;
 import main.vo.CreateOrderResultVO;
 import main.vo.OrderVO;
@@ -15,15 +16,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by liyipeng on 2018/3/1.
  */
 @Service
-public class OrderServiceImpl implements OrderService{
+public class UserOrderServiceImpl implements UserOrderService {
 
     @Autowired
-    OrderDAO orderDAO;
+    UserOrderDAO userOrderDAO;
 
     @Autowired
     UserDAO userDAO;
@@ -31,11 +35,16 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     PerformDAO performDAO;
 
+    @Autowired
+    BaseDAO baseDAO;
+
     @Transactional
     public CreateOrderResultVO createOrder(OrderVO orderVO) {
         CreateOrderResultVO resultVO = new CreateOrderResultVO();
 
         TicketOrderEntity orderEntity = new TicketOrderEntity();
+        PerformEntity thePerform = new PerformEntity();
+
         int couponId = orderVO.getCouponId();
         String userId = orderVO.getUserId();
         int performId = orderVO.getPerformId();
@@ -43,14 +52,15 @@ public class OrderServiceImpl implements OrderService{
         Timestamp shouldPay = new Timestamp(System.currentTimeMillis() + 900000); //900000ms代表15分钟
 
 
+        thePerform = baseDAO.getEntity(PerformEntity.class, performId);
+
         orderEntity.setUserId(orderVO.getUserId());
+        orderEntity.setPerform(thePerform);
 
          /*不管支付成功与否 优惠券都标记为被使用*/
         if(couponId != 0){
 
-            if(userDAO.updateCouponState(userId, couponId) == ResultMessage.SUCCESS){
-                orderEntity.setCouponId(orderVO.getCouponId());
-            }else {
+            if(userDAO.updateCouponState(userId, couponId) != ResultMessage.SUCCESS){
 
                 resultVO.setResult(ResultMessage.FAILURE_COUPONUPDATE);
                 resultVO.setOrderId(0);
@@ -59,10 +69,10 @@ public class OrderServiceImpl implements OrderService{
 
         }
 
-        orderEntity.setPerformId(performId);
+        orderEntity.setCouponId(couponId);
         orderEntity.setTicketNum(orderVO.getTicketNum());
         orderEntity.setTicketMoney(orderVO.getTicketMoney());
-        System.out.println("look the orderMoney:"+ orderVO.getOrderMoney());
+
         orderEntity.setOrderMoney(orderVO.getOrderMoney());
         orderEntity.setOrderType(0); //待支付
         orderEntity.setOrderTime(now);
@@ -77,7 +87,7 @@ public class OrderServiceImpl implements OrderService{
             return resultVO;
         }
 
-        int orderId = orderDAO.createOrder(orderEntity);
+        int orderId = userOrderDAO.createOrder(orderEntity);
         resultVO.setOrderId(orderId);
         resultVO.setResult(ResultMessage.SUCCESS);
 
@@ -87,14 +97,14 @@ public class OrderServiceImpl implements OrderService{
 
     @Transactional
     public ResultMessage payOrder(UserMoneyVO userMoneyVO, double orderMoney, String userId, int orderId) {
-        ResultMessage check = orderDAO.checkPayUser(userMoneyVO);
+        ResultMessage check = userOrderDAO.checkPayUser(userMoneyVO);
         String payUser = userMoneyVO.getUserId();
 
         if(check != ResultMessage.SUCCESS){
             return check;
         }
 
-        ResultMessage payOrderResult = orderDAO.updatePayMoney(payUser, orderMoney);
+        ResultMessage payOrderResult = userOrderDAO.updatePayMoney(payUser, orderMoney);
 
         if(payOrderResult != ResultMessage.SUCCESS){
             return payOrderResult;
@@ -109,9 +119,41 @@ public class OrderServiceImpl implements OrderService{
             return updateScoreResult;
         }
 
-        ResultMessage confirmPay = orderDAO.confirmOrderPay(orderId);
+        ResultMessage confirmPay = userOrderDAO.confirmOrderPay(orderId);
 
 
         return confirmPay;
+    }
+
+    @Transactional
+    public List<OrderVO> getAllOrders(String userId) {
+        List<OrderVO> allOrdersVOList = new ArrayList<OrderVO>();
+        List<TicketOrderEntity> allOrders = new ArrayList<TicketOrderEntity>();
+        allOrders = userOrderDAO.getAllOrders(userId);
+
+        TicketOrderEntity oneOrder = null;
+        OrderVO  anOrder = null;
+
+        Iterator<TicketOrderEntity> iterator = allOrders.iterator();
+
+        while (iterator.hasNext()){
+            oneOrder = iterator.next();
+
+            anOrder = new OrderVO();
+            anOrder.setOrderId(oneOrder.getOrderId());
+            anOrder.setCouponId(oneOrder.getCouponId());
+            anOrder.setOrderMoney(oneOrder.getOrderMoney());
+            anOrder.setOrderTime(oneOrder.getOrderTime());
+            anOrder.setOrderType(oneOrder.getOrderType());
+            anOrder.setPerformId(oneOrder.getPerform().getId());
+            anOrder.setPerformName(oneOrder.getPerform().getName());
+            anOrder.setTicketNum(oneOrder.getTicketNum());
+            anOrder.setTicketMoney(oneOrder.getTicketMoney());
+
+            allOrdersVOList.add(anOrder);
+        }
+
+
+        return allOrdersVOList;
     }
 }

@@ -57,7 +57,7 @@ $(document).on(
 
             $.ajax({
                type:"post",
-                url:"/Order/payOrder",
+                url:"/UserOrder/payOrder",
                 contentType:'application/json;charset=utf-8',
                 data: JSON.stringify(payOrderVO),
                 success: function (result) {

@@ -1,7 +1,7 @@
 package main.dao.Impl;
 
 import main.dao.BaseDAO;
-import main.dao.OrderDAO;
+import main.dao.UserOrderDAO;
 import main.entity.TicketOrderEntity;
 import main.entity.UserMoneyEntity;
 import main.util.ResultMessage;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by liyipeng on 2018/3/1.
  */
 @Repository
-public class OrderDAOImpl implements OrderDAO {
+public class UserOrderDAOImpl implements UserOrderDAO {
 
     @Autowired
     BaseDAO baseDAO;
@@ -95,11 +95,59 @@ public class OrderDAOImpl implements OrderDAO {
         return result;
     }
 
-    public List<TicketOrderEntity> getAllOrders() {
-        List<TicketOrderEntity> allOrders = new ArrayList<TicketOrderEntity>();
+    public List<TicketOrderEntity> getUserOrders(String userId, int type) {
+        List<TicketOrderEntity> userOrders = new ArrayList<TicketOrderEntity>();
+        Session session = getCurrentSession();
 
-        allOrders = baseDAO.getAll(TicketOrderEntity.class);
+        userOrders = session.createQuery(
+                "from TicketOrderEntity " +
+                        "where userId = :userId and orderType = :needType"
+        )
+                .setParameter("userId", userId)
+                .setParameter("needType", type)
+                .list();
+
+
+        return userOrders;
+    }
+
+    public List<TicketOrderEntity> getAllOrders(String userId) {
+        List<TicketOrderEntity> allOrders = new ArrayList<TicketOrderEntity>();
+        Session session = getCurrentSession();
+
+        allOrders = session.createQuery(
+                "from TicketOrderEntity " +
+                        "where userId = :userId"
+        )
+                .setParameter("userId", userId)
+                .list();
+
 
         return allOrders;
     }
+
+
+
+    public List<TicketOrderEntity> getAllUnPayOrders(String userId) {
+        List<TicketOrderEntity> unPayOrders = new ArrayList<TicketOrderEntity>();
+        Session session = getCurrentSession();
+
+        unPayOrders = session.createQuery(
+                "from TicketOrderEntity " +
+                        "where userId = :userId and orderType = :unPayType"
+        )
+                .setParameter("userId", userId)
+                .setParameter("unPayType", 0)
+                .list();
+
+        return unPayOrders;
+    }
+
+    public List<TicketOrderEntity> getAllBackOrders(String userId) {
+
+
+        return null;
+    }
+
+
 }
