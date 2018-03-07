@@ -468,6 +468,10 @@ function loadAllOrders() {
                 default:
                     $(row).addClass("active"); // type == 4
             }
+            $(row).click(function () {
+                sessionStorage.setItem("orderDetail", JSON.stringify(data));
+                window.location.href = "./orderDetail.html"
+            })
 
 
         },
