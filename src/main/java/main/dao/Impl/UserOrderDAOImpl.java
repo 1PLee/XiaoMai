@@ -126,27 +126,27 @@ public class UserOrderDAOImpl implements UserOrderDAO {
         return allOrders;
     }
 
-
-
-    public List<TicketOrderEntity> getAllUnPayOrders(String userId) {
-        List<TicketOrderEntity> unPayOrders = new ArrayList<TicketOrderEntity>();
+    public ResultMessage cancelOrder(int orderId, double backMoney) {
         Session session = getCurrentSession();
 
-        unPayOrders = session.createQuery(
-                "from TicketOrderEntity " +
-                        "where userId = :userId and orderType = :unPayType"
+        int updateEntity = 0;
+
+        updateEntity = session.createQuery(
+                "update TicketOrderEntity " +
+                        "set orderType = :backOrderType, backMoney = :backMoney " +
+                        "where orderId = :orderId"
         )
-                .setParameter("userId", userId)
-                .setParameter("unPayType", 0)
-                .list();
-
-        return unPayOrders;
-    }
-
-    public List<TicketOrderEntity> getAllBackOrders(String userId) {
+                .setParameter("backOrderType", 4)
+                .setParameter("backMoney", backMoney)
+                .setParameter("orderId", orderId)
+                .executeUpdate();
 
 
-        return null;
+        if(updateEntity != 0){
+            return ResultMessage.SUCCESS;
+        }
+
+        return ResultMessage.FAILURE;
     }
 
 

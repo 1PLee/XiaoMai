@@ -29,4 +29,31 @@ public class DateUtil {
 
         return timestamp;
     }
+
+
+    /*将一个 yyyy.MM.dd格式的字符串时间的两个礼拜前的时间戳返回*/
+    public static Timestamp beforeTwoWeek(String dateString){
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        try {
+            date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int day = 14;
+        int hour = 24;
+        int minute = 60;
+        int second = 60;
+        int ms = 1000;
+
+
+        Date twoWeekBefore = new Date(date.getTime() - (day * hour * minute * second * ms));
+
+        Timestamp twoWeekBeforeTimestamp = new Timestamp(twoWeekBefore.getTime());
+
+        return  twoWeekBeforeTimestamp;
+    }
+
+
+
 }

@@ -104,7 +104,7 @@ public class UserOrderController {
         return resultMap;
     }
 
-    /*获得用户已经支付的订单*/
+    /*获得用户已经支付(还没有完成)的订单*/
     @RequestMapping(value = "/getPayOrders", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, List<OrderVO>> getPayOrders(@RequestParam("userId") String userId){
@@ -139,6 +139,17 @@ public class UserOrderController {
         return resultMap;
     }
 
+
+    @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public String cancelOrder(@RequestBody OrderVO orderVO){
+
+        ResultMessage result = null;
+
+        result = userOrderService.cancelOrder(orderVO);
+
+        return result.toShow();
+    }
 
 
 

@@ -7,6 +7,7 @@ import main.dao.UserDAO;
 import main.entity.PerformEntity;
 import main.entity.TicketOrderEntity;
 import main.service.UserOrderService;
+import main.util.DateUtil;
 import main.util.ResultMessage;
 import main.vo.CreateOrderResultVO;
 import main.vo.OrderVO;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -192,5 +194,69 @@ public class UserOrderServiceImpl implements UserOrderService {
 
 
         return orderVOList;
+    }
+
+
+    @Transactional
+    public ResultMessage cancelOrder(OrderVO orderVO) {
+        ResultMessage cancelOrderRe = null;
+        ResultMessage updateUserScore = null;
+        ResultMessage updateSeat = null;
+
+        int orderId = orderVO.getOrderId();
+        int performId = orderVO.getPerformId();
+        String userId = orderVO.getUserId();
+        int ticketMoney = orderVO.getTicketMoney();
+        int ticketNum = orderVO.getTicketNum();
+        int seatGrade = 0;
+
+        double orderMoney = orderVO.getOrderMoney();
+        double backMoney = 0;
+
+        String performTimeStr = null;
+        PerformEntity thePerform = new PerformEntity();
+        thePerform = baseDAO.getEntity(PerformEntity.class, performId);
+
+        performTimeStr = thePerform.getTime();
+
+        Timestamp twoWeekBefore = DateUtil.beforeTwoWeek(performTimeStr); //得到演出时间前两周的时间戳
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        System.out.println("two week before String:"+performTimeStr);
+        System.out.println("two week before timestamp:"+twoWeekBefore);
+        /*更新订单状态*/
+        if (now.before(twoWeekBefore)) { //申请退款在两周前  退50%
+            backMoney = orderMoney * (0.5);
+            cancelOrderRe = userOrderDAO.cancelOrder(orderId, backMoney);
+
+        }else { //两周之内 退10%
+            backMoney = orderMoney * (0.1);
+            cancelOrderRe = userOrderDAO.cancelOrder(orderId, backMoney);
+
+        }
+
+        /*更新用户积分 （余额不考虑了）*/
+        updateUserScore = userDAO.updateScore(userId, (int) backMoney, 2);
+
+        /*相应的座位恢复*/
+        List<Object[]> priceList = new ArrayList<Object[]>();
+        priceList = performDAO.getPrice(performId);
+        Object[] performPrice = priceList.get(0);
+
+        for(int i=0;i<performPrice.length;i++) {
+            seatGrade++;
+            if (ticketMoney == (Integer) performPrice[i]) {
+                break;
+            }
+        }
+
+        updateSeat = performDAO.updatePerformSeat(performId, seatGrade, ticketNum, 1);
+
+        if ((cancelOrderRe == ResultMessage.SUCCESS) && (updateUserScore == ResultMessage.SUCCESS) && (updateSeat == ResultMessage.SUCCESS)) {
+            return ResultMessage.SUCCESS;
+        }
+
+
+        return ResultMessage.FAILURE;
     }
 }

@@ -30,7 +30,7 @@ public interface UserDAO {
         ResultMessage convertCoupon(CouponEntity couponEntity);
 
 
-        /*1代表 下订单增加积分  2代表兑换优惠券消耗积分*/
+        /*1代表 下订单增加积分  2代表兑换优惠券\订单退款消耗积分*/
         ResultMessage updateScore(String userId, int score, int action);
 
         ResultMessage updateCouponState(String userId, int couponId);//使用优惠券后更改优惠券状态

@@ -27,9 +27,7 @@ public interface UserOrderDAO {
 
     List<TicketOrderEntity> getAllOrders(String userId);
 
-    List<TicketOrderEntity> getAllUnPayOrders(String userId); //某个用户所有待支付订单
-
-    List<TicketOrderEntity> getAllBackOrders(String userId); //得到某个用户所有退款的订单
+    ResultMessage cancelOrder(int orderId, double backMoney); //进行订单退款操作
 
 
 }

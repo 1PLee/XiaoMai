@@ -20,4 +20,7 @@ public interface UserOrderService {
     List<OrderVO> getAllOrders(String userId); //得到用户全部订单
 
     List<OrderVO> getUserOrder(String userId, int type); //得到用户的不同类型的订单
+
+    ResultMessage cancelOrder(OrderVO orderVO); //用户退款
+
 }

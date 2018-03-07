@@ -48,6 +48,7 @@ function loadOrderDetail() {
             break;
         case 3:
             $('#orderTypeP').html("无效");
+
             break;
         default:
             $('#orderTypeP').html("已退款"); // type == 4
@@ -64,3 +65,72 @@ function loadOrderDetail() {
 
 
 }
+
+/*确认按钮*/
+$(document).on(
+    {
+        click:function () {
+            window.location.href = "./userInfo.html";
+        }
+    },'#knowBtn'
+
+);
+
+/*请求退款按钮*/
+$(document).on(
+    {
+        click:function () {
+           var orderType = $('#orderTypeP').html();
+           if(orderType != "未完成"){
+               alert("无效/已退款/已完成/待支付订单不能申请退款！");
+           }else {
+               $('#cancelOrderModal').modal();
+
+           }
+
+        }
+    },'#askCancelOrder'
+
+);
+
+/*确认退款按钮*/
+$(document).on(
+    {
+        click:function () {
+            var orderId = $('#orderIdP').html();
+            var orderMoney = parseFloat($('#orderMoneyP').html());
+            var ticketMoney = $('#ticketMoneyP').html();
+            var ticketNum = $('#ticketNumP').html();
+            var performId = $('#performIdP').html();
+
+            var backOrderVO = {
+
+                "userId": userId,
+                "orderId": orderId,
+                "orderMoney": orderMoney,
+                "ticketMoney": ticketMoney,
+                "ticketNum": ticketNum,
+                "performId": performId
+
+            };
+
+            $.ajax({
+               type:"post",
+                url:"/UserOrder/cancelOrder",
+                contentType:'application/json;charset=utf-8',
+                data:JSON.stringify(backOrderVO),
+                success:function () {
+                    alert("退款成功！");
+                    window.location.href = "./userInfo.html"
+                },
+                error: function () {
+                    alert("cancelOrder failed!");
+                }
+
+            });
+
+
+        }
+    },'#confirmCancelOrder'
+
+);

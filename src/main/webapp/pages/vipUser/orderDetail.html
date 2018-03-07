@@ -79,12 +79,30 @@
     <p class="col-md-7" id="backMoneyP">无</p>
 
     <div class="orderBtn">
-        <button class="btn btn-primary">了解了</button>
-        <button class="btn btn-danger">申请退款</button>
+        <button type="button" class="btn btn-primary" id="knowBtn">了解了</button>
+        <button type="button" class="btn btn-danger"  id="askCancelOrder">申请退款</button>
 
     </div>
 
-    <p class="backRule">退款规则(演出开始两周前申请退款订单金额50%)</p>
+    <p class="backRule">退款规则(演出开始两周前申请退款订单金额50% <br> 演出开始前两周内退款10%)</p>
+
+
+    <!--确认退款模态框-->
+    <div class="modal fade" id="cancelOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">订单申请退款确认</h4>
+                </div>
+                <div class="modal-body">您确认要退款吗（确认后不可恢复）</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                    <button type="button" class="btn btn-primary" id="confirmCancelOrder">确认退款</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

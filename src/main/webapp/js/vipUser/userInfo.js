@@ -473,7 +473,6 @@ function loadAllOrders() {
                 window.location.href = "./orderDetail.html"
             })
 
-
         },
         "columnDefs":[{
             "targets": 2,
@@ -540,6 +539,11 @@ function loadPayOrders() {
         "createdRow": function (row, data, dataIndex) {
             $(row).addClass("warning");
 
+            $(row).click(function () {
+                sessionStorage.setItem("orderDetail", JSON.stringify(data));
+                window.location.href = "./orderDetail.html"
+            })
+
         },
         "columnDefs":[{
             "targets": 2,
@@ -592,6 +596,11 @@ function loadCompleteOrders() {
         "createdRow": function (row, data, dataIndex) {
             $(row).addClass("success");
 
+            $(row).click(function () {
+                sessionStorage.setItem("orderDetail", JSON.stringify(data));
+                window.location.href = "./orderDetail.html"
+            })
+
         },
         "columnDefs":[{
             "targets": 2,
@@ -643,6 +652,11 @@ function loadUnPayOrders() {
         "createdRow": function (row, data, dataIndex) {
             $(row).addClass("danger");
 
+            $(row).click(function () {
+                sessionStorage.setItem("orderDetail", JSON.stringify(data));
+                window.location.href = "./orderDetail.html"
+            })
+
         },
         "columnDefs":[{
             "targets": 2,
@@ -693,6 +707,11 @@ function loadInvalidOrders() {
         "createdRow": function (row, data, dataIndex) {
             $(row).addClass("active");
 
+            $(row).click(function () {
+                sessionStorage.setItem("orderDetail", JSON.stringify(data));
+                window.location.href = "./orderDetail.html"
+            })
+
         },
         "columnDefs":[{
             "targets": 2,
@@ -711,7 +730,12 @@ function loadInvalidOrders() {
             {
                 "targets": 6,
                 "createdCell":function (td, cellData, rowData, row, col) {
-                    $(td).html("无效");
+                    if(cellData == 3){
+                        $(td).html("逾期未支付");
+                    }else {
+                        $(td).html("已退款");
+                    }
+
                 }
             }
         ]
