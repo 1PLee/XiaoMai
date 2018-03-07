@@ -23,4 +23,6 @@ public interface UserOrderService {
 
     ResultMessage cancelOrder(OrderVO orderVO); //用户退款
 
+    List<Double> getOrderCount(String userId);// 获取用户的消费统计
+
 }

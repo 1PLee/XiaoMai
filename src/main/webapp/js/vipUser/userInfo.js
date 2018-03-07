@@ -26,6 +26,7 @@ $(document).ready(function () {
     loadCompleteOrders();
     loadUnPayOrders();
     loadInvalidOrders();
+    loadUserConsumeInfo();// 方法定义在userChart.js中
 
 });
 
@@ -755,6 +756,7 @@ function allHide() {
     $('#showCompleteOrderDiv').hide();
     $('#showUnPayOrderDiv').hide();
     $('#showInvalidOrderDiv').hide();
+    $('#personCountDiv').hide();
 
 }
 

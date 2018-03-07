@@ -1,5 +1,6 @@
 package main.controller;
 
+import com.mchange.v2.util.DoubleWeakHashMap;
 import com.sun.tools.corba.se.idl.constExpr.Or;
 import main.service.UserOrderService;
 import main.util.ResultMessage;
@@ -151,6 +152,20 @@ public class UserOrderController {
         return result.toShow();
     }
 
+
+    /*获取用户的消费统计*/
+    @RequestMapping(value = "/getUserOrderCount", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, List<Double>> getUserOrderCount(@RequestParam("userId") String userId) {
+        Map<String, List<Double>> resultMap = new HashMap<String, List<Double>>();
+
+        List<Double> countList = new ArrayList<Double>();
+        countList = userOrderService.getOrderCount(userId);
+
+        resultMap.put("data", countList);
+
+        return resultMap;
+    }
 
 
 

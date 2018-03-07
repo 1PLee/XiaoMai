@@ -259,4 +259,40 @@ public class UserOrderServiceImpl implements UserOrderService {
 
         return ResultMessage.FAILURE;
     }
+
+
+    @Transactional
+    public List<Double> getOrderCount(String userId) {
+        List<Double> countList = new ArrayList<Double>(); //按已完成 、未完成 、退款排序
+        List<TicketOrderEntity> completeList = new ArrayList<TicketOrderEntity>();
+        List<TicketOrderEntity> payList = new ArrayList<TicketOrderEntity>();
+        List<TicketOrderEntity> backMoneyList = new ArrayList<TicketOrderEntity>();
+
+        completeList = userOrderDAO.getUserOrders(userId, 2);
+        payList = userOrderDAO.getUserOrders(userId, 1);
+        backMoneyList = userOrderDAO.getUserOrders(userId, 4);
+
+        double totalComplete = 0;
+        double totalPay = 0;
+        double totalBack = 0;
+
+        for(TicketOrderEntity oneTicket: completeList){
+            totalComplete += oneTicket.getOrderMoney();
+        }
+        countList.add(totalComplete);
+
+
+        for(TicketOrderEntity oneTicket: payList){
+            totalPay += oneTicket.getOrderMoney();
+        }
+        countList.add(totalPay);
+
+
+        for(TicketOrderEntity oneTicket: backMoneyList){
+            totalBack += oneTicket.getBackMoney();
+        }
+        countList.add(totalBack);
+
+        return countList;
+    }
 }
