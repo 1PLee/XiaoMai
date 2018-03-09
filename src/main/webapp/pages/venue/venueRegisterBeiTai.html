@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/header.css" rel="stylesheet" type="text/css">
+    <link href="../../css/venue/venueRegister.css" rel="stylesheet" type="text/css">
+    <title>VenueRegister</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a><img src="../../images/logo5.png"></a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><i class="iconfontUser">&#xe677;</i><a href="venueLoginBeiTai.html">登录</a></li>
+                    <li><i class="iconfontUser">&#xe607;</i><a href="venueRegisterBeiTai.html">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form role="form" class="registerForm">
+
+        <div class="form-group">
+            <label for="venueName">场馆名称</label>
+            <input type="text" class="form-control" id="venueName" placeholder="请输入场馆名称">
+            <label for="location">位置</label>
+            <input type="text" class="form-control" id="location" placeholder="请输入场馆位置">
+            <label for="capacity">容纳量</label>
+            <input type="number" class="form-control" id="capacity" placeholder="请输入容纳人数">
+            <label for="venueMail">联系邮箱</label>
+            <input type="email" class="form-control" id="venueMail" placeholder="xxx@mail.com">
+            <label for="venueDes">场馆描述</label>
+            <textarea class="form-control" id="venueDes" placeholder="输入一小段场馆的描述"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-info" id="commitRegister">提交申请</button>
+
+    </form>
+
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

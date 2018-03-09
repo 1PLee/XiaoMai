@@ -1,5 +1,6 @@
 package main.service.Impl;
 
+import main.dao.BaseDAO;
 import main.dao.VenueDAO;
 import main.entity.VenueEntity;
 import main.service.VenueService;
@@ -16,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class VenueServiceImpl implements VenueService {
     @Autowired
     VenueDAO venueDAO;
+
+    @Autowired
+    BaseDAO baseDAO;
 
 
     @Transactional
@@ -44,6 +48,7 @@ public class VenueServiceImpl implements VenueService {
         venueEntity.setMail(venueVO.getMail());
         venueEntity.setType(0);
 
+
         ResultMessage result = null;
         result = venueDAO.registerVenue(venueEntity);
 
@@ -53,8 +58,18 @@ public class VenueServiceImpl implements VenueService {
 
 
 
-
+    @Transactional
     public ResultMessage loginVenue(VenueVO venueVO) {
-        return null;
+        VenueEntity theVenue = new VenueEntity();
+        String venueName = venueVO.getName();
+        int venueCode = venueVO.getCode();
+
+        theVenue = venueDAO.getVenueInfo(venueName);
+
+        if(venueCode != theVenue.getCode()){
+            return ResultMessage.WRONG_PASSWORD;
+        }
+
+        return ResultMessage.SUCCESS;
     }
 }

@@ -12,6 +12,5 @@ public interface VenueService {
     ResultMessage registerVenue(VenueVO venueVO); //场馆提交注册申请
 
 
-
     ResultMessage loginVenue(VenueVO venueVO); //根据场馆名字和分配的识别码进行登录
 }

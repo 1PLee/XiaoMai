@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VenueRegister</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- Ionicons -->
+    <link href="../../css/lib/ionicons.min.css" rel="stylesheet" type="text/css">
+    <!-- Theme style -->
+    <link href="../../css/lib/AdminLTE.min.css" rel="stylesheet" type="text/css">
+    <!-- iCheck -->
+    <link href="../../css/lib/blue.css" rel="stylesheet" type="text/css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+    <div class="register-logo">
+        <a href="./venueRegister.html"><b>小麦网</b>场馆申请</a>
+    </div>
+
+    <div class="register-box-body">
+        <p class="login-box-msg">申请一个新的场馆</p>
+
+        <form>
+            <div class="form-group has-feedback">
+                <input type="text" id="venueName" class="form-control" placeholder="场馆名称">
+                <span class="fa fa-institution form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" id="venueLocation" class="form-control" placeholder="位置">
+                <span class="fa  fa-globe form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" id="capacity" class="form-control" placeholder="容纳量">
+                <span class="fa fa-hourglass-o form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="email" id="venueMail" class="form-control" placeholder="联系邮箱">
+                <span class="fa  fa-envelope-o form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <textarea class="form-control" id="description" placeholder="输入一小段场馆的描述"></textarea>
+                <span class="fa  fa-comment-o form-control-feedback"></span>
+            </div>
+            <div class="row">
+<!--                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> I agree to the <a href="#">terms</a>
+                        </label>
+                    </div>
+                </div>-->
+                <!-- /.col -->
+                <div class="col-xs-4" style="margin-left: 200px">
+                    <button type="button" id="submitRegister" class="btn btn-primary btn-block btn-flat">提交申请</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+<!--        <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+                Facebook</a>
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+                Google+</a>
+        </div>
+
+        <a href="login.html" class="text-center">I already have a membership</a>-->
+    </div>
+    <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
+
+
+
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="../../js/lib/icheck.min.js"></script>
+    <script src="../../js/venue/venueRegister.js"></script>
+
+<!--    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });
+    </script>-->
+</body>
+
+
+</html>

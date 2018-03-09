@@ -32,8 +32,18 @@ public class VenueController {
     @ResponseBody
     public String registerVenue(@RequestBody VenueVO venueVO) {
         ResultMessage result = null;
-
+        System.out.println("look the name" + venueVO.getName());
         result = venueService.registerVenue(venueVO);
+
+        return result.toShow();
+    }
+
+    @RequestMapping(value = "/loginVenue", method = RequestMethod.POST)
+    @ResponseBody
+    public String loginVenue(@RequestBody VenueVO venueVO){
+        ResultMessage result = null;
+
+        result = venueService.loginVenue(venueVO);
 
         return result.toShow();
     }
