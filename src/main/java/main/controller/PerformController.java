@@ -1,15 +1,13 @@
 package main.controller;
 
 import main.service.PerformService;
+import main.util.ResultMessage;
 import main.vo.PerformVO;
 import net.sf.json.JSONObject;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,5 +73,16 @@ public class PerformController {
 
         return thePerform;
     }
+
+    @RequestMapping(value = "/newPerform", method = RequestMethod.POST)
+    @ResponseBody
+    public String newPerform(@RequestBody PerformVO performVO) {
+        ResultMessage result = null;
+
+        result = performService.newPerform(performVO);
+
+        return result.toShow();
+    }
+
 
 }

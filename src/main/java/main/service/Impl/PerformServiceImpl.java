@@ -1,9 +1,14 @@
 package main.service.Impl;
 
+import main.dao.BaseDAO;
 import main.dao.PerformDAO;
 import main.entity.DescriptionEntity;
 import main.entity.PerformEntity;
+import main.entity.PriceEntity;
+import main.entity.SeatEntity;
 import main.service.PerformService;
+import main.util.DateUtil;
+import main.util.ResultMessage;
 import main.vo.PerformVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +27,9 @@ public class PerformServiceImpl implements PerformService {
     //private static final Logger log = LoggerFactory.getLogger(PerformServiceBean.class);
     @Autowired
     PerformDAO performDAO;
+
+    @Autowired
+    BaseDAO baseDAO;
 
     @Transactional
     public List<PerformVO> getAllPerforms() {
@@ -127,6 +135,88 @@ public class PerformServiceImpl implements PerformService {
         thePerform.setDescription(theDes.getDescription());
 
         return thePerform;
+    }
+
+    @Transactional
+    public ResultMessage newPerform(PerformVO performVO) {
+
+        PerformEntity newPerform = new PerformEntity();
+        String performType = performVO.getType();
+        List<Integer> price = performVO.getPrice();
+        List<Integer> seat = performVO.getSeat();
+
+        PriceEntity newPerformPrice = new PriceEntity();
+        SeatEntity newPerformSeat = new SeatEntity();
+
+        newPerform.setAddress(performVO.getVenue());
+        newPerform.setName(performVO.getName());
+
+        String performTime = DateUtil.dateStrTrans(performVO.getTime());
+
+        newPerform.setTime(performTime);
+
+        if (performType.equals("演唱会")) {
+            newPerform.setType(1);
+        } else if (performType.equals("音乐会")) {
+            newPerform.setType(2);
+        }else if(performType.equals("舞蹈")){
+            newPerform.setType(3);
+        }else if(performType.equals("话剧")){
+            newPerform.setType(4);
+        }else {
+            newPerform.setType(5); //体育比赛
+        }
+
+        newPerform.setPriceMin(String.valueOf(price.get(0)) + "起");
+
+        /*插入新的演出得到performID*/
+        try {
+            int newPerformId = baseDAO.save(newPerform);
+
+            /*插入价格/座位信息*/
+            newPerformPrice.setPerformId(newPerformId);
+            newPerformSeat.setPerformId(newPerformId);
+
+            newPerformPrice.setPriceOne(price.get(0));
+            newPerformSeat.setSeatOne(seat.get(0));
+
+            newPerformPrice.setPriceTwo(price.get(1));
+            newPerformSeat.setSeatTwo(seat.get(1));
+
+            if (price.get(2) != null) {
+                newPerformPrice.setPriceThree(price.get(2));
+                newPerformSeat.setSeatThree(seat.get(2));
+            }
+
+            if(price.get(3) != null){
+                newPerformPrice.setPriceFour(price.get(3));
+                newPerformSeat.setSeatFour(seat.get(3));
+            }
+
+            if(price.get(4) != null){
+                newPerformPrice.setPriceFive(price.get(4));
+                newPerformSeat.setSeatFive(seat.get(4));
+            }
+
+            if(price.get(5) != null){
+                newPerformPrice.setPriceSix(price.get(5));
+                newPerformSeat.setSeatSix(seat.get(5));
+            }
+
+            baseDAO.save(newPerformPrice);
+            baseDAO.save(newPerformSeat);
+
+            if(newPerformId != 0){
+                return ResultMessage.SUCCESS;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        return ResultMessage.FAILURE;
     }
 
 }

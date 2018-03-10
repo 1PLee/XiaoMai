@@ -132,7 +132,7 @@ public class TicketOrderEntity {
     }
 
     public void setPerform(PerformEntity perform) {
-        this.perform = perform;
+        this.perform =  perform;
     }
 
     @Override

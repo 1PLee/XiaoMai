@@ -54,6 +54,18 @@ public class DateUtil {
         return  twoWeekBeforeTimestamp;
     }
 
+    public static String dateStrTrans(String primaryDate) { // 将mm/dd/yyyy格式转化为yyyy.MM.dd
+        String[] date = primaryDate.split("/");
+
+        String month = date[0];
+        String day = date[1];
+        String year = date[2];
+
+        String standDate = year + "." + month + "." + day;
+
+        return standDate;
+    }
+
 
 
 }
