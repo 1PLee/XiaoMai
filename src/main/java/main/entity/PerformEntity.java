@@ -19,9 +19,9 @@ public class PerformEntity {
     private String name;
     private String time;
     private String address;
-    private Integer addressId;
+    //private Integer addressId;
     private String priceMin;
-    private Integer type;
+    private Integer type; // 1演唱会 2音乐会 3舞蹈 4话剧 5体育比赛
 
     @Id
     @Column(name = "ID")
@@ -63,7 +63,7 @@ public class PerformEntity {
         this.address = address;
     }
 
-    @Basic
+/*    @Basic
     @Column(name = "addressID")
     public Integer getAddressId() {
         return addressId;
@@ -71,7 +71,7 @@ public class PerformEntity {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
-    }
+    }*/
 
     @Basic
     @Column(name = "priceMin")
@@ -104,7 +104,7 @@ public class PerformEntity {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (addressId != null ? !addressId.equals(that.addressId) : that.addressId != null) return false;
+        //if (addressId != null ? !addressId.equals(that.addressId) : that.addressId != null) return false;
         if (priceMin != null ? !priceMin.equals(that.priceMin) : that.priceMin != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
 
@@ -117,7 +117,7 @@ public class PerformEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (addressId != null ? addressId.hashCode() : 0);
+        //result = 31 * result + (addressId != null ? addressId.hashCode() : 0);
         result = 31 * result + (priceMin != null ? priceMin.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;

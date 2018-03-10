@@ -23,7 +23,7 @@ $(document).on(
                     if(result == "操作成功"){
                         alert("登录成功");
                         sessionStorage.setItem("venueName", venueName);
-                        window.location.href = "./venueInfo.html";
+                        window.location.href = "./venueWelcome.html";
                     } else {
                         alert("密码错误");
                     }

@@ -44,11 +44,24 @@ public class PerformServiceImpl implements PerformService {
             onePerformVO.setTime(onePerform.getTime());
             onePerformVO.setPriceMin(onePerform.getPriceMin());
             onePerformVO.setVenue(onePerform.getAddress());
-            if(onePerform.getType() == 1){
-                onePerformVO.setType("演唱会");
-            }else if(onePerform.getType() == 2) {
-                onePerformVO.setType("音乐会");
+
+            switch (onePerform.getType()) {
+                case 1:
+                    onePerformVO.setType("演唱会");
+                    break;
+                case 2:
+                    onePerformVO.setType("音乐会");
+                    break;
+                case 3:
+                    onePerformVO.setType("话剧");
+                    break;
+                case 4:
+                    onePerformVO.setType("舞蹈");
+                    break;
+                default:
+                    onePerformVO.setType("体育比赛");
             }
+
             performVOList.add(onePerformVO);
         }
 
