@@ -9,6 +9,7 @@ import main.entity.SeatEntity;
 import main.service.PerformService;
 import main.util.DateUtil;
 import main.util.ResultMessage;
+import main.vo.CountPerformVO;
 import main.vo.PerformVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -217,6 +218,47 @@ public class PerformServiceImpl implements PerformService {
 
 
         return ResultMessage.FAILURE;
+    }
+
+    @Transactional
+    public List<CountPerformVO> getAllVenuePerform(String venue) {
+
+        List<CountPerformVO> venuePerforms = new ArrayList<CountPerformVO>();
+        List<PerformEntity> performEntities = new ArrayList<PerformEntity>();
+
+        performEntities = performDAO.getAllPerformByVenue(venue);
+
+
+        CountPerformVO onePerformVO = null;
+        Object[] numAndIncome = null; //每场演出卖出的总票数和总收入
+        long ticketNums = 0;
+
+        for (PerformEntity p:performEntities){
+            onePerformVO = new CountPerformVO();
+            onePerformVO.setPerformId(p.getId());
+            onePerformVO.setPerformName(p.getName());
+            onePerformVO.setPerformTime(p.getTime());
+            onePerformVO.setPerformType(p.getType());
+
+            numAndIncome = performDAO.getPerformIncome(p.getId());
+
+
+            if((Long) numAndIncome[0] == null){ //没有购买记录
+                onePerformVO.setSellTickets(0);
+                onePerformVO.setTotalIncome(0.0);
+            }else {
+                ticketNums = (Long) numAndIncome[0];
+
+
+                onePerformVO.setSellTickets((int) ticketNums);
+                onePerformVO.setTotalIncome((Double) numAndIncome[1]);
+            }
+
+            venuePerforms.add(onePerformVO);
+        }
+
+
+        return venuePerforms;
     }
 
 }

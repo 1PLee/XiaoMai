@@ -193,5 +193,40 @@ public class PerformDAOImpl implements PerformDAO {
 
     }
 
+    public List<PerformEntity> getAllPerformByVenue(String venue) {
+        Session session = getCurrentSession();
+
+        List<PerformEntity> venuePerforms = new ArrayList<PerformEntity>();
+
+        venuePerforms = session.createQuery(
+                "from PerformEntity " +
+                        "where address = :venue"
+        )
+                .setParameter("venue", venue)
+                .list();
+
+
+        return venuePerforms;
+    }
+
+    public Object[] getPerformIncome(int performId) {
+        Session session = getCurrentSession();
+        List<Object[]> numAndIncomeList = new ArrayList<Object[]>();
+
+        Object[] numAndIncome = null;
+
+        numAndIncomeList = session.createQuery(
+                "select sum(ticketNum), sum(orderMoney) " +
+                        "from TicketOrderEntity " +
+                        "where perform.id = :performId"
+        )
+                .setParameter("performId", performId)
+                .list();
+
+        numAndIncome = numAndIncomeList.get(0);
+
+        return numAndIncome;
+    }
+
 
 }
