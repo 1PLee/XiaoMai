@@ -626,6 +626,7 @@ function loadCompleteOrders() {
         ]
 
     } );
+
 }
 
 /*待支付订单*/

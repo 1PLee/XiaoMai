@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.service.PerformService;
+import main.service.UserOrderService;
 import main.service.VenueService;
 import main.util.ResultMessage;
 import main.vo.CountPerformVO;
@@ -27,6 +28,9 @@ public class VenueController {
 
     @Autowired
     PerformService performService;
+
+    @Autowired
+    UserOrderService userOrderService;
 
 
     @RequestMapping(value = "/getVenueInfo", method = RequestMethod.GET)
@@ -73,6 +77,18 @@ public class VenueController {
         resultMap.put("data", countPerformVOS);
 
         return resultMap;
+    }
+
+
+    @RequestMapping(value = "/checkOrder", method = RequestMethod.GET)
+    @ResponseBody
+    public String checkOrder(@RequestParam("orderId") int orderId) { //检票
+        ResultMessage result = null;
+
+        result = userOrderService.checkOrder(orderId);
+
+        return result.toShow();
+
     }
 
 

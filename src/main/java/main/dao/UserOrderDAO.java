@@ -29,5 +29,7 @@ public interface UserOrderDAO {
 
     ResultMessage cancelOrder(int orderId, double backMoney); //进行订单退款操作
 
+    ResultMessage checkOrder(int orderId); //现场检票
+
 
 }

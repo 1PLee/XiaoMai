@@ -295,4 +295,13 @@ public class UserOrderServiceImpl implements UserOrderService {
 
         return countList;
     }
+
+    @Transactional
+    public ResultMessage checkOrder(int orderId) {
+        ResultMessage result = null;
+
+        result = userOrderDAO.checkOrder(orderId);
+
+        return result;
+    }
 }

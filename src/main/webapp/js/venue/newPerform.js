@@ -6,7 +6,8 @@ var venueName;
 
 $(document).ready(function () {
      venueName = sessionStorage.getItem("venueName");
-
+    $('#venueNameSmallP').html(venueName);
+    $('#venueNameBigP').html(venueName);
 });
 
 

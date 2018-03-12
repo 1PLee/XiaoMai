@@ -218,7 +218,7 @@ public class PerformDAOImpl implements PerformDAO {
         numAndIncomeList = session.createQuery(
                 "select sum(ticketNum), sum(orderMoney) " +
                         "from TicketOrderEntity " +
-                        "where perform.id = :performId"
+                        "where perform.id = :performId and (orderType = 1 or orderType = 2)"
         )
                 .setParameter("performId", performId)
                 .list();

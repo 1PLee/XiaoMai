@@ -149,5 +149,24 @@ public class UserOrderDAOImpl implements UserOrderDAO {
         return ResultMessage.FAILURE;
     }
 
+    public ResultMessage checkOrder(int orderId) {
+        Session session = getCurrentSession();
+        int updateEntity = 0;
+
+        updateEntity = session.createQuery(
+                "update TicketOrderEntity " +
+                        "set orderType = 2 " +
+                        "where orderId = :orderId"
+        )
+                .setParameter("orderId", orderId)
+                .executeUpdate();
+
+        if(updateEntity != 0){
+            return ResultMessage.SUCCESS;
+        }
+
+        return ResultMessage.FAILURE;
+    }
+
 
 }
