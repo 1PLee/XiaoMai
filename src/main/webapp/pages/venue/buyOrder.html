@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css">
-
+    <!-- Ionicons -->
     <link href="../../css/lib/ionicons.min.css" rel="stylesheet" type="text/css">
-
-    <link href="../../css/lib/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
-
+    <!-- Theme style -->
     <link href="../../css/lib/AdminLTE.min.css" rel="stylesheet" type="text/css">
 
     <link href="../../css/lib/_all-skins.min.css" rel="stylesheet" type="text/css">
 
+    <link href="../../css/lib/select2.min.css" rel="stylesheet" type="text/css">
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <title>venuePerformList</title>
-
+    <title>VenueWelcome</title>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <!-- Site wrapper -->
@@ -166,37 +165,67 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                场馆承办演出列表
+                场馆首页
+                <small>it all starts here</small>
             </h1>
 
         </section>
 
         <!-- Main content -->
         <section class="content">
+
+            <!-- Default box -->
             <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">现场购票</h3>
 
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fa fa-times"></i></button>
+                    </div>
+                </div>
                 <div class="box-body">
-                    <table id="performTable" class="table table-bordered table-hover">
 
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>演出名称</th>
-                            <th>演出时间</th>
-                            <th>卖出票数</th>
-                            <th>演出收入</th>
-                            <th>演出类型</th>
-                        </tr>
-                        </thead>
+                    <div class="form-group">
+                        <label>演出名称</label>
 
+                        <select class="form-control select2" id="nameSelect" style="width: 100%;">
+                     <!--       <option selected="selected">演唱会</option>
 
-                    </table>
+                            <option value="1">音乐会</option>
+                            <option>舞蹈</option>
+                            <option>话剧</option>
+                            <option>体育比赛</option>-->
+
+                        </select>
+                        <!-- /.input group -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>票价等级</label>
+
+                        <select class="form-control select2" id="priceSelect" style="width: 100%;">
+                          <!--  <option selected="selected">演唱会</option>
+
+                            <option>音乐会</option>
+                            <option>舞蹈</option>
+                            <option>话剧</option>
+                            <option>体育比赛</option>-->
+
+                        </select>
+                        <!-- /.input group -->
+                    </div>
+
 
                 </div>
+                <!-- /.box-body -->
+
 
             </div>
-
-
+            <!-- /.box -->
 
         </section>
         <!-- /.content -->
@@ -214,20 +243,32 @@
 
 
 
-
-
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="../../js/lib/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../js/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="../../js/lib/adminlte.min.js"></script>
 
-    <script src="../../js/lib/dataTables.bootstrap.min.js"></script>
-    <script src="../../js/lib/jquery.dataTables.min.js"></script>
+    <script src="../../js/lib/select2.full.min.js"></script>
 
-    <script src="../../js/venue/venuePerformList.js"></script>
+    <script src="../../js/venue/buyOrder.js"></script>
+
+    <script>
+        $(function () {
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+
+        });
+    </script>
+
 
 </body>
 </html>

@@ -2,11 +2,10 @@ package main.controller;
 
 import main.service.PerformService;
 import main.service.UserOrderService;
+import main.service.VenueOrderService;
 import main.service.VenueService;
 import main.util.ResultMessage;
-import main.vo.CountPerformVO;
-import main.vo.PerformVO;
-import main.vo.VenueVO;
+import main.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +30,9 @@ public class VenueController {
 
     @Autowired
     UserOrderService userOrderService;
+
+    @Autowired
+    VenueOrderService venueOrderService;
 
 
     @RequestMapping(value = "/getVenueInfo", method = RequestMethod.GET)
@@ -91,6 +93,27 @@ public class VenueController {
 
     }
 
+    @RequestMapping(value = "/getOnSellPerform", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PerformVO> getOnSellPerform(@RequestParam("venue") String venue){ //现场购票时得到正在售卖的演出信息
+        List<PerformVO> onSellPerforms = new ArrayList<PerformVO>();
+
+        onSellPerforms = venueService.getOnSellPerforms(venue);
+
+        return onSellPerforms;
+    }
+
+
+    @RequestMapping(value = "/buyTicketOnSite", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateOrderResultVO buyTicketOnSite(@RequestBody OrderVO orderVO){
+        CreateOrderResultVO createOrderResultVO = null;
+        createOrderResultVO = venueOrderService.buyTicketOnSite(orderVO);
+
+       // result = venueService.buyTicketOnSite(orderVO);
+
+        return createOrderResultVO;
+    }
 
 
 }

@@ -26,4 +26,7 @@ public interface UserOrderService {
     List<Double> getOrderCount(String userId);// 获取用户的消费统计
 
     ResultMessage checkOrder(int orderId); //现场检票
+
+
+
 }
