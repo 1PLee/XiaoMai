@@ -22,6 +22,7 @@ public class PerformEntity {
     //private Integer addressId;
     private String priceMin;
     private Integer type; // 1演唱会 2音乐会 3舞蹈 4话剧 5体育比赛
+    private Integer state; // 1代表演出未开始 2代表演出已经结束 3代表演出已经结算完毕(网站和场馆)
 
     @Id
     @Column(name = "ID")
@@ -92,6 +93,16 @@ public class PerformEntity {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    @Basic
+    @Column(name = "state")
+    public Integer getState(){
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     @Override

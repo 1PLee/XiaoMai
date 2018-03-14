@@ -79,8 +79,10 @@
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/XiaoMai?autoReconnect=true&amp;useSSL=false</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop>
                 <!--  <prop key="hibernate.current_session_context_class">thread</prop> -->
             </props>
         </property>
@@ -101,7 +103,7 @@
 
     <!--quartz-->
 
-    <!-- 加入需要执行的类 -->
+    <!-- 加入需要执行的类(定时查出超过15分钟未支付的订单) -->
     <bean id="timingSchedule" class="main.util.TimeAction"/>
     <!-- 加入定时执行的方法 -->
     <bean id="timingScheduleJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -117,11 +119,31 @@
         <!-- 设置时间规则 （为了方便测试，设置成一分钟一次。具体的规则见详情）-->
         <property name="cronExpression" value="00 * * * * ?"/>
     </bean>
+
+    <!-- 加入需要执行的类(定时更新演出的状态) -->
+    <bean id="timingToCheckPerform" class="main.util.TimeAction2"/>
+    <!-- 加入定时执行的方法 -->
+    <bean id="checkPerformJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 定时执行的类 -->
+        <property name="targetObject" ref="timingToCheckPerform"/>
+        <!-- 具体的方法 -->
+        <property name="targetMethod" value="checkPerformState"/>
+    </bean>
+    <!-- 调度触发器，设置自己想要的时间规则 -->
+    <bean id="checkPerformScheduleTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!-- 加入相关的执行类和方法 -->
+        <property name="jobDetail" ref="checkPerformJobDetail"/>
+        <!-- 设置时间规则 （为了方便测试，设置成一分钟一次。具体的规则见详情）-->
+        <property name="cronExpression" value="00 01 00 * * ?"/>
+    </bean>
+
+
     <!-- 加入调度工厂 ,设置调度触发器即可-->
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="timingScheduleTrigger"/>
+                <ref bean="checkPerformScheduleTrigger"/>
             </list>
         </property>
     </bean>

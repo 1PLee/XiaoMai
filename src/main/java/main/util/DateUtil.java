@@ -67,5 +67,27 @@ public class DateUtil {
     }
 
 
+    public static boolean dateCompare(Date today, String performDay){ //判断演出是否结束
+        DateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat day = DateFormat.getDateInstance();
+        String todayStr = sdf.format(today);
+
+
+        try {
+            Date todayDate = sdf.parse(todayStr);
+            Date performDate = sdf.parse(performDay);
+
+            if(performDate.before(todayDate)){
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
+
+
 
 }

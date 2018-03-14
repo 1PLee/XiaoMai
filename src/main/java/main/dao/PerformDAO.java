@@ -27,4 +27,8 @@ public interface PerformDAO {
     List<PerformEntity> getAllPerformByVenue(String venue); //得到某个场馆承办的全部演出
 
     Object[] getPerformIncome(int performId); //得到某一场演出卖出的全部票数和获得的全部收入
+
+    List<TicketOrderEntity> getPerformIncomeDetail(int performId); //得到一场已经结束的演出的信息
+
+    List<PerformEntity> getAllUnSettlePerform(); //得到全部的没有进行结算且已经结束的演出
 }

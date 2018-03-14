@@ -228,5 +228,38 @@ public class PerformDAOImpl implements PerformDAO {
         return numAndIncome;
     }
 
+    public List<TicketOrderEntity> getPerformIncomeDetail(int performId) {
+        List<TicketOrderEntity> orderEntities = new ArrayList<TicketOrderEntity>();
+
+        Session session = getCurrentSession();
+
+        orderEntities = session.createQuery(
+                "from TicketOrderEntity " +
+                        "where perform.id = :performId and (orderType = 1 or orderType = 2 or orderType = 4)"
+        )
+                .setParameter("performId", performId)
+                .list();
+
+
+        return orderEntities;
+    }
+
+
+    public List<PerformEntity> getAllUnSettlePerform() {
+
+        List<PerformEntity> unSettlePerforms = new ArrayList<PerformEntity>();
+
+        Session session = getCurrentSession();
+
+        unSettlePerforms = session.createQuery(
+                "from PerformEntity " +
+                        "where state = 2"
+        )
+                .list();
+
+
+        return unSettlePerforms;
+    }
+
 
 }

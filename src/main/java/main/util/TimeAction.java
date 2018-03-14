@@ -36,7 +36,7 @@ public class TimeAction {
     }
 
     @Transactional
-    public void checkInvalidOrder(){
+    public void checkInvalidOrder(){ //检查超过15分钟未付款的订单设为无效状态
         Session session = getCurrentSession();
         List<TicketOrderEntity> unPayOrders = new ArrayList<TicketOrderEntity>();
         Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -64,4 +64,6 @@ public class TimeAction {
         System.out.println("未付款订单:"+unPayOrders.size());
 
     }
+
+
 }

@@ -16,6 +16,8 @@ public class PerformVO {
     public List<Integer> price;
     public List<Integer>  seat;
     public String description;
+    public PerformIncomeVO performIncomeVO;
+
 
 
     public String getName() {
@@ -89,4 +91,13 @@ public class PerformVO {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public PerformIncomeVO getPerformIncomeVO() {
+        return performIncomeVO;
+    }
+
+    public void setPerformIncomeVO(PerformIncomeVO performIncomeVO) {
+        this.performIncomeVO = performIncomeVO;
+    }
+
 }

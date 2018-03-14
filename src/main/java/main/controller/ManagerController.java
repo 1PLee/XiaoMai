@@ -2,13 +2,12 @@ package main.controller;
 
 import main.service.ManagerService;
 import main.util.ResultMessage;
+import main.vo.PerformIncomeVO;
+import main.vo.PerformVO;
 import main.vo.VenueVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +42,28 @@ public class ManagerController {
 
         return result.toShow();
     }
+
+    @RequestMapping(value = "/getAllUnSettlePerform", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PerformVO> getAllUnSettlePerform(){
+
+        List<PerformVO> allUnSettlePerforms = new ArrayList<PerformVO>();
+        allUnSettlePerforms = managerService.getAllUnSettlePerform();
+
+
+        return allUnSettlePerforms;
+    }
+
+    @RequestMapping(value = "payVenueIncome", method = RequestMethod.POST)
+    @ResponseBody
+    public String payVenueIncome(@RequestBody PerformVO performVO) {
+        ResultMessage result = null;
+
+        result = managerService.payVenueIncome(performVO);
+
+        return result.toShow();
+    }
+
+
 
 }

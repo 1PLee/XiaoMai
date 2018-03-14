@@ -3,6 +3,7 @@ package main.dao.Impl;
 import main.dao.BaseDAO;
 import main.dao.ManagerDAO;
 import main.entity.VenueEntity;
+import main.entity.VenueIncomeEntity;
 import main.util.ResultMessage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -81,5 +82,35 @@ public class ManagerDAOImpl implements ManagerDAO {
         }
 
         return ResultMessage.FAILURE;
+    }
+
+    public ResultMessage payVenueIncome(int venueId, double income, int year) {
+
+        ResultMessage result = null;
+        Session session = getCurrentSession();
+
+        VenueIncomeEntity venueIncomeEntity = new VenueIncomeEntity();
+
+        venueIncomeEntity = (VenueIncomeEntity) session.createQuery(
+                "from VenueIncomeEntity " +
+                        "where venueId = :venueId and year = :year"
+        )
+                .setParameter("venueId", venueId)
+                .setParameter("year", year)
+                .uniqueResult();
+
+        if(venueIncomeEntity != null){
+            double venueIncome = venueIncomeEntity.getIncome();
+            venueIncome = venueIncome + income;
+            venueIncomeEntity.setIncome(venueIncome);
+        }else {
+            venueIncomeEntity.setVenueId(venueId);
+            venueIncomeEntity.setYear(year);
+            venueIncomeEntity.setIncome(income);
+        }
+
+        result = baseDAO.saveOrUpdate(venueIncomeEntity);
+
+        return result;
     }
 }

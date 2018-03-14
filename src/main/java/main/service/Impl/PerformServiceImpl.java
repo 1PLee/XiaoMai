@@ -155,6 +155,7 @@ public class PerformServiceImpl implements PerformService {
         String performTime = DateUtil.dateStrTrans(performVO.getTime());
 
         newPerform.setTime(performTime);
+        newPerform.setState(1);
 
         if (performType.equals("演唱会")) {
             newPerform.setType(1);
