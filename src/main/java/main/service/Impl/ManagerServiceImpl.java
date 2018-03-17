@@ -9,8 +9,10 @@ import main.entity.PerformEntity;
 import main.entity.TicketOrderEntity;
 import main.entity.VenueEntity;
 import main.service.ManagerService;
+import main.util.DateUtil;
 import main.util.ResultMessage;
 import main.util.SendMailCode;
+import main.vo.ManagerIncomeVO;
 import main.vo.PerformIncomeVO;
 import main.vo.PerformVO;
 import main.vo.VenueVO;
@@ -18,10 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by liyipeng on 2018/3/5.
@@ -104,6 +103,8 @@ public class ManagerServiceImpl implements ManagerService {
         PerformVO unSettlePerformVO = null;
         PerformIncomeVO performIncomeVO = null;
 
+        Object[] orderTypeList = {1, 2, 4};
+
         for (PerformEntity onePerform : unSettleEntities) {
             unSettlePerformVO = new PerformVO();
             unSettlePerformVO.setPerformID(onePerform.getId());
@@ -111,7 +112,7 @@ public class ManagerServiceImpl implements ManagerService {
             unSettlePerformVO.setTime(onePerform.getTime());
             unSettlePerformVO.setVenue(onePerform.getAddress());
 
-            performIncomeVO = getPerformIncome(onePerform.getId());
+            performIncomeVO = getPerformIncome(onePerform.getId(), orderTypeList);
             unSettlePerformVO.setPerformIncomeVO(performIncomeVO);
 
             unSettlePerforms.add(unSettlePerformVO);
@@ -122,7 +123,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Transactional
-    public PerformIncomeVO getPerformIncome(int performId) {
+    public PerformIncomeVO getPerformIncome(int performId, Object[] typeList) {
         PerformIncomeVO performIncomeVO = new PerformIncomeVO();
         double totalIncome = 0.0;
         int ticketsNum = 0; //卖出的总票数
@@ -131,7 +132,8 @@ public class ManagerServiceImpl implements ManagerService {
         List<Integer> seatDetails = new ArrayList<Integer>(); //各个位置上卖出的票数
 
         List<TicketOrderEntity> allOrders = new ArrayList<TicketOrderEntity>();
-        allOrders = performDAO.getPerformIncomeDetail(performId); //传入的performID一定是已经结束的演出
+
+        allOrders = performDAO.getPerformIncomeDetail(performId, typeList); //typeList中存放希望得到的订单状态
 
 
         List<Object[]> priceList = new ArrayList<Object[]>();
@@ -165,7 +167,7 @@ public class ManagerServiceImpl implements ManagerService {
                     }
 
                     if ( ( (Integer)price[j] ).equals(oneOrder.getTicketMoney())) {
-                        System.out.println("这个价格是一致的:" + price[j]);
+
                         seatDetails.set(j, (seatDetails.get(j) + oneOrder.getTicketNum()));
                     }
                 }
@@ -219,6 +221,110 @@ public class ManagerServiceImpl implements ManagerService {
 
         return result;
 
+    }
+
+    @Transactional
+    public int countVIPGrade(int grade) {
+        int countVip = 0;
+        countVip = managerDAO.countVIPGrade(grade);
+
+        return countVip;
+    }
+
+    @Transactional
+    public Map<String, Integer> countVenueByCapacity() {
+
+        Map<String, Integer> countMap = new HashMap<String, Integer>();
+
+        int underThousand = 0;// 0-1000
+        int underTwoThousand = 0; // 1000-2000
+        int underFiveThousand = 0; //2000-5000
+        int upFiveThousand = 0; //5000以上
+
+        underThousand = managerDAO.countVenueByCapacity(0,1001);
+        underTwoThousand = managerDAO.countVenueByCapacity(1000, 2001);
+        underFiveThousand = managerDAO.countVenueByCapacity(2000, 5001);
+        upFiveThousand = managerDAO.countVenueByCapacity(5000, 10001);
+
+        countMap.put("1000以内", underThousand);
+        countMap.put("2000以内", underTwoThousand);
+        countMap.put("5000以内", underFiveThousand);
+        countMap.put("10000以内", upFiveThousand);
+
+
+        return countMap;
+    }
+
+
+    @Transactional
+    public List<ManagerIncomeVO> getFinancialInfo(String year) {
+        List<TicketOrderEntity> orderEntities = new ArrayList<TicketOrderEntity>();
+        List<PerformEntity> oneYearPerforms = new ArrayList<PerformEntity>(); // 某一年的全部演出
+
+        ManagerIncomeVO oneMonthIncomeVO = null;
+        List<ManagerIncomeVO> yearIncomeList = new ArrayList<ManagerIncomeVO>(); //存放十二个月的统计
+        orderEntities = managerDAO.getYearOrders(year); //得到某一年的全部订单
+        int oneYear = 12;
+        int theMonth = 0;
+        int orderType = 0;
+        String orderTime = null;
+        String performTime = null;
+
+        double totalNum = 0.0;
+        double backMoney = 0.0;
+        double totalProfit = 0.0;
+        int performs = 0;
+
+        for(int i=0;i<oneYear;i++){ //初始化List
+            oneMonthIncomeVO = new ManagerIncomeVO();
+            yearIncomeList.add(oneMonthIncomeVO);
+        }
+
+        oneYearPerforms = performDAO.getPerformsByYear(year);
+
+
+        for (PerformEntity onePerform : oneYearPerforms) {
+            performTime = onePerform.getTime();
+            theMonth = Integer.parseInt(performTime.split("\\.")[1]);
+            System.out.println("look the Month:" + theMonth);
+            oneMonthIncomeVO = yearIncomeList.get(theMonth - 1);
+
+            performs = oneMonthIncomeVO.getPerforms();
+            performs++;
+            oneMonthIncomeVO.setPerforms(performs);
+        }
+
+
+
+        for (TicketOrderEntity oneOrder : orderEntities) {
+            orderTime = DateUtil.timestamp2String(oneOrder.getOrderTime());
+            theMonth = Integer.parseInt(orderTime.split("-")[1]);
+
+            oneMonthIncomeVO = yearIncomeList.get(theMonth - 1);
+
+            totalNum = oneMonthIncomeVO.getTotalIncome();
+            backMoney = oneMonthIncomeVO.getBackMoney();
+            totalProfit = oneMonthIncomeVO.getTotalProfit();
+
+            orderType = oneOrder.getOrderType();
+            if(orderType == 1 || orderType == 2){ //已支付或已检票订单
+                totalNum += oneOrder.getOrderMoney();
+                totalProfit += oneOrder.getOrderMoney();
+            }
+
+            if(orderType == 4){ //退款订单
+                backMoney += oneOrder.getBackMoney();
+                totalProfit -= oneOrder.getBackMoney();
+            }
+
+            oneMonthIncomeVO.setTotalIncome(totalNum);
+            oneMonthIncomeVO.setTotalProfit(totalProfit);
+            oneMonthIncomeVO.setBackMoney(backMoney);
+
+        }
+
+
+        return yearIncomeList;
     }
 
 

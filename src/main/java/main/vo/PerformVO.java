@@ -11,7 +11,8 @@ public class PerformVO {
     public String name;
     public String time;
     public String priceMin;
-    public String type;
+    public String type; // 代表音乐会 演唱会 等 详见entity类
+    public int state; //1 代表售卖中 2代表已经结束 3代表已经结算
     public String venue;
     public List<Integer> price;
     public List<Integer>  seat;
@@ -100,4 +101,11 @@ public class PerformVO {
         this.performIncomeVO = performIncomeVO;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 }

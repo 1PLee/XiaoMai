@@ -6,6 +6,7 @@ import main.dao.PerformDAO;
 import main.dao.VenueDAO;
 import main.entity.PerformEntity;
 import main.entity.VenueEntity;
+import main.service.ManagerService;
 import main.service.UserOrderService;
 import main.service.VenueService;
 import main.util.DateUtil;
@@ -36,6 +37,9 @@ public class VenueServiceImpl implements VenueService {
 
     @Autowired
     UserOrderService userOrderService;
+
+    @Autowired
+    ManagerService managerService;
 
 
     @Transactional
@@ -144,6 +148,95 @@ public class VenueServiceImpl implements VenueService {
 
 
         return onSellPerforms;
+    }
+
+    @Transactional
+    public List<PerformVO> getVenueAllPerformCount(String venue) {
+        List<PerformVO> performCountVOList = new ArrayList<PerformVO>();
+        List<PerformVO> bookPerformCountVOList = new ArrayList<PerformVO>(); //处于售卖中的演出
+        List<PerformVO> endPerformCountVOList = new ArrayList<PerformVO>(); // 已经结束售卖的演出
+
+        bookPerformCountVOList = getVenueBookPerformCount(venue);
+        endPerformCountVOList = getVenueEndPerformCount(venue);
+
+        performCountVOList.addAll(bookPerformCountVOList);
+        performCountVOList.addAll(endPerformCountVOList);
+
+
+        return performCountVOList;
+    }
+
+    @Transactional
+    public List<PerformVO> getVenueBookPerformCount(String venue) {
+        List<PerformEntity> allPerforms = new ArrayList<PerformEntity>(); //场馆承办的全部演出
+        List<PerformVO> bookPerformCountVO = new ArrayList<PerformVO>(); //场馆举办的处于预定状态的演出的统计情况
+
+        PerformVO bookPerformVO = null;
+        PerformIncomeVO performIncomeVO = null;
+
+        Object[] typeList = {1, 4}; //售卖中的演出订单 状态分为已支付和退款
+
+        allPerforms = performDAO.getAllPerformByVenue(venue);
+
+        for (PerformEntity onePerform : allPerforms) {
+            if(onePerform.getState() == 1){
+                bookPerformVO = new PerformVO();
+                performIncomeVO = new PerformIncomeVO();
+
+                bookPerformVO.setPerformID(onePerform.getId());
+                bookPerformVO.setName(onePerform.getName());
+                bookPerformVO.setTime(onePerform.getTime());
+                bookPerformVO.setState(onePerform.getState());
+
+                performIncomeVO = managerService.getPerformIncome(onePerform.getId(), typeList);
+
+                bookPerformVO.setPerformIncomeVO(performIncomeVO);
+
+                bookPerformCountVO.add(bookPerformVO);
+
+            }
+
+        }
+
+
+        return bookPerformCountVO;
+    }
+
+    @Transactional
+    public List<PerformVO> getVenueEndPerformCount(String venue) {
+
+        List<PerformEntity> allPerforms = new ArrayList<PerformEntity>(); //场馆承办的全部演出
+        List<PerformVO> endPerformCountVO = new ArrayList<PerformVO>(); //场馆举办的处于已经结束状态的演出的统计情况
+
+        PerformVO endPerformVO = null;
+        PerformIncomeVO performIncomeVO = null;
+
+        Object[] typeList = {1, 2, 4}; //已结束的演出订单 状态分为已支付，已检票和退款
+
+        allPerforms = performDAO.getAllPerformByVenue(venue);
+
+        for (PerformEntity onePerform : allPerforms) {
+            if(onePerform.getState() == 2){
+
+                endPerformVO = new PerformVO();
+                performIncomeVO = new PerformIncomeVO();
+
+                endPerformVO.setPerformID(onePerform.getId());
+                endPerformVO.setName(onePerform.getName());
+                endPerformVO.setTime(onePerform.getTime());
+                endPerformVO.setState(onePerform.getState());
+
+                performIncomeVO = managerService.getPerformIncome(onePerform.getId(), typeList);
+
+                endPerformVO.setPerformIncomeVO(performIncomeVO);
+
+                endPerformCountVO.add(endPerformVO);
+
+            }
+
+        }
+
+        return endPerformCountVO;
     }
 
 

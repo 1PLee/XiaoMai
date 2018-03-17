@@ -16,6 +16,8 @@ public interface PerformDAO {
 
     List<VenueEntity> getAllVenue();
 
+    List<PerformEntity> getPerformsByYear(String year);
+
     List<Object[]> getPrice(int performID); //定义为list因为查询默认返回list
 
     List<Object[]> getSeat(int performID);
@@ -28,7 +30,9 @@ public interface PerformDAO {
 
     Object[] getPerformIncome(int performId); //得到某一场演出卖出的全部票数和获得的全部收入
 
-    List<TicketOrderEntity> getPerformIncomeDetail(int performId); //得到一场已经结束的演出的信息
+    List<TicketOrderEntity> getPerformIncomeDetail(int performId, Object[] typeList); //得到演出的信息 订单的状态由typeList决定
 
     List<PerformEntity> getAllUnSettlePerform(); //得到全部的没有进行结算且已经结束的演出
+
+
 }

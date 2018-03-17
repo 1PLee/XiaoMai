@@ -6,6 +6,7 @@ import main.entity.DescriptionEntity;
 import main.entity.PerformEntity;
 import main.entity.PriceEntity;
 import main.entity.SeatEntity;
+import main.service.ManagerService;
 import main.service.PerformService;
 import main.util.DateUtil;
 import main.util.ResultMessage;
@@ -28,6 +29,9 @@ public class PerformServiceImpl implements PerformService {
     //private static final Logger log = LoggerFactory.getLogger(PerformServiceBean.class);
     @Autowired
     PerformDAO performDAO;
+
+    @Autowired
+    ManagerService managerService;
 
     @Autowired
     BaseDAO baseDAO;

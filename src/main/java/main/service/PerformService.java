@@ -22,4 +22,5 @@ public interface PerformService {
      ResultMessage newPerform(PerformVO performVO); //发布新的演出计划
 
      List<CountPerformVO> getAllVenuePerform(String venue); //得到某个场馆的承办演出信息
+
 }

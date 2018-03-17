@@ -19,6 +19,10 @@ public interface VenueService {
 
     List<PerformVO> getOnSellPerforms(String venue); //得到场馆正在售卖的演出信息
 
+    List<PerformVO> getVenueAllPerformCount(String venue);// 得到某个场馆的全部演出统计
 
+    List<PerformVO> getVenueBookPerformCount(String venue); //得到某个场馆正在卖票中的演出信息统计
+
+    List<PerformVO> getVenueEndPerformCount(String venue); //得到某个场馆演出已经结束的演出信息统计
 
 }

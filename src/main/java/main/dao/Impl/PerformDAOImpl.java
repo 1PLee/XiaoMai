@@ -56,6 +56,22 @@ public class PerformDAOImpl implements PerformDAO {
         return baseDAO.getAll(VenueEntity.class);
     }
 
+    public List<PerformEntity> getPerformsByYear(String year) {
+        List<PerformEntity> oneYearPerforms = new ArrayList<PerformEntity>();
+
+        Session session = getCurrentSession();
+
+        oneYearPerforms = session.createQuery(
+                "from PerformEntity " +
+                        "where time like (:queryYear)"
+        )
+                .setParameter("queryYear", year+'%')
+                .list();
+
+
+        return oneYearPerforms;
+    }
+
     public List<Object[]> getPrice(int performID) {
         String hql = "select priceOne,priceTwo,priceThree,priceFour,priceFive,priceSix  " +
                 "from PriceEntity where performId = "+performID;
@@ -228,16 +244,18 @@ public class PerformDAOImpl implements PerformDAO {
         return numAndIncome;
     }
 
-    public List<TicketOrderEntity> getPerformIncomeDetail(int performId) {
+
+    public List<TicketOrderEntity> getPerformIncomeDetail(int performId, Object[] typeList) {
         List<TicketOrderEntity> orderEntities = new ArrayList<TicketOrderEntity>();
 
         Session session = getCurrentSession();
 
         orderEntities = session.createQuery(
                 "from TicketOrderEntity " +
-                        "where perform.id = :performId and (orderType = 1 or orderType = 2 or orderType = 4)"
+                        "where perform.id = :performId and orderType in (:typeList)"
         )
                 .setParameter("performId", performId)
+                .setParameterList("typeList", typeList)
                 .list();
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class PerformIncomeVO {
     public int performId;
     public double totalIncome; //演出总收入
-    public int totalTicketNum; //共卖出多少张票
+    public int totalTicketNum; //共卖出(预定出)多少张票 根据查询时设置的orderType而定
     public List<Integer> seatCountList; //各个位置的票各卖了多少张
     public int backTicketNum; //退订总票数
 

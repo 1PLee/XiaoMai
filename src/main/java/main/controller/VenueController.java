@@ -66,6 +66,7 @@ public class VenueController {
     }
 
 
+    /*有关场馆的财务信息(各个演出的统计情况)*/
     @RequestMapping(value = "/getAllPerforms", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, List<CountPerformVO>> getAllPerforms(@RequestParam("venue") String venue){
@@ -113,6 +114,16 @@ public class VenueController {
        // result = venueService.buyTicketOnSite(orderVO);
 
         return createOrderResultVO;
+    }
+
+    @RequestMapping(value = "/getVenueCountInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PerformVO> getVenueCountInfo(@RequestParam("venue") String venue){
+        List<PerformVO> venuePerformCountList = new ArrayList<PerformVO>();
+
+        venuePerformCountList = venueService.getVenueAllPerformCount(venue);
+
+        return venuePerformCountList;
     }
 
 

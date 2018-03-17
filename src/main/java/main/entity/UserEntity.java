@@ -11,7 +11,7 @@ public class UserEntity {
     private String id;
     private int password;
     private String mail;
-    private int vipGrade; //0 白银  1 黄金  2 钻石
+    private int vipGrade; //1 白银  2 黄金  3 钻石
     private int vipIsStop; //1 取消会员 0 未取消
     private int vipScore; //会员积分
 

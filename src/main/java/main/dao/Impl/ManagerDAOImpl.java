@@ -2,6 +2,7 @@ package main.dao.Impl;
 
 import main.dao.BaseDAO;
 import main.dao.ManagerDAO;
+import main.entity.TicketOrderEntity;
 import main.entity.VenueEntity;
 import main.entity.VenueIncomeEntity;
 import main.util.ResultMessage;
@@ -112,5 +113,71 @@ public class ManagerDAOImpl implements ManagerDAO {
         result = baseDAO.saveOrUpdate(venueIncomeEntity);
 
         return result;
+    }
+
+    public int countVIPGrade(int grade) {
+        Session session = getCurrentSession();
+
+        List<Long> longList = new ArrayList<Long>();
+        long countLong = 0;
+
+
+
+        longList = session.createQuery(
+                "select count(vipGrade) " +
+                        "from UserEntity " +
+                        "where vipGrade = :vipGrade"
+        )
+                .setParameter("vipGrade", grade)
+                .list();
+
+
+        countLong = longList.get(0);
+
+        int vipNum = 0;
+        vipNum = (int) countLong;
+
+
+        return vipNum;
+    }
+
+
+    public int countVenueByCapacity(int low, int high) {
+        Session session = getCurrentSession();
+
+        List<Long> longList = new ArrayList<Long>();
+        long countLong = 0;
+
+        longList = session.createQuery(
+                "select count(*) " +
+                        "from VenueEntity " +
+                        "where capacity <(:high) and capacity >(:low)"
+        )
+                .setParameter("high", high)
+                .setParameter("low", low)
+                .list();
+
+        countLong = longList.get(0);
+
+        int venueCount = (int) countLong;
+
+
+        return venueCount;
+    }
+
+    public List<TicketOrderEntity> getYearOrders(String year) {
+        List<TicketOrderEntity> oneYearOrders = new ArrayList<TicketOrderEntity>();
+        Session session = getCurrentSession();
+
+        oneYearOrders = session.createQuery(
+                "from TicketOrderEntity " +
+                        "where date_format(orderTime, '%x')=(:checkYear)"
+        )
+                .setParameter("checkYear", year)
+                .list();
+
+
+
+        return oneYearOrders;
     }
 }

@@ -1,10 +1,13 @@
 package main.util;
 
+import javafx.scene.input.DataFormat;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -28,6 +31,16 @@ public class DateUtil {
         Timestamp timestamp = new Timestamp(date.getTime());
 
         return timestamp;
+    }
+
+    public static String timestamp2String(Timestamp timestamp){
+
+        String timeStr = null;
+        DateFormat dft = new SimpleDateFormat("yyyy-MM-dd");
+
+        timeStr = dft.format(timestamp);
+
+        return timeStr;
     }
 
 
@@ -82,6 +95,25 @@ public class DateUtil {
             }
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+
+
+        return false;
+    }
+
+    public static boolean dateBelong(Date date, Date from, Date to) {
+
+        Calendar dateNow = Calendar.getInstance();
+        dateNow.setTime(date);
+
+        Calendar dateFrom = Calendar.getInstance();
+        dateFrom.setTime(from);
+
+        Calendar dateTo = Calendar.getInstance();
+        dateTo.setTime(to);
+
+        if(dateNow.after(dateFrom) && dateNow.before(dateTo)){
+            return true;
         }
 
 
