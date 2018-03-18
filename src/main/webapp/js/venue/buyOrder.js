@@ -4,7 +4,9 @@
 
 var venueName;
 var perform;
+var userInfoVO;
 
+var orderMoney;//订单总价
 
 $(document).ready(function () {
 
@@ -62,3 +64,138 @@ $('#nameSelect').change(function () {
     }
 
 });
+
+
+/*查询用户是否为会员*/
+$(document).on(
+    {
+        click:function () {
+            var userId = $('#userId').val();
+
+
+            $.ajax({
+
+                type:"get",
+                url:"/User/getUserInfo",
+                contentType:'application/json;charset=utf-8',
+                data:{"userId": userId},
+                success:function (result) {
+                    alert("用户存在");
+                    userInfoVO = result['userInfo'];
+                    if(userInfoVO.vipIsStop != 1){
+                        $('#vipGrade').empty();
+                        switch (userInfoVO.vipGrade){
+                            case 1:
+                                $('#vipGrade').append("<option>白银会员</option>");
+                                break;
+                            case 2:
+                                $('#vipGrade').append("<option>黄金会员</option>");
+                                break;
+                            case 3:
+                                $('#vipGrade').append("<option>钻石会员</option>");
+
+                        }
+
+                    }
+
+                },
+                error:function () {
+                    alert("getUserInfo failed!")
+                }
+            })
+
+
+
+        }
+    },'#queryUser'
+
+);
+
+/*点击订单价格 出现价格*/
+$(document).on(
+    {
+        click:function () {
+
+            var ticketMoney = $('#priceSelect').val();
+            var ticketNum = $('#ticketNumSelect').val();
+
+            if($('#userId').val() == ""){
+                orderMoney = ticketMoney * ticketNum;
+            }else {
+                var vipGrade = userInfoVO.vipGrade;
+                switch (vipGrade){
+                    case 1:
+                        orderMoney = (0.95) * ticketMoney * ticketNum;
+                        break;
+                    case 2:
+                        orderMoney = (0.88) * ticketMoney * ticketNum;
+                        break;
+                    case 3:
+                        orderMoney = (0.8) * ticketMoney * ticketNum;
+                }
+
+
+            }
+
+            $('#orderMoney').val(orderMoney);
+
+        }
+    },'#orderMoney'
+
+);
+
+/*创建订单*/
+$(document).on(
+    {
+        click:function () {
+            var ticketMoney = $('#priceSelect').val();
+            var ticketNum = $('#ticketNumSelect').val();
+            var performName = $('#nameSelect').val();
+            var performId;
+            var userId;
+            for(var i=0;i<perform.length;i++){
+                if(performName == perform[i]['name']){
+                    performId = perform[i]['performID'];
+                }
+            }
+
+            if($('#userId').val() == ""){
+                userId = "Manager";
+            }else {
+                userId = $('#userId').val();
+            }
+
+            var orderVO = {
+                "userId": userId,
+                "performId":performId,
+                "ticketNum":ticketNum,
+                "ticketMoney":ticketMoney,
+                "orderMoney":orderMoney
+            };
+
+            $.ajax({
+
+                type:"post",
+                url:"/Venue/buyTicketOnSite",
+                contentType:'application/json;charset=utf-8',
+                data:JSON.stringify(orderVO),
+                success:function (result) {
+                    if(result.result == "SUCCESS"){
+                        alert("订单编号: "+result.orderId);
+                        window.location.href = "./buyOrder.html";
+                    }else {
+                        alert("创建订单失败")
+                    }
+
+                },
+                error:function () {
+                    alert("buyTicketOnsite failed!")
+                }
+            })
+
+
+
+        }
+    },'#buyTickets'
+
+);

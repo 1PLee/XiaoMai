@@ -138,6 +138,7 @@ public class UserServiceImpl implements UserService {
 
         UserVO userVO = new UserVO();
 
+        userVO.setId(theUser.getId());
         userVO.setMail(theUser.getMail());
         userVO.setVipGrade(theUser.getVipGrade());
         userVO.setVipIsStop(theUser.getVipIsStop());

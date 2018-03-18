@@ -219,6 +219,55 @@
                         <!-- /.input group -->
                     </div>
 
+                    <div class="form-group">
+                        <label>选择票数</label>
+
+                        <select class="form-control select2" id="ticketNumSelect" style="width: 100%;">
+                              <option selected="selected">1</option>
+
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+
+                        </select>
+                        <!-- /.input group -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>购票用户<small>(不填默认为游客)</small></label>
+
+                        <input type="text" class="form-control " id="userId" style="width: 300px" >
+                        <button class="btn btn-info" id="queryUser" style="margin-top: 10px">查询用户</button>
+                        <!-- /.input group -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>会员优惠</label>
+
+                        <select class="form-control select2" id="vipGrade" style="width: 100%;">
+                            <!--       <option selected="selected">演唱会</option>
+
+                                   <option value="1">音乐会</option>
+                                   <option>舞蹈</option>
+                                   <option>话剧</option>
+                                   <option>体育比赛</option>-->
+
+                        </select>
+                        <!-- /.input group -->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>订单价格</label>
+
+                        <input type="text" class="form-control " id="orderMoney" style="width: 300px" readonly="readonly" >
+
+                        <!-- /.input group -->
+                    </div>
+
+                    <button class="btn btn-success" id="buyTickets">创建订单</button>
 
                 </div>
                 <!-- /.box-body -->
