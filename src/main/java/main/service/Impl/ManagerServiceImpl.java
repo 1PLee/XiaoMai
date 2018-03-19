@@ -193,6 +193,7 @@ public class ManagerServiceImpl implements ManagerService {
     public ResultMessage payVenueIncome(PerformVO performVO) {
 
         PerformIncomeVO performIncomeVO = performVO.getPerformIncomeVO();
+        System.out.println("look income:" + performIncomeVO.getTotalIncome());
         double totalIncome = performIncomeVO.getTotalIncome();
         String performTime = performVO.getTime();
         int performId = performVO.getPerformID();
@@ -209,6 +210,7 @@ public class ManagerServiceImpl implements ManagerService {
         VenueEntity venueEntity = venueDAO.getVenueInfo(venue);
 
         /*结算场馆收入*/
+        System.out.println("look the venueID:" + venueEntity.getVenueId());
         ResultMessage result = managerDAO.payVenueIncome(venueEntity.getVenueId(), venueIncome, year);
 
         if(result == ResultMessage.SUCCESS){

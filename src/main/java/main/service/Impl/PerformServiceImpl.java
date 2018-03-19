@@ -152,6 +152,7 @@ public class PerformServiceImpl implements PerformService {
 
         PriceEntity newPerformPrice = new PriceEntity();
         SeatEntity newPerformSeat = new SeatEntity();
+        DescriptionEntity descriptionEntity = new DescriptionEntity();
 
         newPerform.setAddress(performVO.getVenue());
         newPerform.setName(performVO.getName());
@@ -211,6 +212,10 @@ public class PerformServiceImpl implements PerformService {
 
             baseDAO.save(newPerformPrice);
             baseDAO.save(newPerformSeat);
+
+            descriptionEntity.setPerformId(newPerformId);
+            descriptionEntity.setDescription(performVO.getDescription());
+            baseDAO.save(descriptionEntity);
 
             if(newPerformId != 0){
                 return ResultMessage.SUCCESS;

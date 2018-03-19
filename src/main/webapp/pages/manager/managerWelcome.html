@@ -17,192 +17,192 @@
     <title>Welcome</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+    <!-- Site wrapper -->
+    <div class="wrapper">
 
-    <header class="main-header">
-        <!-- Logo -->
-        <a href="./venueWelcome.html" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>Tic</b>k</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Tickets</b>网站</span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="./venueWelcome.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>Tic</b>k</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Tickets</b>网站</span>
             </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
 
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
 
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../images/manager.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Manager</span>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../../images/manager.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">Manager</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
+
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+
+                                    <div class="pull-right">
+                                        <a href="./managerLogin.html" class="btn btn-default btn-flat">注销</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- =============================================== -->
+
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p id="venueNameBigP">Manager</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form  class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">导航栏</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>网站统计</span>
+                            <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
+                        <ul class="treeview-menu">
 
-                            </li>
-
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-
-                                <div class="pull-right">
-                                    <a href="" class="btn btn-default btn-flat">注销</a>
-                                </div>
-                            </li>
+                            <li><a href="./financialInfo.html"><i class="fa fa-circle-o"></i> 财务状况</a></li>
                         </ul>
                     </li>
 
 
+
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-edit"></i> <span>审批场馆</span>
+                            <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li><a href="./checkNewVenue.html"><i class="fa fa-circle-o"></i>审批场馆注册申请</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-table"></i> <span>场馆结算</span>
+                            <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                        </a>
+                        <ul class="treeview-menu">
+
+                            <li><a href="./payVenue.html"><i class="fa fa-circle-o"></i> 结算费用</a></li>
+
+                        </ul>
+                    </li>
+
+
+
+
                 </ul>
-            </div>
-        </nav>
-    </header>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 
-    <!-- =============================================== -->
+        <!-- =============================================== -->
 
-    <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p id="venueNameBigP">Manager</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <form  class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                    <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">导航栏</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>场馆统计</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
+        <!-- Content Wrapper. 欢迎页面 -->
+        <div class="content-wrapper" id="welcome">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    网站管理首页
+                    <small>it all starts here</small>
+                </h1>
 
-                        <li><a href="./financialInfo.html"><i class="fa fa-circle-o"></i> 财务状况</a></li>
-                    </ul>
-                </li>
+            </section>
 
+            <!-- Main content -->
+            <section class="content">
 
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">消息提示</h3>
 
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i> <span>审批场馆</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        <li><a href="./checkNewVenue.html"><i class="fa fa-circle-o"></i>审批场馆注册申请</a></li>
-
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-table"></i> <span>场馆结算</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        <li><a href="./venuePerformList.html"><i class="fa fa-circle-o"></i> 结算费用</a></li>
-
-                    </ul>
-                </li>
-
-
-
-
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
-
-    <!-- =============================================== -->
-
-    <!-- Content Wrapper. 欢迎页面 -->
-    <div class="content-wrapper" id="welcome">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                网站管理首页
-                <small>it all starts here</small>
-            </h1>
-
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">消息提示</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fa fa-times"></i></button>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fa fa-times"></i></button>
+                        </div>
                     </div>
+                    <div class="box-body">
+                        没什么特别的消息！
+                    </div>
+                    <!-- /.box-body -->
+
+
                 </div>
-                <div class="box-body">
-                    没什么特别的消息！
-                </div>
-                <!-- /.box-body -->
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
 
 
-            </div>
-            <!-- /.box -->
 
-        </section>
-        <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
 
 
 
     </div>
-    <!-- /.content-wrapper -->
-
-
-
-
-</div>
-<!-- ./wrapper -->
+    <!-- ./wrapper -->
 
 
 

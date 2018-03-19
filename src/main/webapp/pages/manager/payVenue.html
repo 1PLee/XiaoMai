@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css">
     <!-- Ionicons -->
@@ -12,20 +11,19 @@
 
     <link href="../../css/lib/_all-skins.min.css" rel="stylesheet" type="text/css">
 
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    <title>CheckNewVenue</title>
+    <link href="../../css/lib/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <title>payVenue</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-
     <!-- Site wrapper -->
     <div class="wrapper">
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="./checkNewVenue.html" class="logo">
+            <a href="./venueWelcome.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>Tic</b>k</span>
                 <!-- logo for regular state and mobile devices -->
@@ -94,9 +92,9 @@
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                    <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
+                            <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                          </span>
                     </div>
                 </form>
                 <!-- /.search form -->
@@ -107,8 +105,8 @@
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>网站统计</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -123,8 +121,8 @@
                         <a href="#">
                             <i class="fa fa-edit"></i> <span>审批场馆</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -137,8 +135,8 @@
                         <a href="#">
                             <i class="fa fa-table"></i> <span>场馆结算</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -162,17 +160,48 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    待审批场馆
-
+                    结算场馆费用
+                    <small>只显示未结算场馆</small>
                 </h1>
 
             </section>
 
-            <section class="content" id="newVenueSection">
+            <!-- Main content -->
+            <section class="content">
 
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+
+                    </div>
+                    <div class="box-body">
+
+                        <table class="table " id="unSettlePerformTable">
+                            <thead>
+                            <tr>
+                                <th>演出ID</th>
+                                <th>演出名称</th>
+                                <th>演出时间</th>
+                                <th>举办场馆</th>
+                                <th>卖出票数</th>
+                                <th>退款金额</th>
+                                <th>演出总收入</th>
+                                <th>结算</th>
+                            </tr>
+
+                            </thead>
+
+                        </table>
+
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+                <!-- /.box -->
 
             </section>
-
+            <!-- /.content -->
 
 
 
@@ -190,22 +219,17 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="../../js/lib/dataTables.bootstrap.min.js"></script>
+    <script src="../../js/lib/jquery.dataTables.min.js"></script>
+
     <!-- SlimScroll -->
     <script src="../../js/lib/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="../../js/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="../../js/lib/adminlte.min.js"></script>
+    <script src="../../js/manager/payVenue.js"></script>
 
-    <script src="../../js/manager/checkNewVenue.js"></script>
 </body>
-
-<style>
-
-    .agreeCheck,.rejectCheck{
-        color: white;
-    }
-
-</style>
-
 </html>

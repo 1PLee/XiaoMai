@@ -153,7 +153,7 @@ function loadCouponInfo() {
         data:{"userId":userId},
         success:function (result) {
             couponArray = result;
-            couponNum = couponArray.length;
+            couponNum = 0;
             for(var i =0;i<couponArray.length;i++){
                 var beginYear = new Date(couponArray[i].beginDate).getFullYear();
                 var beginMonth = new Date(couponArray[i].beginDate).getMonth()+1;
@@ -180,6 +180,7 @@ function loadCouponInfo() {
                     couponLi.innerHTML = "<p>"+couponTime+"</p>"+"<p>"+couponDes+"</p>"
                     usedUl.append(couponLi);
                 }else {
+                    couponNum++;
                     var couponLi = document.createElement("li");
                     couponLi.innerHTML = "<p>"+couponTime+"</p>"+"<p>"+couponDes+"</p>"
                     activeUl.appendChild(couponLi);

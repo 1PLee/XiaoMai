@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" type="text/css">
     <!-- Ionicons -->
@@ -12,20 +11,18 @@
 
     <link href="../../css/lib/_all-skins.min.css" rel="stylesheet" type="text/css">
 
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    <title>CheckNewVenue</title>
+    <title>Financial</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-
     <!-- Site wrapper -->
     <div class="wrapper">
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="./checkNewVenue.html" class="logo">
+            <a href="./venueWelcome.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>Tic</b>k</span>
                 <!-- logo for regular state and mobile devices -->
@@ -94,9 +91,9 @@
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                    <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                    </button>
-                  </span>
+                            <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                          </span>
                     </div>
                 </form>
                 <!-- /.search form -->
@@ -107,8 +104,8 @@
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>网站统计</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -123,8 +120,8 @@
                         <a href="#">
                             <i class="fa fa-edit"></i> <span>审批场馆</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -137,8 +134,8 @@
                         <a href="#">
                             <i class="fa fa-table"></i> <span>场馆结算</span>
                             <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                         </a>
                         <ul class="treeview-menu">
 
@@ -162,17 +159,99 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    待审批场馆
-
+                    网站整体统计
+                    <small>包括场馆、会员、收入</small>
                 </h1>
 
             </section>
 
-            <section class="content" id="newVenueSection">
+            <!-- Main content -->
+            <section class="content">
 
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">网站会员构成</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body ">
+                        <div id="vipGradePie">
+
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+
+                </div>
+
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">场馆容纳能力统计</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body ">
+                        <div id="venueCapacityPie">
+
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+
+
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">网站财务统计</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body ">
+                        <label>请输入查询年份</label>
+                        <input type="text" class="form-control" id="queryYear">
+                        <button class="btn btn-info" id="queryBtn">查询</button>
+
+                        <div id="ticketFinancialInfo">
+
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!-- /.box -->
 
             </section>
-
+            <!-- /.content -->
 
 
 
@@ -185,6 +264,8 @@
     </div>
     <!-- ./wrapper -->
 
+
+
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
@@ -196,16 +277,35 @@
     <script src="../../js/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="../../js/lib/adminlte.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.0/echarts-en.common.js"></script>
 
-    <script src="../../js/manager/checkNewVenue.js"></script>
+    <script src="../../js/manager/managerFinancial.js"></script>
 </body>
+</html>
 
 <style>
 
-    .agreeCheck,.rejectCheck{
-        color: white;
+    #vipGradePie{
+        width: 800px;
+        height: 600px;
     }
 
-</style>
+    #venueCapacityPie{
+        width: 800px;
+        height: 600px;
+    }
 
-</html>
+    #queryYear{
+        width: 300px;
+    }
+
+    #queryBtn{
+        margin-left: 320px;
+        margin-top: -60px;
+    }
+
+    #ticketFinancialInfo{
+        width: 800px;
+        height: 600px;
+    }
+</style>

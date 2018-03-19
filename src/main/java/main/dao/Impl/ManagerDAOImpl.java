@@ -105,6 +105,7 @@ public class ManagerDAOImpl implements ManagerDAO {
             venueIncome = venueIncome + income;
             venueIncomeEntity.setIncome(venueIncome);
         }else {
+            venueIncomeEntity = new VenueIncomeEntity();
             venueIncomeEntity.setVenueId(venueId);
             venueIncomeEntity.setYear(year);
             venueIncomeEntity.setIncome(income);
