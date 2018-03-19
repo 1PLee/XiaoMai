@@ -19,6 +19,8 @@ $(document).on(
             var performName = $('#performName').val();
             var performTime = $('#datepicker').val();
             var performType = $('.select2 option:selected').text();
+            var performDes = $('#performDescription').val();
+            alert(performDes);
             var price = new Array();
             var seat = new Array();
 
@@ -31,6 +33,7 @@ $(document).on(
                 "venue": venueName,
                 "name": performName,
                 "time": performTime,
+                "description": performDes,
                 "type": performType,
                 "price": price,
                 "seat": seat

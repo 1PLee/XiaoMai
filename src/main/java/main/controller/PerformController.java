@@ -78,6 +78,8 @@ public class PerformController {
     @ResponseBody
     public String newPerform(@RequestBody PerformVO performVO) {
         ResultMessage result = null;
+        System.out.println("look the description:" + performVO.getDescription());
+        System.out.println("look the price:" + performVO.getPrice().get(1));
 
         result = performService.newPerform(performVO);
 
