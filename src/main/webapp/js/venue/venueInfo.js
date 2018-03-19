@@ -44,3 +44,43 @@ $(document).ready(function () {
 
 
 });
+
+
+/*场馆提交修改申请*/
+$(document).on(
+    {
+        click:function () {
+            var location = $('#locationInput').val();
+            var mail = $('#mailInput').val();
+            var capacity = $('#capacityInput').val();
+            var description = $('#description').val();
+
+            var changeVenueVO = {
+                "name": venueName,
+                "location": location,
+                "capacity": capacity,
+                "description": description,
+                "mail": mail
+            };
+
+            $.ajax({
+                type:"post",
+                url:"/Venue/changeVenueInfo",
+                contentType:'application/json;charset=utf-8',
+                data: JSON.stringify(changeVenueVO),
+                success:function (result) {
+                    alert(result);
+                    window.location.href = "./venueWelcome.html";
+                },
+                error:function () {
+                    alert("changeVenueInfo failed!")
+                }
+
+
+            })
+
+
+        }
+    },'#submitModify'
+
+);

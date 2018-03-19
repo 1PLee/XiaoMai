@@ -116,6 +116,16 @@ public class VenueController {
         return createOrderResultVO;
     }
 
+    @RequestMapping(value = "/changeVenueInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public String changeVenueInfo(@RequestBody VenueVO venueVO) {
+        ResultMessage result = null;
+
+        result = venueService.changeVenueInfo(venueVO);
+
+        return result.toShow();
+    }
+
     @RequestMapping(value = "/getVenueCountInfo", method = RequestMethod.GET)
     @ResponseBody
     public List<PerformVO> getVenueCountInfo(@RequestParam("venue") String venue){

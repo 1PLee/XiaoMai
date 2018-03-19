@@ -94,6 +94,25 @@ public class VenueServiceImpl implements VenueService {
     }
 
     @Transactional
+    public ResultMessage changeVenueInfo(VenueVO venueVO) {
+        String venueName = venueVO.getName();
+        VenueEntity theVenue = new VenueEntity();
+        theVenue = venueDAO.getVenueInfo(venueName);
+        theVenue.setVenue(venueVO.getName());
+        theVenue.setMail(venueVO.getMail());
+        theVenue.setLocation(venueVO.getLocation());
+        theVenue.setCapacity(venueVO.getCapacity());
+        theVenue.setDescription(venueVO.getDescription());
+        theVenue.setType(0);
+
+        ResultMessage result = null;
+
+        result = baseDAO.saveOrUpdate(theVenue);
+
+        return result;
+    }
+
+    @Transactional
     public List<PerformVO> getOnSellPerforms(String venue) {
 
         List<PerformEntity> allPerforms = performDAO.getAllPerformByVenue(venue);

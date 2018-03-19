@@ -11,13 +11,12 @@
 
     <link href="../../css/lib/_all-skins.min.css" rel="stylesheet" type="text/css">
 
-    <link href="../../css/lib/select2.min.css" rel="stylesheet" type="text/css">
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <title>VenueWelcome</title>
+
+    <title>Welcome</title>
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -25,9 +24,9 @@
         <!-- Logo -->
         <a href="./venueWelcome.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>小</b>麦</span>
+            <span class="logo-mini"><b>Tic</b>k</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>小麦</b>场馆</span>
+            <span class="logo-lg"><b>Tickets</b>网站</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -45,25 +44,21 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../images/venueIcon.jpeg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">小麦场馆</span>
+                            <img src="../../images/manager.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Manager</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../images/venueIcon.jpeg" class="img-circle" alt="User Image">
+                                <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
 
-                                <p id="venueNameSmallP">
-                                    梅赛德斯中心
-                                    <small>上海市长堤路163号</small>
-                                </p>
                             </li>
 
                             <!-- Menu Footer-->
                             <li class="user-footer">
 
                                 <div class="pull-right">
-                                    <a href="./venueLogin.html" class="btn btn-default btn-flat">注销</a>
+                                    <a href="" class="btn btn-default btn-flat">注销</a>
                                 </div>
                             </li>
                         </ul>
@@ -84,10 +79,10 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="../../images/venueIcon.jpeg" class="img-circle" alt="User Image">
+                    <img src="../../images/manager.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p id="venueNameBigP">梅赛德斯中心</p>
+                    <p id="venueNameBigP">Manager</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
                 </div>
             </div>
@@ -123,30 +118,29 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>场馆信息</span>
+                        <i class="fa fa-edit"></i> <span>审批场馆</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
 
-                        <li><a href="./venueInfo.html"><i class="fa fa-circle-o"></i>基础信息查看/修改</a></li>
-                        <li><a href="./newPerform.html"><i class="fa fa-circle-o"></i>发布演出计划</a></li>
+                        <li><a href="./checkNewVenue.html"><i class="fa fa-circle-o"></i>审批场馆注册申请</a></li>
+
 
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-table"></i> <span>演出信息</span>
+                        <i class="fa fa-table"></i> <span>场馆结算</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
 
-                        <li><a href="./venuePerformList.html"><i class="fa fa-circle-o"></i> 承办演出列表</a></li>
-                        <li><a href="./checkOrder.html"><i class="fa fa-circle-o"></i> 检票</a></li>
-                        <li><a href="./buyOrder.html"><i class="fa fa-circle-o"></i> 订票</a></li>
+                        <li><a href="./venuePerformList.html"><i class="fa fa-circle-o"></i> 结算费用</a></li>
+
                     </ul>
                 </li>
 
@@ -165,7 +159,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                场馆首页
+                网站管理首页
                 <small>it all starts here</small>
             </h1>
 
@@ -177,7 +171,7 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">现场购票</h3>
+                    <h3 class="box-title">消息提示</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -188,87 +182,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-
-                    <div class="form-group">
-                        <label>演出名称</label>
-
-                        <select class="form-control select2" id="nameSelect" style="width: 100%;">
-                     <!--       <option selected="selected">演唱会</option>
-
-                            <option value="1">音乐会</option>
-                            <option>舞蹈</option>
-                            <option>话剧</option>
-                            <option>体育比赛</option>-->
-
-                        </select>
-                        <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>票价等级</label>
-
-                        <select class="form-control select2" id="priceSelect" style="width: 100%;">
-                          <!--  <option selected="selected">演唱会</option>
-
-                            <option>音乐会</option>
-                            <option>舞蹈</option>
-                            <option>话剧</option>
-                            <option>体育比赛</option>-->
-
-                        </select>
-                        <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>选择票数</label>
-
-                        <select class="form-control select2" id="ticketNumSelect" style="width: 100%;">
-                              <option selected="selected">1</option>
-
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                              <option>6</option>
-
-                        </select>
-                        <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>购票用户<small>(不填默认为游客)</small></label>
-
-                        <input type="text" class="form-control " id="userId" style="width: 300px" >
-                        <button class="btn btn-info" id="queryUser" style="margin-top: 10px">查询用户</button>
-                        <!-- /.input group -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>会员优惠</label>
-
-                        <select class="form-control select2" id="vipGrade" style="width: 100%;">
-                            <!--       <option selected="selected">演唱会</option>
-
-                                   <option value="1">音乐会</option>
-                                   <option>舞蹈</option>
-                                   <option>话剧</option>
-                                   <option>体育比赛</option>-->
-
-                        </select>
-                        <!-- /.input group -->
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>订单价格</label>
-
-                        <input type="text" class="form-control " id="orderMoney" style="width: 300px" readonly="readonly" >
-
-                        <!-- /.input group -->
-                    </div>
-
-                    <button class="btn btn-success" id="buyTickets">创建订单</button>
-
+                    没什么特别的消息！
                 </div>
                 <!-- /.box-body -->
 
@@ -292,6 +206,8 @@
 
 
 
+
+
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
@@ -304,20 +220,13 @@
     <!-- AdminLTE App -->
     <script src="../../js/lib/adminlte.min.js"></script>
 
-    <script src="../../js/lib/select2.full.min.js"></script>
-
-    <script src="../../js/venue/buyOrder.js"></script>
-
-    <script>
-        $(function () {
-
-            //Initialize Select2 Elements
-            $('.select2').select2()
-
-
-        });
-    </script>
-
 
 </body>
+
+<style>
+    #checkRegister{
+        color: white;
+    }
+
+</style>
 </html>

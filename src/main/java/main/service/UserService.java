@@ -17,7 +17,7 @@ public interface UserService {
 
     ResultMessage sendMailCode(String userID,String mail);
 
-    UserVO getUserInfo(String userID);
+    UserVO getUserInfo(String userID); //测试会员等级是否会随着积分改变而上升
 
     ResultMessage cancelVIP(String userID);
 

@@ -25,7 +25,7 @@ public interface UserOrderService {
 
     List<Double> getOrderCount(String userId);// 获取用户的消费统计
 
-    ResultMessage checkOrder(int orderId); //现场检票
+    ResultMessage checkOrder(int orderId); //现场检票(还没有完成检票时查看是否是当前时间)
 
 
 

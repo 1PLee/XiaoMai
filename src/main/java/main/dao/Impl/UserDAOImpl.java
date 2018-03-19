@@ -146,6 +146,8 @@ public class UserDAOImpl implements UserDAO {
         UserEntity theUser = baseDAO.getEntity(UserEntity.class, userId);
         int primaryScore = theUser.getVipScore();
         int userScore = 0;
+        int userGrade = 0;
+
 
         if(action == 2){ //用优惠券兑换积分
              userScore = primaryScore - score;
@@ -154,6 +156,19 @@ public class UserDAOImpl implements UserDAO {
             userScore = primaryScore + score;
         }
 
+        int[][] gradeTable = {
+                {0, 1}, //白银
+                {5000, 2}, //黄金
+                {10000, 3} //钻石
+        };
+
+        for(int i=2;i>0;i--){
+            if(userScore >= gradeTable[i][0]){
+                userGrade = gradeTable[i][1];
+                break;
+            }
+        }
+        theUser.setVipGrade(userGrade);
 
         System.out.println("update Score:  " + userScore);
         theUser.setVipScore(userScore);

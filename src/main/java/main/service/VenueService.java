@@ -17,6 +17,8 @@ public interface VenueService {
 
     ResultMessage loginVenue(VenueVO venueVO); //根据场馆名字和分配的识别码进行登录
 
+    ResultMessage changeVenueInfo(VenueVO venueVO); //修改场馆信息
+
     List<PerformVO> getOnSellPerforms(String venue); //得到场馆正在售卖的演出信息
 
     List<PerformVO> getVenueAllPerformCount(String venue);// 得到某个场馆的全部演出统计
