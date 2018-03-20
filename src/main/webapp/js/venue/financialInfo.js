@@ -168,3 +168,36 @@ function quickSort(performArray) {
     sort(performArray, 0, length-1);
 
 }
+
+/*查询场馆年收入*/
+$(document).on(
+    {
+        click:function () {
+            var year = $('#queryYear').val();
+
+
+            $.ajax({
+                type:'get',
+                url:"/Venue/getVenueIncome",
+                contentType:'application/json;charset=utf-8',
+                data:{"venue": venueName, "year": year},
+                success:function (result) {
+                    if(result.queryResult == "FAILURE"){
+                        alert("抱歉 该年场馆没有收入")
+                    }else {
+                        var income = result.income;
+                        $('#yearLable').html(year + "年总收入:");
+                        $('#incomeP').html(income);
+                    }
+
+                },
+                error:function () {
+                    alert("newPerform failed!")
+                }
+
+            })
+
+        }
+    },'#queryBtn'
+
+);

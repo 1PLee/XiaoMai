@@ -178,6 +178,23 @@
 
             </div>
 
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">查询场馆收入</h3>
+                </div>
+
+                <div class="box-body" >
+                    <label>输入查询年份</label>
+                    <input type="text" class="form-control" id="queryYear">
+                    <button class="btn btn-info" id="queryBtn">查询</button>
+
+                    <label id="yearLable"></label>
+                    <p id="incomeP"></p>
+
+                </div>
+
+            </div>
+
         </section>
 
 
@@ -218,6 +235,24 @@
     #performBookChart{
         width: 800px;
         height: 600px;
+    }
+
+    #queryYear{
+        width: 300px;
+    }
+
+    #queryBtn{
+        margin-left: 320px;
+        margin-top: -60px;
+    }
+
+    #yearLable{
+        margin-left: -370px;
+    }
+    #incomeP {
+        margin-left: 100px;
+        margin-top: -25px;
+
     }
 
 
