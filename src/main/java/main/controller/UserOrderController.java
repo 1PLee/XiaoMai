@@ -48,7 +48,15 @@ public class UserOrderController {
         UserMoneyVO userMoneyVO = new UserMoneyVO();
         String userPayName = (String)jsonObject.get("userName");
         int password = (Integer) jsonObject.get("password");
-        double orderMoney = (Double) jsonObject.get("orderMoney");
+        double orderMoney = 0.0;
+        int orderMoneyInt=0;//用来转double
+        if(jsonObject.get("orderMoney") instanceof Integer){
+            orderMoneyInt = (Integer) jsonObject.get("orderMoney");
+            orderMoney = (double) orderMoneyInt;
+        }else {
+            orderMoney = (Double) jsonObject.get("orderMoney");
+        }
+        //double orderMoney = (Double) jsonObject.get("orderMoney");
         String userId = (String) jsonObject.get("userId");
         int orderId = (Integer) jsonObject.get("orderId");
 

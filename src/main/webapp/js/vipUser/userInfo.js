@@ -657,7 +657,8 @@ function loadUnPayOrders() {
 
             $(row).click(function () {
                 sessionStorage.setItem("orderDetail", JSON.stringify(data));
-                window.location.href = "./orderDetail.html"
+                window.location.href = "./payOrder.html?orderId=" + data['orderId']+"&unPay=1&orderMoney="+data['orderMoney'];
+
             })
 
         },

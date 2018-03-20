@@ -6,11 +6,23 @@ var orderId;
 $(document).ready(function () {
     showUser();
     orderId = parseInt(getQueryString("orderId"));
-    alert(orderId);
     userId = sessionStorage.getItem("userID");
-    var orderVO = sessionStorage.getItem("orderVO");
-    orderVO = JSON.parse(orderVO);
-    $('#payMoneyP').html(orderVO.orderMoney);
+    var isUnPay = parseInt((getQueryString("unPay")));
+
+    if(isUnPay){ //从待支付订单界面而来
+
+        var orderMoneyUnPay = parseFloat(getQueryString("orderMoney"));
+        $('#payMoneyP').html(orderMoneyUnPay);
+
+    }else { //从正常下单界面而来
+
+        var orderVO = sessionStorage.getItem("orderVO");
+        orderVO = JSON.parse(orderVO);
+        $('#payMoneyP').html(orderVO.orderMoney);
+
+    }
+
+
 
     countTime();
 });
