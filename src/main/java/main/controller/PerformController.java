@@ -40,10 +40,10 @@ public class PerformController {
     @RequestMapping(value = "/getPerformInfo", method = RequestMethod.GET)
     @ResponseBody
     public PerformVO getPerformInfo(@RequestParam("performId") int performId){
-        if(performId != 139423 && performId != 142049 && performId != 142313
+      /*  if(performId != 139423 && performId != 142049 && performId != 142313
                 && performId != 143099){ //seat数据表还不完善...
             performId = 142313;
-        }
+        }*/
 
         PerformVO thePerform = new PerformVO();
         thePerform = performService.getPerformInfo(performId);

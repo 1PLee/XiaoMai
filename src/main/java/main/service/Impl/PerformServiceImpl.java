@@ -103,14 +103,25 @@ public class PerformServiceImpl implements PerformService {
     public List<Integer> getSeat(int performID) {
         List<Object[]> performSeatList = new ArrayList<Object[]>();
         performSeatList = performDAO.getSeat(performID);
+        List<Integer> seatList = null;
 
-        Object[] performSeat = performSeatList.get(0);
+        if (performSeatList.size() == 0) {//seat表中没有的演出默认每个价位500个座位
+            seatList = new ArrayList<Integer>();
+            for(int i=0;i<6;i++){
+                seatList.add(500);
+            }
 
-        List<Integer> seatList = new ArrayList<Integer>();
+        }else {
+            Object[] performSeat = performSeatList.get(0);
 
-        for(int i = 0;i < performSeat.length;i++){
-            seatList.add((Integer)performSeat[i]);
+            seatList = new ArrayList<Integer>();
+
+            for(int i = 0;i < performSeat.length;i++){
+                seatList.add((Integer)performSeat[i]);
+            }
         }
+
+
 
         return seatList;
     }

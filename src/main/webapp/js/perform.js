@@ -154,7 +154,7 @@ $(document).on(
 
 );
 
-//选择价格(座位)后弹出数量框
+
 $(document).on(
     {
         click:function (e) {
