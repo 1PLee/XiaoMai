@@ -3,6 +3,7 @@ package main.dao.Impl;
 import main.dao.BaseDAO;
 import main.dao.VenueDAO;
 import main.entity.VenueEntity;
+import main.entity.VenueIncomeEntity;
 import main.util.ResultMessage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -74,6 +75,24 @@ public class VenueDAOImpl implements VenueDAO {
 
 
         return ResultMessage.FAILURE;
+    }
+
+    public VenueIncomeEntity queryVenueIncome(int venueId, int year) {
+        VenueIncomeEntity venueIncomeEntity = null;
+
+        Session session = getCurrentSession();
+
+        venueIncomeEntity = (VenueIncomeEntity) session.createQuery(
+                "from VenueIncomeEntity " +
+                        "where venueId = :venueId and year=:queryYear"
+        )
+                .setParameter("venueId", venueId)
+                .setParameter("queryYear", year)
+                .uniqueResult();
+
+
+
+        return venueIncomeEntity;
     }
 
 

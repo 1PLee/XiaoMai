@@ -29,7 +29,7 @@ $(document).on(
                         alert("检票成功");
                         window.location.href = "./checkOrder.html";
                     }else {
-                        alert("检票失败");
+                        alert(result);
                     }
                 },
                 error:function () {

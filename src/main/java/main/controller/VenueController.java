@@ -136,5 +136,17 @@ public class VenueController {
         return venuePerformCountList;
     }
 
+    @RequestMapping(value = "getVenueIncome", method = RequestMethod.GET)
+    @ResponseBody
+    public QueryIncomeVO getVenueIncome(@RequestParam("venue") String venue, @RequestParam("year") int year){
+
+        QueryIncomeVO queryIncomeVO = new QueryIncomeVO();
+
+        queryIncomeVO = venueService.getVenueIncome(venue, year);
+
+
+        return queryIncomeVO;
+    }
+
 
 }

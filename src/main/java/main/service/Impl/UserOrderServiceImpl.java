@@ -300,6 +300,24 @@ public class UserOrderServiceImpl implements UserOrderService {
     public ResultMessage checkOrder(int orderId) {
         ResultMessage result = null;
 
+        TicketOrderEntity theOrder = baseDAO.getEntity(TicketOrderEntity.class, orderId);
+
+        if(theOrder.getOrderType() == 2){ //查看票是否已经被使用
+            result = ResultMessage.FAILURE_HASCHECKED;
+            return result;
+        }
+
+        PerformEntity thePerform = theOrder.getPerform();
+
+        String performTime = thePerform.getTime();
+        Timestamp performTimestamp = DateUtil.String2Timestamp(performTime);
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+
+        if(now.before(performTimestamp)){
+            result = ResultMessage.FAILURE_TIMEEARLY;
+            return result;
+        }
+
         result = userOrderDAO.checkOrder(orderId);
 
         return result;

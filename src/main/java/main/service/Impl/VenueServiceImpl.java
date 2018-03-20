@@ -6,6 +6,7 @@ import main.dao.PerformDAO;
 import main.dao.VenueDAO;
 import main.entity.PerformEntity;
 import main.entity.VenueEntity;
+import main.entity.VenueIncomeEntity;
 import main.service.ManagerService;
 import main.service.UserOrderService;
 import main.service.VenueService;
@@ -141,10 +142,10 @@ public class VenueServiceImpl implements VenueService {
 
                     performSeat = seatList.get(0);
                     priceList = new ArrayList<Integer>();
-
+                    System.out.println("look the seat length:" + performSeat.length);
                     for(int i =0;i<performSeat.length;i++){
 
-                        if((Integer)performSeat[i] != 0){ //还有座位
+                        if((performSeat[i] != null) && (Integer)performSeat[i] != 0){ //还有座位
 
                             priceList.add((Integer) performPrice[i]);
 
@@ -256,6 +257,28 @@ public class VenueServiceImpl implements VenueService {
         }
 
         return endPerformCountVO;
+    }
+
+    @Transactional
+    public QueryIncomeVO getVenueIncome(String venue, int year) {
+        VenueEntity theVenue = null;
+        theVenue = venueDAO.getVenueInfo(venue);
+
+        QueryIncomeVO queryIncomeVO = new QueryIncomeVO();
+
+        int venueId = theVenue.getVenueId();
+        VenueIncomeEntity venueIncomeEntity = venueDAO.queryVenueIncome(venueId, year);
+
+        if(venueIncomeEntity == null){
+            queryIncomeVO.setQueryResult(ResultMessage.FAILURE);
+        }else {
+            queryIncomeVO.setQueryResult(ResultMessage.SUCCESS);
+            queryIncomeVO.setIncome(venueIncomeEntity.getIncome());
+
+        }
+
+
+        return queryIncomeVO;
     }
 
 

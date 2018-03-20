@@ -1,6 +1,7 @@
 package main.dao;
 
 import main.entity.VenueEntity;
+import main.entity.VenueIncomeEntity;
 import main.util.ResultMessage;
 
 /**
@@ -12,6 +13,6 @@ public interface VenueDAO {
 
     ResultMessage registerVenue(VenueEntity venueEntity);
 
-
+    VenueIncomeEntity queryVenueIncome(int venueId, int year);
 
 }

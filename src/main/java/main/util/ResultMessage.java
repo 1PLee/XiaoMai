@@ -19,6 +19,10 @@ public enum  ResultMessage {
 
     FAILURE_NONESEAT("座位已全部订完！"),
 
+    FAILURE_HASCHECKED("票已经检查过"),
+
+    FAILURE_TIMEEARLY("演出时间未到无法检票"),
+
     NONE_USER("用户不存在"),
 
     WRONG_PASSWORD("密码错误"),
